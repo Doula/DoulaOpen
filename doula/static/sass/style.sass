@@ -1,0 +1,181 @@
+@import compass/css3
+@import "../../../smtemplates/smtemplates/static/scss/normalize"
+@import "../../../smtemplates/smtemplates/static/scss/typography_revamp"
+@import "../../../smtemplates/smtemplates/static/scss/buttons"
+
+* 
+  +box-sizing
+
+html 
+  background: url(../images/noise.jpg)
+  overflow-y: scroll
+
+body 
+  color: white
+
+  nav
+    background: rgba(0,0,0,0.2)
+    +box-shadow(0 5px 5px rgba(0,0,0,0.3))
+    padding: 0 10%
+    a 
+      color: white
+      text-shadow: 0 1px 0 rgba(0,0,0,0.3)
+      font-weight: 700
+      display: inline-block
+      padding: 15px 8px 10px 0
+      &:after
+        content: " → "
+        margin: 0 0 0 4px
+        position: relative
+        top: 1px
+      &:last-child:after
+        display: none
+
+  > header
+    background: rgba(0,0,0,0.5)
+    position: relative
+    z-index: 1
+    padding: 20px 10%
+    +box-shadow(0 3px 3px rgba(0,0,0,0.5))
+    h1
+      font: 0/0 a
+      margin: 0
+      width: 274px
+      height: 51px
+      background: url(../images/logo.png)
+
+
+
+.page-wrap 
+  padding: 40px 10%
+
+a
+  text-decoration: none
+  &:hover
+    text-decoration: none
+
+
+
+
+h1, h2, h3, h4, h5, h6
+  text-transform: uppercase
+  margin: 0 0 10px 0
+  line-height: 1.1
+
+
+
+.main-mod 
+  ul
+    list-style: none
+    margin: 0
+    padding: 0
+    li
+      margin: 0 0 10px 0
+      list-style: none
+      a
+        color: white
+        padding: 10px
+        display: block
+        +box-shadow(inset 0 -1px 0 rgba(255,255,255,0.2))
+        background: rgba(0,0,0,0.4)
+        @include border-radius(10px)
+        &:hover
+          background: rgba(0,0,0,0.75)
+      strong 
+        position: relative
+        top: 1px
+
+  h2
+    color: #BADa55
+
+[class^=status] 
+  display: inline-block
+  width: 20px
+  height: 20px
+  vertical-align: middle
+  border-radius: 50%
+  margin: 0 7px 0 0
+  font: 0/0 a
+.status-A 
+  background: #d8eb00
+  box-shadow: inset 0 5px 5px #adf000, 0 0 20px 2px #adf000, 0 0 2px 1px black
+.status-B
+  background: #ff6000
+  box-shadow: inset 0 5px 5px #ffb85b, 0 0 20px 2px #ffb85b, 0 0 2px 1px black
+.status-C 
+  background: #ff0000
+  box-shadow: inset 0 5px 5px #ff7878, 0 0 20px 2px #ff7878, 0 0 2px 1px black
+  -webkit-animation: pulse 0.7s infinite alternate
+  -moz-animation: pulse 0.7s infinite alternate
+
+@-webkit-keyframes pulse
+  0% 
+    background: #ff3232
+    box-shadow: inset 0 5px 5px #ff7878, 0 0 20px 2px #ff7878, 0 0 2px 1px black
+  100%
+    background: #ba0000
+    box-shadow: inset 0 10px 10px #ff7878, 0 0 30px 5px #ff7878, 0 0 2px 1px black
+
+@-moz-keyframes pulse
+  0% 
+    background: #ff3232
+    box-shadow: inset 0 5px 5px #ff7878, 0 0 20px 2px #ff7878, 0 0 2px 1px black
+  100%
+    background: #ba0000
+    box-shadow: inset 0 10px 10px #ff7878, 0 0 30px 5px #ff7878, 0 0 2px 1px black
+
+
+// Patterns
+@import "../../../smtemplates/smtemplates/static/scss/tables"
+@import "../../../smtemplates/smtemplates/static/scss/accordions"
+
+.accordion
+  margin: 0 0 25px 0
+  > div, > div:first-child, > div:last-child, div.open
+    background: rgba(0,0,0,0.4)
+    border: 0
+    margin: 0 0 10px 0
+    border-bottom: 1px solid rgba(255,255,255,0.2)
+    +transition-property(background)
+    +transition-duration(0.2s)
+    &:not(.open):hover 
+      background: rgba(0,0,0,0.8)
+    +border-radius(10px)
+    > header h3 strong 
+      position: absolute
+      top: 10px
+      right: 10px
+    > header h3 a 
+      padding-left: 40px
+    > header > span
+      width: 20px
+      height: 20px
+      top: 9px
+      left: 9px
+  > div > section > form
+    background: rgba(0,0,0,0.1)
+    +border-radius(7px)
+    padding: 10px
+    border-bottom: 1px solid rgba(255,255,255,0.1)
+    > div
+      margin: 0 0 10px 0
+      clear: both
+      &:last-child
+        margin-bottom: 0
+    label 
+      float: left
+      width: 17%
+    input[type=text], textarea 
+      width: 60%
+    
+.stat-A
+  &.open
+    background: rgba(255,0,0,0.3) !important
+
+.stat-B
+  &.open
+    background: rgba(232,97,0,0.3) !important
+
+.stat-C
+  &.open
+    background: rgba(255,0,0,0.3) !important
