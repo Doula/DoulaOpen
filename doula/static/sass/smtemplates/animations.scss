@@ -1,0 +1,48 @@
+@import "functions"; 
+
+.an-flash {
+  @include transition((background-color 0.5s ease));
+}
+.an-flash:active {
+  background: #5b5a4b;
+  @include transition((background-color 0s ease));
+}
+.an-shake {
+  @include animate((shake 1s 0 ease));
+}
+.an-fade-in {
+  @include opacity(1);
+  @include transition((opacity 1s ease));
+}
+.an-fade-out {
+  opacity: 0;
+  @include transition((opacity 1s ease));
+}
+.fadeable {
+    @include transition((opacity 200ms linear));
+}
+
+// KEYFRAMES
+// [Chris]: I'd like to come up with some kind of fancier way to do this...
+@-webkit-keyframes shake {
+  0%, 100%  { 
+   -webkit-transform: translateX(0);
+  }
+  20%, 60% {
+    -webkit-transform: translateX(10px);
+  }
+  40%, 80% {
+    -webkit-transform: translateX(-10px);
+  }
+}
+@-moz-keyframes shake {
+  0%, 100%  { 
+   -moz-transform: translateX(0);
+  }
+  20%, 60% {
+    -moz-transform: translateX(10px);
+  }
+  40%, 80% {
+    -moz-transform: translateX(-10px);
+  }
+}

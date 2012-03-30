@@ -1,0 +1,33 @@
+@import "functions";
+@import "colorswatches";
+
+// The latest technique: http://css3please.com/
+@font-face {
+  font-family: 'Pictos';
+  src: url('../assets/fonts/pictos-web.eot?#') format('eot'), // IE 6-8
+       url('../assets/fonts/pictos-web.woff') format('woff'), // FF3.6+, IE9, Chrome6+, Saf5.1+
+       url('../assets/fonts/pictos-web.ttf') format('truetype'), // Saf3—5, Chrome4+, FF3.5, Opera 10+ 
+       url('../assets/fonts/pictos-web.svg#webfontIyfZbseF') format('svg'); // iPad?
+  font-weight: normal;
+  font-style: normal;
+}
+.pictos{
+    font-family:'Pictos';
+}
+
+[data-icon]:before {
+  font-family: 'Pictos';
+  content: attr(data-icon);
+}
+
+.icon-replace {
+  strong {
+    display: inline-block;
+    text-indent: -9999px;
+  }
+  &:hover {
+    color: $grydrk;
+    text-decoration: none;
+  }
+}
+

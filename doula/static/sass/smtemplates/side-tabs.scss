@@ -1,0 +1,25 @@
+@import "functions";
+@import "variables";
+
+.sm-side-tab {
+  position: fixed;
+  @include rotate(-90);
+  top: 200px;
+  background: #444;
+  padding: 10px;
+  display: none;
+  color: #fff;
+  z-index: 9997;
+  text-decoration: none;
+}
+
+.sm-side-tab:hover{
+  background: #666;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ie8 .sm-side-tab,
+.ie7 .sm-side-tab{
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}

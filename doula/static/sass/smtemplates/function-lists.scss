@@ -1,0 +1,67 @@
+@import "functions";
+@import "variables";
+
+.function-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  > li {
+    position: relative;
+    margin: 0 0 5px 0;
+  }
+  li {
+    list-style: none;
+  }
+}
+.function-list li.active .list-item {
+  background: white;
+  color: #333;
+}
+.function-list li.upgrade .list-item {
+  background: #fdfbcb;
+  color: #A66618;
+}
+.function-list .list-item {
+  display: block;
+  color: #666666;
+  @include border-radius(3px);
+  background: #eaeae8;
+  padding: 8px;
+  font-weight: bold;
+}
+.function-list .list-item:hover {
+  text-decoration: none;
+}
+.function-list .function {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  bottom: 4px;
+  width: 11px;
+  padding-left: 8px;
+  padding-right: 4px;
+}
+.function-list .function.btn-arrow-standard-down-dark span {
+  height: 10px;
+}
+.function-list .function.btn-arrow-standard-right-dark span {
+  height: 12px;
+  margin-left: 2px;
+}
+.function-list .function.function-text {
+  padding: 2px 0 0 1px;
+  width: 22px;
+  text-align: center;
+}
+.function-list.borders li .list-item {
+  border-left: 8px solid #dadad8;
+}
+.function-list.borders li.active .list-item {
+  border-left-color: black;
+}
+.function-list.borders li.upgrade .list-item {
+  border-left-color: #e9d14b;
+}
+.function-list.borders li:not(.disabled):not(.active) .list-item:hover {
+  background: #e8f4f4;
+}

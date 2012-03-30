@@ -1,0 +1,154 @@
+@import "functions";
+@import "variables";
+
+.q {
+  width: 17px;
+  height: 17px;
+  @include border-radius(8px);
+  text-align: center;
+  font-size: 11px;
+  line-height: 16px;
+  color: #999;
+  background: #eaeae8;
+  display: inline-block;
+  position: relative;
+  font-weight: bold;
+  &:hover {
+    background: #ccc;
+    color: white;
+  }
+  > span {
+    position: relative;
+    top: 1px;
+    left: 0.5px;
+  }
+
+}
+
+.popout {
+  text-align: left;
+  width: 235px;
+  padding: 10px;
+  border: 5px solid black;
+  background: white;
+  position: absolute;
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+  display:none;
+  z-index: 9999999;
+
+  ul {
+    list-style: disc;
+    margin: 0 0 5px 20px;
+  }
+  li {
+    margin: 0;
+  }
+  h5, p, li {
+    color: #333;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+    font-size: 12px;
+  }
+  p, li {
+    text-transform: none;
+    font-weight: normal;
+  }
+  .close {
+    position: absolute;
+    top: 12px;
+    right: 5px;
+    font: 0/0 a;
+    color: transparent;
+    z-index: 10000;
+    cursor: pointer;
+    span:before {
+      font-family: 'Pictos';
+      content: "*";
+      font-size: 15px;
+      color: #666;
+    }
+    &:hover span:before {
+      color: black;
+    }
+  }
+  .tip {
+    position: absolute;
+    display: block;
+    width: 15px;
+    height: 22px;
+    background: url(../assets/popout-arrows.png) 0 -22px no-repeat;
+  }
+}
+
+.learn-more-link {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.hint {
+  background: #e1ebf9;
+  margin: 10px -10px -10px;
+  padding: 10px;
+  strong {
+    text-transform: uppercase;
+  }
+  p:last-child {
+    margin: 0;
+  }
+}
+
+.pro {
+  background: #fbf1c6;
+  margin: 10px -10px -10px;
+  padding: 10px;
+  h5 {
+    text-transform: uppercase;
+    color: #986519;
+  }
+  p:last-child {
+    margin: 0;
+  }
+}
+
+// These classes applied by JavaScript automatically (collision detection)
+.popout.tip-right.tip-top .tip {
+  background-position: -15px -22px;
+  right: -19px;
+  left: auto;
+  top: 5px;
+  bottom: auto;
+}
+.popout.tip-right.tip-bottom .tip {
+  background-position: -15px 0;
+  bottom: 5px;
+  top: auto;
+  right: -19px;
+  left: auto;
+}
+.popout.tip-left.tip-top .tip {
+  background-position: 0 -22px;
+  left: -19px;
+  right: auto;
+  top: 5px;
+  bottom: auto;
+}
+.popout.tip-left.tip-bottom .tip {
+  background-position: 0 0;
+  left: -19px;
+  right:auto;
+  bottom: 5px;
+  top: auto;
+}
+
+.popout.open {
+    display: block !important;
+}
+
+// VARIATIONS
+.q.q-on-dark {
+  background: #b4b4ac;
+  color: white;
+}
+.q.q-on-dark:hover {
+  background: #CCC;
+}

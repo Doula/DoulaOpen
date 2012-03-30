@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Doula Web</title>
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -29,6 +29,10 @@
         <li><a href="monkey-test-uno.html"><span class="status-A"></span> <strong>Monkey Test Uno</strong></a></li>
         <li><a href="#"><span class="status-B"></span> <strong>Monkey Test Dos</strong></a></li>
         <li><a href="#"><span class="status-C"></span> <strong>Monkey Test Tres</strong></a></li>
+        
+        {% for user in users %}
+          <li><a href="{{ user.url }}">{{ user.username }}</a></li>
+        {% endfor %}
       </ul>
     </div>
 

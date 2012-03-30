@@ -1,0 +1,102 @@
+@import "functions";
+@import "variables";
+
+.tabs {
+  margin: 0 0 20px 0;
+  > nav {
+    border-bottom: 1px solid #999;
+    padding: 0 10px;
+    margin: 0 0 10px 0;
+    a {
+      color: #333333;
+      font-weight: bold;
+      text-decoration: none;
+      background-color: #CBCBCB;
+      @include border-radiuses(5px, 0, 0, 5px);
+      display: inline-block;
+      padding: 5px 10px;
+    }
+  }
+
+
+}
+.tabs > nav a.active {
+  background-color: #FFFFFF;
+  border-color: #999999 #999999;
+  border-style: solid solid none;
+  border-width: 1px 1px medium;
+  bottom: -1px;
+  position: relative;
+}
+.tabs .panel {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+.tabs .panel.open {
+  position: static;
+}
+
+// PILLBOX
+.pillbox > nav {
+  padding: 0;
+}
+.pillbox > nav a {
+  display: block;
+  float: left;
+  position: relative;
+  width: 50%;
+  padding: 8px 0;
+  background: #6e6c64;
+  color: white;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  border-right: 1px solid #9E9B90;
+  @include box-sizing();  // This may cause an IE 7 issue... when right-most tab active, 1px too wide and wraps
+  @include border-radius(0);
+}
+
+.pillbox > nav a:first-child {
+  @include border-radiuses(0, 0, 3px, 3px);
+}
+.pillbox > nav a:last-child {
+  @include border-radiuses(3px, 3px, 0, 0);
+  border-right: 0;
+}
+
+
+.pillbox > nav a:hover {
+  color: #FFF;
+  text-decoration: none;
+  background: #848377;
+}
+
+
+.pillbox > nav a.disabled:hover {
+  background: #6e6c64;
+}
+
+.pillbox > nav a.active {
+  background: white;
+  color: #333;
+  bottom: 0;
+  border: 0;
+}
+.pillbox > nav a.active:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid white;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  margin: 0 0 0 -10px;
+}
+.pillbox > nav.thirds a {
+  width: 33.3333%;
+  text-decoration: none;
+}

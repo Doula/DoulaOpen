@@ -1,0 +1,877 @@
+@import "functions";
+@import "variables";
+
+.container {
+  margin: 0px auto;
+}
+
+.ft .container {
+  width: 980px;
+}
+
+.bd .container {
+  width: 980px;
+  margin: 0 auto;
+}
+
+// GLOBAL HEADERS
+.base-header {
+  min-width: 1000px;
+  *width: 100%;
+  position:  relative;
+  z-index:2;
+}
+
+.anon-header{
+  border-bottom: 1px solid #dedede;
+  background-color: #f3f3f3;
+}
+
+.anon-header:after {
+  content: "";
+  display: block;
+  height: 2px;
+  @include linear-gradient-m(#E6E6E6, (top, #E6E6E6 0%, #f3f3f3 50%));
+  position: absolute;
+  width: 100%;
+  bottom: -3px;
+  left: 0;
+}
+
+.auth-header {
+  background-color: #4B4A3C;
+  padding-top: 10px;
+}
+
+.base-header .no-nav {
+  padding-bottom: 10px;
+}
+
+.base-header .inner-header {
+  padding-right: 10px;
+  padding-left: 10px;
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  *position: relative;
+}
+
+.auth-header .inner-header-top {
+  padding-bottom: 10px;
+}
+
+.base-header .logo{
+  width: 364px;
+  height: 40px;
+  text-indent: -9999px;
+  display: block;
+  background:url(../assets/base_sprite.png) 0px -708px no-repeat;
+  _background:url(../assets/base_sprite_ie6.png) 0px -708px no-repeat; // Change to IE class
+  overflow: hidden;
+  float:left;
+}
+
+.anon-header .logo{
+   margin: 16px 0 0 0;
+}
+
+.auth-header .logo {
+  background-position: left -756px;
+  height: 31px;
+  text-indent:-9999px;
+  width: 242px;
+  vertical-align: top;
+  margin-bottom: 7px;
+}
+
+// Styles for main menu nav and dropdowns
+.base-header .nav {
+  margin: 10px 0 3px 0;
+  display:block;
+  float:left;
+}
+
+.anon-header .nav {
+  margin: 16px 0 3px 0;
+}
+
+.auth-header .nav {
+  margin:0;
+}
+
+.base-header .nav li {
+  font-weight: bold;
+  font-size: 100%;
+  position:relative;
+  float:left;
+  display:block;
+}
+
+.auth-header .nav li {
+  font-size: 0.875em;
+}
+
+.base-header .nav a {
+  color:#888;
+  text-decoration: none;
+}
+
+.auth-header .nav a {
+  padding-bottom: 5px;
+  border-bottom: 4px solid transparent;
+  _border-bottom: none;
+  color: #999;
+}
+
+.base-header .nav a:visited,
+.base-header .nav a {
+  text-decoration: none;
+ }
+
+.anon-header .nav a:hover {
+  color: #86A32D;
+}
+
+.auth-header .nav a:hover {
+  color: #EEE;
+}
+
+.base-header .nav li a {
+    display:inline-block;
+    *display:inline; zoom:1;
+    padding:0 12px 3px;
+    z-index:2;
+}
+
+.base-header .nav .current {
+  color: #EEE;
+}
+
+.anon-header .nav .current {
+  color: #86A32D;
+}
+
+.base-header .nav li a.first-item {
+  padding-left:0;
+}
+
+.base-header .nav li ul.hidden {
+  left: -999px;
+}
+
+.base-header .nav li.open {
+  @include gradient(#f2f2f1, #999);
+  z-index: 10;
+}
+
+.auth-header .nav li.open {
+  // No mixin yet for multiple backgrounds
+  background-image:
+		-webkit-linear-gradient(top, #4B4A3C, #343329),
+		-webkit-linear-gradient(top, #4B4A3C, #343329);
+	background-image:
+		-moz-linear-gradient(top, #4B4A3C, #343329),
+		-moz-linear-gradient(top, #4B4A3C, #343329);
+	background-image:
+		-ms-linear-gradient(top, #4B4A3C, #343329),
+		-ms-linear-gradient(top, #4B4A3C, #343329);
+	background-image:
+		-o-linear-gradient(top, #4B4A3C, #343329),
+		-o-linear-gradient(top, #4B4A3C, #343329);
+}
+
+.base-header .hd:active, .base-header .hd:focus{
+  outline: 0;
+}
+
+.base-header .has-submenu a.hd img {
+  width: 7px;
+  height: 7px;
+  margin: 0 0 1px 2px;
+  border: 0;
+  background: url("../assets/base_sprite.png") no-repeat scroll -32px -820px transparent;
+  _background: url("../assets/base_sprite_ie6.png") no-repeat scroll -16px -819px transparent;
+}
+
+.base-header .has-submenu a.hd:hover img {
+  background: url("../assets/base_sprite.png") no-repeat scroll -16px -820px transparent;
+}
+
+.anon-header .has-submenu a.hd:hover img {
+  background: url("../assets/base_sprite.png") no-repeat scroll 0 -820px transparent;
+}
+
+.anon-header .nav .open a.hd:hover img {
+  background: url("../assets/base_sprite.png") no-repeat scroll 0 -820px transparent;
+}
+
+.anon-header .open a.hd img {
+  background: url("../assets/base_sprite.png") no-repeat scroll 0px -820px transparent;
+  _background: url("../assets/base_sprite_ie6.png") no-repeat scroll 0px -820px transparent;
+}
+
+.base-header .nav .has-submenu ul {
+  display: none;
+	// Coming back up - much faster
+	@include transition((max-height 0.2s ease));
+	background: #f2f2f1;
+	border: 1px solid #999;
+	*border-top:0;
+	// Negative spread so shadow only comes off bottom
+	@include drop-shadow(0, 3px, 2px, 0, 0.2);
+	z-index: -1;
+}
+
+.auth-header .nav .has-submenu ul {
+  background: #4B4A3C;
+  border-color: #343329;
+}
+
+.auth-header .nav li.open a.hd img {
+  background: url("../assets/base_sprite.png") no-repeat scroll -16px -820px transparent;
+}
+
+.base-header .nav .open ul {
+  zoom:1;
+  display:block;
+  left:0;
+  top:20px;
+  position:absolute;
+  *width:200px;
+	max-height: 2000px;
+  @include transition((max-height 1.5s ease));
+  @include border-radius-bottom-left(5px);
+  @include border-radius-bottom-right(5px);
+}
+
+.auth-header .nav .open ul {
+   top: 22px;
+   _top: 18px;
+}
+
+.base-header .nav .has-submenu ul li {
+  *display: block;
+  zoom: 1;
+  display: block;
+  white-space: nowrap;
+  *white-space: normal;
+  font-weight: normal;
+  border-bottom: 1px solid #E4E4E4;
+  font-size: 12px;
+  float: none;
+}
+
+.auth-header .nav .has-submenu ul li {
+  border-bottom-color: #454439;
+}
+
+.base-header .nav .has-submenu ul li.min-width {
+  line-height: 0;
+}
+
+.base-header .nav .has-submenu ul li.min-width .img {
+  height: 3px;
+}
+
+.base-header .nav .has-submenu ul li a {
+  color: #5A594B;
+  padding: 8px 25px;
+  display: block;
+}
+
+.auth-header .nav .has-submenu ul li a {
+  color:#CCC;
+}
+
+.base-header .nav .has-submenu ul li a:hover,
+.base-header .nav .has-submenu ul li:hover {
+  background-color: #E4E4E4;
+  color: #333;
+}
+
+.auth-header .nav .has-submenu ul li a:hover,
+.auth-header .nav .has-submenu ul li:hover {
+  background-color: #454439;
+  color: #EEE;
+}
+
+.base-header .nav .has-submenu ul li.min-width:hover {
+  background-color: #F2F2F1;
+}
+
+.auth-header .nav .has-submenu ul li.min-width:hover {
+  background-color: #4B4A3C;
+}
+
+.base-header .nav .has-submenu .hd-bg a {
+  display: inline-block;
+  margin: 0 1px;
+}
+
+.base-header .nav .open .hd-bg {
+  // Why only filter here?
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f1', endColorstr='#999');
+}
+
+.auth-header .nav .open .hd-bg {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4B4A3C', endColorstr='#343329');
+}
+
+.base-header .nav .open .hd-bg a {
+  background-color:#F3F3F2;
+  color:#86a33b;
+}
+
+.auth-header .nav .open .hd-bg a {
+  background-color:#4B4A3C;
+  color:#EEE;
+}
+
+// Sign-in / member area nav
+.base-header .user-area {
+  position: relative;
+  float: right;
+  font-weight: bold;
+  color: #ccc;
+  z-index:3;
+}
+.anon-header .user-area {
+  margin:25px 15px 0 0;
+  color: #000;
+}
+
+// Are we actually using IE classes like this?
+// If so, we should probably move hacks like _background and use standard classes like this instead.
+.ie7 .auth-header .user-area,
+.ie6 .auth-header .user-area {
+  margin-top: 0;
+}
+
+.base-header .user-area a {
+  outline: none;
+  padding: 4px 10px 4px 10px;
+  font-size: 68.75%;
+  text-decoration: none;
+  @include border-radius(3px);
+  display: block;
+}
+
+.anon-header .user-area a {
+  color: #333;
+  padding: 4px 10px 4px 10px;
+  font-size: 68.75%;
+  border: 1px solid #ccc;
+  text-decoration: none;
+  @include border-radius(3px);
+  display: block;
+}
+
+.auth-header .user-area a {
+  color: #CCC;
+  background-color:#34332B;
+  white-space:nowrap;
+}
+
+.auth-header .user-area a:hover {
+  color: #EEE;
+  background-color:#3C3B31;
+}
+
+.base-header .user-area li {
+  float: left;
+  color: #83847A;
+  padding-right: 4px;
+  list-style: none;
+  font-size: 100%;
+}
+
+.base-header .user-area li.last {
+  padding-right: 0;
+}
+
+.ie6 .user-area li.notranslate a {
+  list-style: none;
+}
+
+.auth-header .user-area li.has-submenu a.hd {
+  text-align: right;
+}
+
+.auth-header .user-area li.has-submenu a.hd img {
+  margin-top: 4px;
+}
+
+.auth-header .user-area li.open {
+  position: relative;
+}
+
+.auth-header .user-area li.has-submenu ul {
+  display: none;
+}
+
+.auth-header .user-area li.open ul {
+  position: absolute;
+  display: block;
+  z-index: 4;
+  right: 4px;
+}
+
+.auth-header .user-area li.has-submenu ul li {
+  float: none;
+  padding: 0;
+  white-space: nowrap;
+  *white-space: normal;
+}
+
+.auth-header .user-area li.has-submenu ul li.first-item {
+  text-align: right;
+
+}
+
+.auth-header .user-area li.has-submenu ul li.first-item a {
+  text-align: right;
+  vertical-align: top;
+  padding: 4px 10px;
+  @include border-radius-top-right(3px);
+  @include border-radius-top-left(3px);
+}
+
+.auth-header .user-area li.has-submenu ul li.last a {
+  @include border-radius-bottom-right(3px);
+  @include border-radius-bottom-left(3px);
+}
+
+.auth-header .user-area li.has-submenu ul li a {
+  padding:10px;
+  @include border-radius(0);
+}
+
+.auth-header .user-area li.has-submenu ul li a.hd {
+  display:inline-block;
+}
+
+.base-header .use-cases {
+  *z-index: 1000;
+  border-top: 1px solid #ccc;
+  min-width: 175px;
+  _width: 175px;
+}
+
+.ie7 .base-header .use-cases a {
+  *z-index: 1000;
+  min-width: 175px;
+}
+
+.ie6 .base-header .use-cases a {
+  width: 175px;
+}
+
+.anon-header .sign-in {
+  background-color: #fff;
+}
+
+.anon-header .help {
+  font-weight: normal;
+}
+
+.anon-header .sign-in:hover,
+.anon-header .help:hover {
+  border: 1px solid #999;
+  background-color: #fff;
+}
+
+// Create Survey button
+.base-header a.create-survey {
+  color: #fff;
+  font-size: 0.75em;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  padding: 5px;
+  background: #768320 url(../assets/base_sprite.png) 0px -665px no-repeat;
+  _background: #768320 url(../assets/base_sprite_ie6.png) 0px -665px no-repeat;
+  float: right;
+  min-width: 120px;
+  _width: 120px;
+  position: relative;
+  bottom: 10px;
+  // IE 6/7
+  *position: absolute;
+  *bottom: 10px;
+  *right: 15px;
+  z-index: 1;
+}
+
+.base-header a.create-survey:hover {
+  background: #93a329 url(../assets/base_sprite.png) 0px -635px no-repeat;
+  _background: #93a329 url(../assets/base_sprite_ie6.png) 0px -635px no-repeat;
+  text-decoration: none;
+}
+
+// Header message
+.base-header .advisory {
+  width: 360px;
+  margin: 0 0 0 266px;
+  position: relative;
+  top: -10px;
+  background-color: #484837;
+  color: #fff;
+  font-size: 11px;
+  white-space: normal;
+  @include border-radius-bottom-left(5px);
+  @include border-radius-bottom-left(5px);
+  @include drop-shadow(0, 1px, 5px, 0, 0.5);
+}
+
+.base-header .advisory p {
+  color:#fff;
+  font-size:11px;
+  margin:0;
+  padding:10px 30px;
+}
+.base-header .advisory p strong {
+  font-size: 1.1em;
+}
+.base-header .advisory a, .advisory a:hover {
+  color:#fff;
+  text-decoration:underline;
+}
+
+// GLOBAL FOOTERS
+.ft {
+  background-color:#b5b8a6;
+  zoom: 1;
+}
+.ft-member {
+  background:url(../assets/bg_footer_member.jpg) top left repeat-x #5a594a;
+}
+.ft h2 {
+  font-size:.75em;
+  font-weight:bold;
+  color:#ebebeb;
+}
+.ft a, .ft a:visited, .ft a:link, .ft .lnk {
+  color:#ebebeb;
+  text-decoration: none;
+  font-size:.75em;
+}
+.ft a:hover {
+  color:#fff;
+}
+
+// List wrap
+ul.footer-menu {
+  height:170px;
+  padding-left:30px;
+}
+// Column sets
+ul.footer-menu li {
+  display:inline;
+  float:left;
+  padding:30px 0 30px;
+}
+// Menu items
+ul.footer-menu ul li {
+  clear:left;
+  margin-right:2.6em;
+  padding:0;
+  white-space:nowrap;
+ }
+// If home, expand list column spacing
+ul.home ul li {
+  margin-right:6em;
+}
+// Remove right-margin from last column
+ul.footer-menu ul.end li {
+  margin-right:0px;
+}
+
+// Regional menus - may change regional nav to divs...
+li.regional h2 {
+  padding:0 0 6px 80px;
+  font-size:1em;
+}
+li.regional ul {
+  position:relative;
+  top:0px;
+  left:60px;
+  width:80px;
+  height:70px;
+  background:#ededed;
+  display:none;
+}
+li.regional ul li a:hover {
+  background:#397f78;
+  text-decoration: none;
+}
+// Links w/inverted caret
+li.regional h2 span {
+  font-size: 0.4em;
+  margin-left: 6px;
+}
+
+// If home, hide regional selections */
+ul.home li.regional {
+    display:none;
+}
+
+// This is for main template footer - everything above is for more specific footers- Dialogs, etc.
+.base-footer .grid {
+  white-space: nowrap;
+}
+
+// These !important statements are necessary because .col class has a set width on page specific css and we need to ensure this width
+.base-footer .grid-u-2-5 {
+  width: 40% !important;
+}
+
+.base-footer .grid-u-3-5 {
+  width:60% !important;
+}
+
+.base-footer .inner-ft {
+  width: 980px;
+  margin: 0 auto;
+  _position:relative;
+}
+
+.base-footer .col {
+  white-space: normal;
+  vertical-align: middle;
+  padding: 0;
+  margin: 0;
+}
+
+.anon-footer:before {
+  content: "";
+  display: block;
+  height: 2px;
+  @include linear-gradient-m(#f3f3f3, ((top, #f3f3f3 0%, #E6E6E6 50%)));
+  position: absolute;
+  width: 100%;
+  top: -3px;
+  left: 0;
+}
+
+.base-footer{
+  font-size: 0.75em;
+  min-width: 1000px;
+}
+.anon-footer{
+  color: #888;
+  background-color: #f3f3f3;
+  border-top:1px solid #DEDEDE;
+  position:relative;
+}
+.auth-footer {
+  color: #B3B3AC;
+  background: #4B4A3C;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#525043), to(#4B4A3C)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, #525043, #4B4A3C); /* Chrome 10+, Saf5.1+ */
+  background-image:    -moz-linear-gradient(top, #525043, #4B4A3C); /* FF3.6 */
+  background-image:     -ms-linear-gradient(top, #525043, #4B4A3C); /* IE10 */
+  background-image:      -o-linear-gradient(top, #525043, #4B4A3C); /* Opera 11.10+ */
+  background-image:         linear-gradient(top, #525043, #4B4A3C);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#525043', endColorstr='#4B4A3C'); /* for IE < 10 */
+}
+.ie6 .anon-footer,
+.ie7 .anon-footer,
+.ie8 .anon-footer,
+.ie9 .anon-footer {
+ border-top: 2px solid #dedede;
+}
+.base-footer .ft-c {
+  padding-top: 20px;
+  padding-bottom: 7px;
+}
+.base-footer .ft-bottom{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.anon-footer .ft-c {
+  border-bottom: 1px dotted #999;
+}
+.auth-footer .ft-c {
+  border-bottom: 1px dotted #B3B3AC;
+}
+
+.anon-footer a, .anon-footer a:visited{
+  color: #888;
+}
+.auth-footer a, .auth-footer a:visited {
+  color: #B3B3AC;
+}
+.base-footer ul li {
+  display: inline-block;
+  *display: inline; zoom: 1;
+}
+.base-footer ul li {
+  list-style: disc none;
+  margin: 0 5px 5px 0;
+}
+.base-footer ul li:last-child {
+  margin-right:0;
+}
+.base-footer .link-list {
+  margin-bottom: 8px;
+}
+.base-footer .link-list li{
+  position:relative;
+  margin: 0 17px 5px 0;
+}
+.base-footer .link-list li:not(:last-child):after {
+  content: "\2022";
+  position:absolute;
+  top:0;
+  right:-12px;
+}
+.base-footer .anon .link-list li:not(:last-child):after {
+  color: #ccc;
+}
+.base-footer .auth .link-list li:not(:last-child):after {
+  color: #B3B3AC;
+}
+.base-footer .link-list li.link-list-label {
+  font-weight: bold;
+  margin: 0 5px 5px 0;
+}
+.base-footer .link-list li.link-list-label:after {
+  content: "";
+  margin-left: 0;
+}
+.ie6 .anon-footer .ft-c li,
+.ie7 .anon-footer .ft-c li,
+.ie8 .anon-footer .ft-c li {
+  margin-right: 10px;
+}
+
+// Security list/icons
+.base-footer .security {
+  overflow: hidden;
+  outline: none;
+  text-align: right;
+}
+.base-footer .security li {
+  vertical-align: top;
+  margin: 0 0 0 10px;
+  padding: 0 0 0 5px;
+}
+.base-footer .security a, .ft-security a, .security .link-truste {
+  background:url(../assets/base_sprite.png) no-repeat;
+  _background:url(../assets/base_sprite_ie6.png) no-repeat;
+  height: 43px;
+  display: inline-block;
+  *display: block;
+  text-align: center;
+  text-indent: -9999px;
+}
+
+.base-footer .security .link-truste, .ft-security .link-truste, .security .link-truste{
+  background-position: 0 0;
+  width: 95px;
+}
+
+.base-footer .security .link-bbonline, .ft-security .link-bbonline {
+  background-position: 0 -100px;
+  width: 92px;
+}
+
+.base-footer .security .link-rampweb, .ft-security .link-rampweb {
+  background-position: 0 -156px;
+  width: 39px;
+}
+.base-footer .security .link-scanalert, .ft-security .link-scanalert {
+  background: url('https://images.scanalert.com/meter/surveymonkey.com/32.gif') no-repeat scroll top left transparent;
+  width: 115px;
+  margin: 4px 0 0 0;
+}
+.base-footer .security .link-verisign, .ft-security .link-verisign {
+  background-position: 0 -50px;
+  width: 79px;
+}
+
+.survey-header{
+    border-bottom: 1px solid #999;
+    position:relative;
+}
+
+.survey-title{
+    width:350px;
+    font-size:20px;
+    margin:0 0 4px;
+}
+
+.survey-tabs {
+
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    margin:0;
+    position:absolute;
+    right:0;
+    bottom:0;
+    width:600px;
+
+    li {
+
+        display: inline-block;
+        margin: 0 5px 0 0;
+        padding: 5px 10px;
+        background-color: #CBCBCB;
+        float:right;
+        position: relative;
+        bottom: -1px;
+
+        .ie7 &{
+
+            display: inline;
+            margin:0 0 0 3px;
+            zoom: 1;
+
+        }
+    }
+
+    a {
+        color: #333;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .selected {
+        border: 1px solid #999;
+        border-bottom:none;
+        background-color: #fff;
+
+        .ie7 &{
+            left:3px;
+        }
+
+        a {
+            color: #333;
+        }
+    }
+
+    .beta{
+        color:#F30;
+        font-style:italic;
+    }
+}
+
+
+// START GLOBAL MESSAGING CLASS
+// The message bar can appear on any page of the application. Currently it is only shown in QuestionBank. As we port more
+// pages to pyramid the bar we will need to be a global style.
+.message-bar{
+  background-color: #FCF2C7;
+
+}
+.message-bar .message-container{
+  width: 980px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px 0;
+}
+.message-bar .message-container span.pipe{
+  margin: 0 15px;
+}

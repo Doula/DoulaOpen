@@ -1,0 +1,386 @@
+@import "functions";
+@import "variables";
+
+.btn {
+  padding: 6px 13px;
+  @include border-radius(4px);
+  text-shadow: 0 1px 0 #FFFFFF;
+  outline: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1.5;
+  white-space: nowrap;
+  text-decoration: none !important;
+  color: #333;
+  display: inline-block;
+  border: solid 1px #BBB;
+  @include gradient(#f0f0ea, #d5d7ce);
+  // Hope this doesn't cause problems, it's useful for button menus
+  position: relative;
+}
+.btn:not(.disabled):hover {
+  z-index: 1;
+  border: solid 1px #999;
+  text-decoration: none;
+  @include gradient(#f5f5ee,#dcded5);
+}
+.btn:not(.disabled):active, .btn:not(.disabled).open {
+  border: solid 1px #999;
+  @include gradient(#dcded5,#f5f5ee);
+}
+
+.btn.open{
+  outline: 0;
+}
+
+.ie7 .btn {
+  display: inline;
+  zoom: 1;
+}
+
+input.btn {
+  font-family: Sans-Serif;
+}
+
+//
+// BUTTON MENU
+//
+.btn-menu {
+  letter-spacing: -0.31em;
+  // Webkit: collapse white-space between units
+
+  *letter-spacing: normal;
+  // reset IE < 8
+
+  word-spacing: -0.43em;
+  // IE < 8 && gecko: collapse white-space between units
+
+  white-space: nowrap;
+}
+.btn-menu .btn {
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+}
+.btn-menu .btn-menu-right {
+  margin-left: -1px;
+  // TODO: Move to individual border radius mixins
+  -webkit-top-left-border-radius: 0;
+  -webkit-bottom-left-border-radius: 0;
+  -moz-top-left-border-radius: 0;
+  -moz-bottom-left-border-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.btn-menu .btn-menu-left {
+  // TODO: Move to individual border radius mixins
+  -webkit-top-right-border-radius: 0;
+  -webkit-bottom-right-border-radius: 0;
+  -moz-top-right-border-radius: 0;
+  -moz-bottom-right-border-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.btn-menu .btn-menu-middle {
+  @include border-radius(0);
+  margin-left: -1px;
+}
+
+.ie7 .btn-menu-arrow-left > span {
+  height: 10px;
+}
+.ie7 .btn-menu-right {
+  margin-left: 3px;
+}
+.ie7 .btn-menu-right:hover {
+  margin-left: 2px;
+}
+
+// ARROWS
+.btn-arrow > span {
+  background: url("../assets/sm_sprite_arrows.png") no-repeat scroll 0 -497px transparent;
+  display: inline-block;
+  height: 12px;
+  width: 6px;
+  zoom: 1;
+  *display: inline;
+}
+.btn-arrow-right {
+  padding-right: 10px;
+}
+.btn-arrow-right > span {
+  margin-left: 6px;
+}
+.btn-arrow-left {
+  padding-left: 10px;
+}
+.btn-arrow-left > span {
+  margin-right: 6px;
+}
+.btn-small.btn-arrow-left {
+  padding-left: 8px;
+}
+.btn-large.btn-arrow-right {
+  padding-right: 9px;
+  padding-left: 11px;
+}
+.btn-large.btn-arrow-left {
+  padding-right: 11px;
+  padding-left: 9px;
+}
+
+// Small Arrows
+.btn-arrow-small-horiz > span {
+  height: 7px;
+  width: 5px;
+}
+.btn-arrow-small-vert > span {
+  height: 5px;
+  width: 7px;
+}
+.ie7 .btn-arrow-small-horiz > span {
+  height: 10px;
+}
+.ie7 .btn-arrow-small-vert > span {
+  height: 10px;
+}
+.btn-arrow-small-right-light > span {
+  background-position: 0 -180px;
+}
+.btn-arrow-small-left-light > span {
+  background-position: 0 -200px;
+}
+.btn-arrow-small-up-light > span {
+  background-position: 0 -220px;
+}
+.btn-arrow-small-down-light > span {
+  background-position: 0 -160px;
+}
+.btn-arrow-small-right-medium > span {
+  background-position: 0 -100px;
+}
+.btn-arrow-small-left-medium > span {
+  background-position: 0 -120px;
+}
+.btn-arrow-small-up-medium > span {
+  background-position: 0 -140px;
+}
+.btn-arrow-small-down-medium > span {
+  background-position: 0 -80px;
+}
+.btn-arrow-small-right-dark > span {
+  background-position: 0 -20px;
+}
+.btn-arrow-small-left-dark > span {
+  background-position: 0 -40px;
+}
+.btn-arrow-small-up-dark > span {
+  background-position: 0 -60px;
+}
+.btn-arrow-small-down-dark > span {
+  background-position: 0 0;
+}
+
+// STANDARD SIZE BUTTONS
+.btn-arrow-standard-horiz > span {
+  height: 8px;
+  width: 6px;
+}
+.ie7 .btn-arrow-standard-horiz > span {
+  height: 11px;
+}
+.btn-arrow-standard-vert > span {
+  height: 6px;
+  width: 12px;
+}
+.ie7 .btn-arrow-standard-vert > span {
+  height: 10px;
+  width: 10px;
+}
+.btn-arrow-standard-right-light > span {
+  background-position: 0 -420px;
+}
+.btn-arrow-standard-left-light > span {
+  background-position: 0 -440px;
+}
+.btn-arrow-standard-up-light > span {
+  background-position: 0 -460px;
+}
+.btn-arrow-standard-down-light > span {
+  background-position: 0 -400px;
+}
+.btn-arrow-standard-right-medium > span {
+  background-position: 0 -340px;
+}
+.btn-arrow-standard-left-medium > span {
+  background-position: 0 -360px;
+}
+.btn-arrow-standard-up-medium > span {
+  background-position: 0 -380px;
+}
+.btn-arrow-standard-down-medium > span {
+  background-position: 0 -320px;
+}
+.btn-arrow-standard-right-dark > span {
+  background-position: 0 -260px;
+}
+.btn-arrow-standard-left-dark > span {
+  background-position: 0 -280px;
+}
+.btn-arrow-standard-up-dark > span {
+  background-position: 0 -300px;
+}
+.btn-arrow-standard-down-dark > span {
+  background-position: 0 -240px;
+}
+
+// LARGE ARROWS
+.btn-arrow-large-horiz > span {
+  height: 9px;
+  width: 6px;
+}
+.btn-arrow-large-vert > span {
+  height: 7px;
+  width: 12px;
+}
+.ie7 .btn-arrow-large-horiz > span {
+  height: 12px;
+}
+.ie7 .btn-arrow-large-vert > span {
+  height: 10px;
+}
+.btn-arrow-large-right-light > span {
+  background-position: 0 -420px;
+}
+.btn-arrow-large-left-light > span {
+  background-position: 0 -440px;
+}
+.btn-arrow-large-up-light > span {
+  background-position: 0 -460px;
+}
+.btn-arrow-large-down-light > span {
+  background-position: 0 -400px;
+}
+.btn-arrow-large-right-medium > span {
+  background-position: 0 -580px;
+}
+.btn-arrow-large-left-medium > span {
+  background-position: 0 -600px;
+}
+.btn-arrow-large-up-medium > span {
+  background-position: 0 -620px;
+}
+.btn-arrow-large-down-medium > span {
+  background-position: 0 -560px;
+}
+.btn-arrow-large-right-dark > span {
+  background-position: 0 -500px;
+}
+.btn-arrow-large-left-dark > span {
+  background-position: 0 -520px;
+}
+.btn-arrow-large-up-dark > span {
+  background-position: 0 -540px;
+}
+.btn-arrow-large-down-dark > span {
+  background-position: 0 -480px;
+}
+.btn-only-arrow {
+  padding-left: 11px;
+  padding-right: 7px;
+}
+.btn-small.btn-only-arrow {
+  padding-right: 5px;
+  padding-bottom: 1px;
+}
+
+// COLORS
+.teal {
+  color: white;
+  border-color: #049795;
+  text-shadow: 0 -1px 0 #444444;
+  @include gradient(#35c0c0,#049795);
+}
+.teal:not(.disabled):hover {
+  @include gradient(#42cbcc,#14a4a3);
+}
+.teal:not(.disabled):active, .teal:not(.disabled).open {
+  @include gradient(#14a4a3,#42cbcc);
+}
+
+.dark-grey {
+  color: white;
+  border-color: #666666;
+  text-shadow: 0 -1px 0 #444444;
+  @include gradient(#989898,#666666);
+}
+.dark-grey:not(.disabled):hover {
+  @include gradient(#a4a4a4,#787878);
+}
+.dark-grey:not(.disabled):active, .dark-grey:not(.disabled).open {
+  @include gradient(#787878,#a4a4a4);
+}
+
+.yellow {
+  border: solid 1px #DFC235;
+  text-shadow: 0 1px 0 #FCFC85;
+  @include gradient(#f8f777,#dfc235);
+}
+.yellow:not(.disabled):hover {
+  border: solid 1px #999;
+  @include gradient(#fcfc85,#edce38);
+}
+.yellow:not(.disabled):active, .yellow:not(.disabled).open {
+  @include gradient(#f7e258,#faf476);
+}
+
+.green {
+  color: white;
+  border-color: #799334;
+  text-shadow: 0 -1px 0 #677e2c;
+  @include gradient(#adc93f,#799334);
+}
+.green:not(.disabled):hover {
+  @include gradient(#b4d141,#819d37);
+}
+.green:not(.disabled):active, .green:not(.disabled).open {
+  @include gradient(#819d37,#b4d141);
+}
+
+.red {
+  color: white;
+  border-color: #900;
+  text-shadow: 0 -1px 0 #677e2c;
+  @include gradient(#F30,#900);
+}
+.red:not(.disabled):hover {
+  @include gradient(#ff6753,#900);
+}
+.red:not(.disabled):active, .red:not(.disabled).open {
+  @include gradient(#900,#ff6753);
+  background-color: #819d37;
+}
+.green.btn, .red.btn,
+.teal.btn, .dark-grey.btn {
+	color: #fff;
+}
+
+// VARIATIONS
+.btn-small {
+  font-size: 11px;
+  padding: 3px 9px;
+}
+.btn-large {
+  font-size: 14px;
+  padding: 9px 18px;
+}
+.no-emphasize {
+  font-weight: normal;
+}
+.no-border, .no-border:hover {
+  border: 0 !important;
+}
+.shadow {
+  @include box-shadow ((0 2px 2px 0 rgba(0, 0, 0, 0.25)));
+}

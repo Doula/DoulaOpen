@@ -1,0 +1,45 @@
+@import "functions";
+@import "colorswatches";
+
+.slider{
+    position:relative;
+    border-width:1px;
+    border-style:solid;
+    @include border-radius(4px);
+    display:inline-block;
+    height:8px;
+
+    a{
+        position:absolute;
+        cursor:default;
+        top:0;
+        left:0;
+        margin:-4px 0 0 -8px;
+        height:14px;
+        width:14px;
+        padding:0;
+        z-index:5;
+    }
+
+    div{
+        background-color:$ctalight;
+        position:absolute;
+        height:100%;
+        top:0;
+        right:0;
+        left:0;
+    }
+}
+
+.slider-label{
+    position:absolute;
+    border:1px solid #ccc;
+    background-color:#fff;
+    display:none;
+    text-align:center;
+    display:block;
+    padding:0 3px;
+    line-height:22px;
+    bottom:14px;
+    margin:0 0 0 -8px;
+}

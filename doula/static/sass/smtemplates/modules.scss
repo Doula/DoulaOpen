@@ -1,0 +1,61 @@
+@import "functions";
+@import "variables";
+
+.mod {
+  background-color: white;
+  margin-bottom: 20px;
+  font-size: 13px;
+  width: 100%;
+  float: left;
+  .main {
+    border: 1px solid $grymed;
+    border-top: none;
+    background: $grymdlt;
+    padding: 10px;
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+  header, footer {
+    padding: 10px;
+  }
+  header {
+    background: $grydrk;
+    @include border-radiuses(3px, 0, 0, 3px);
+    h3 {
+      color: white;
+      margin: 0;
+    }
+  }
+  footer {
+    clear: both;
+    @include border-radiuses(0, 3px, 3px, 0);
+    background-color: $grylt;
+    margin: 0 0 20px 0;
+    border: 1px solid $grymed;
+    border-top: 1px solid $grymdlt;
+    position: relative;
+    top: -1px; // Overlap border
+  }
+}
+
+// When module is in sidebar...  
+.aside {
+  .mod {
+    header, footer {
+      padding: 5px;
+      font-size: 12px;
+    }
+  }
+}
+
+// Upsell
+.mod_up {
+  .main {
+    background-color: $altlight;
+    border-color: $altmed;
+  }
+  header {
+    background: $altdark;
+  }
+}

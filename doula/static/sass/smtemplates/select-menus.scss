@@ -1,0 +1,39 @@
+@import "functions";
+@import "variables";
+
+.select-menu {
+  padding:0;
+  line-height:1.5;
+  .display {
+    padding: 0 5px;
+    color: #333;
+    display:block;
+    float:left;
+  }
+  .arrow {
+    padding:2px 7px 0;
+    font-size: 11px;
+    display:block;
+    float:right;
+  }
+  &.teal, &.dark-grey {
+    .arrow, .display {
+      color: #fff;
+    }
+  }
+
+  .ie7 & {
+      .display{
+          display:inline;
+          zoom:1;
+          float:none;
+      }
+
+      .arrow{
+          display:inline;
+          zoom:1;
+          float:none;
+          padding:0 7px;
+      }
+  }
+}

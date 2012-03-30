@@ -1,0 +1,63 @@
+@import "functions";
+@import "variables";
+
+.hd a {
+  margin: 10px 0 10px 20px;
+}
+
+#hd {
+  width:100%;
+  padding:10px 0 10px 70px;
+  border-bottom: 3px solid #000;
+  .logo {
+    width: 364px;
+    height: 40px;
+    text-indent: -9999px;
+    display: block;
+    background:url(../assets/base_sprite.png) 0px -708px no-repeat;
+    _background:url(../assets/base_sprite_ie6.png) 0px -708px no-repeat; // Change hack to use IE classes?
+    overflow: hidden;
+  }
+}
+
+.bd {
+  letter-spacing: -0.31em; // Webkit: collapse white-space between units 
+  *letter-spacing: normal; // Reset IE < 8
+  word-spacing: -0.43em;   // IE < 8 && gecko: collapse white-space between units 
+}
+
+.row {
+  letter-spacing: normal;
+  word-spacing: normal;
+  background-color: #e7ebc0;
+  height: 50px;
+  padding: 20px 30px 20px 30px;
+  h1 {
+    padding: 0;
+    color: #000;
+  }
+}
+
+.col {
+  display: inline-block;
+  zoom: 1; 
+  *display: inline; // IE < 8: fake inline-block
+  vertical-align: middle;
+  width: 75%;
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+
+.left {
+  padding: 40px 0 0 60px;
+  width: 190px;
+}
+
+.oops-icon {
+  background: transparent url(../assets/icon_oops.gif) 0 0 scroll no-repeat;
+  overflow: hidden;
+  outline: none;
+  text-indent: -9999px;
+  height: 154px;
+  width: 172px;
+}

@@ -1,0 +1,86 @@
+@import "functions";
+@import "variables";
+
+.dialog{
+  position: absolute;
+  position: fixed;
+  z-index: 9999;
+  width: 350px;
+  @include opacity(0);
+  top: 0;
+  left: 0;
+  background-color:#fff;
+  border: 3px solid #E9D14B;
+  @include border-radius(5px);
+  display:none;
+  & > section{
+      padding:20px 20px 40px 20px;
+  }
+  @include box-shadow ((1px 1px 2px 0px #999));
+}
+
+// Backdrop
+.dialog-backdrop {
+  top: 0;
+  left: 0;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 9998;
+  background-color:#999;
+  @include opacity(0);
+}
+
+.dialog-title-bar {
+  position: relative;
+  padding: 7px;
+  height:16px;
+  line-height:16px;
+  & > h5 {
+    margin:0;
+  }
+}
+
+.dialog-close-btn {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  height: 16px;
+  width: 16px;
+  display: block;
+  background-color: transparent;
+  background-image: url(../assets/SPRITE_modal_standard.png);
+  background-position: 0 -51px;
+  &:hover {
+      background-position: 0 -101px;
+  }
+}
+
+.dialog-btn-bar{
+  background-color: #EAEAE8;
+  padding: 10px;
+  .btn{
+    float: right;
+    margin-left: 10px;
+  }
+}
+
+.dialog-a{
+
+  border-color:#555;
+
+  .dialog-close-btn {
+    background-position: 0 -101px;
+    &:hover {
+        background-position: 0 -51px;
+    }
+  }
+
+  .dialog-title-bar{
+    background:#555 url(../assets/SPRITE_modal_standard.png) repeat-x;
+    & > h5 {
+        color:#fff;
+    }
+  }
+
+}

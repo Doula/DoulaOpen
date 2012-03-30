@@ -1,0 +1,61 @@
+@import "functions";
+@import "variables";
+
+body {
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:16px; /* 1em */
+  padding: 0;
+  margin: 0;
+}
+
+//Links
+a {
+  color: #00898B;
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+ul, ol, li {
+  margin:0;
+  padding:0;
+  list-style-position:outside;
+  list-style-type:none;
+}
+
+//Headings
+h1,h2,h3,h4, ul, li, ol, form, fieldset  {
+    margin:0;
+    padding:0;
+}
+
+//Headings
+h2,h3,h4 {  	
+    color:#333;  	
+    font-weight: bold;  	
+}
+  	
+h1 {  	
+    font-size:1.875em; /*30px/2.5em*/ 	
+    color: #999999;
+    font-weight: normal;  	
+    padding: 20px 0 0 0;	
+}
+  	
+h2 {	
+    font-size:1.5em; /*22px/1.5em*/  	
+}
+  	
+h3 {	
+    font-size:1.13em; /*18px/1.125em*/	
+}
+
+h3.main {
+    color: #87a32e;
+}
+
+h3.form-primary-group {
+    color:#a9bd38;
+}

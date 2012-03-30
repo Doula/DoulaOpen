@@ -1,0 +1,275 @@
+@import "functions";
+@import "variables";
+
+// Stuff in here is exclusive to the presentation of the Design Patterns demo page
+// Nothing should have any bearing on the patterns themselves
+
+
+#hd, #ft { // Hide header and footer for patterns demo page (non-Jade)
+    display: none;
+}
+
+.bd .container {
+  width: auto;
+  position: relative;
+}
+
+.patterns-logo {
+  position: absolute;
+  background: 70px 45px url(../assets/patterns-logo.png) no-repeat;
+  right: 0;
+  bottom: 0;
+  width: 260px;
+  height: 200px;
+}
+
+.design-patterns-nav {
+  @include grad-dark;
+  position: absolute;
+  width: 210px;
+  height: 100%;
+  top:0;
+  left:0;
+  padding:0 0 0 20px;
+  z-index:20;
+  h1 {
+    color: white;
+    font-size: 32px;
+    line-height: 1.1;
+    padding: 20px 5px 0 0;
+  }
+  h4 { 
+    color: $ctadark;
+    margin: 0;
+  }
+  p {
+    padding: 0 10px 0 0px;
+    color: #eee;
+    position: relative;
+    z-index: 1;
+  }
+  ul, li {
+    list-style: none;
+  }
+  ul {
+    position: relative;
+    z-index: 1;
+    padding: 0;
+  }
+  li {
+    a {
+      display: block;
+      color: white;
+      position: relative;
+      font-size: 12px;
+    }
+    &.active a {
+      background: $ctalight;
+      color: white;
+      font-weight: bold;
+      padding: 4px 6px 4px 6px;
+      margin-left: -6px;
+      &:after {
+        content: "";
+        position: absolute;
+        left: 100%;
+        top: 0;
+        border-left: 12px solid $ctalight;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+      }
+    }
+  }
+  .ie7 & {
+      height: 2000px;
+      overflow: hidden;
+  }
+}
+
+.bd {
+  section.container {
+    position: relative;
+    display:none;
+    margin-left:275px;
+    padding-right:35px;
+    min-height:1000px;
+
+    & > h2{
+      font-size: 80px;
+      color: #5B5A4B;
+    }
+
+    &.show{
+        display:block;
+    }
+
+  }
+}
+
+.about {
+  td {
+    border-right
+    h3 {
+      font-weight: normal;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    ul {
+      margin: 0;
+    }
+  }
+  td:last-child {
+    max-width: 400px;
+  }
+}
+.not-ready {
+  color: $warning;
+  font-weight: bold;
+}
+.ready {
+  color: $ctalight;
+}
+
+.usage script[contenteditable],  .usage style[contenteditable], pre { 
+  display: block;
+  white-space: pre;
+  @include grad-dark();
+  color: white;
+  font: 11px Monaco, MonoSpace;
+  @include border-radius(5px);
+  padding: 0 15px 0 0;
+  margin: 0 0 20px 0;
+}
+
+
+// ANIMATIONS
+.animation-example {
+  width: 75px;
+  height: 75px;
+  @include border-radius(2px);
+  background: #a9bd38;
+}
+
+section.container{
+
+  > h3{
+      color:$grymeddrk;
+      font-size:24px;
+  }
+
+  > .info{
+      margin:0 0 100px 0;
+  }
+
+  div.owner{
+    position: absolute;
+    right: 0px;
+    top: 40px;
+    width: 225px;
+    a{
+        font-size:12px;
+    }
+    h5{
+        line-height:18px;
+    }
+  }
+}
+
+
+// COLORS
+.color-swatch {
+  width: 100px;
+  height: 100px;
+  border-radius: 4px;
+}
+.color-swatch ~ code {
+  font-size: 12px;
+}
+
+
+// DROPDOWNS
+.demo-header {
+  background: #f2f2f1;
+  padding: 10px 0 0 20px;
+  @include box-shadow ((0 1px 0 #DEDEDE,
+        0 2px 0 #E6E6E6,
+        0 3px 0 #F3F3F3));
+}
+
+
+// FUNCTION LISTS
+.txt-ondark h3 {
+  color: white;
+}
+
+// GRIDS
+.example-grid {
+  border: 1px solid #ccc;
+}
+.example-grid .col {
+  background: #ccc;
+  min-height: 50px;
+}
+
+
+// ICONS
+.icon-example {
+  font-size: 30px;
+}
+.icon {
+  font-family: "Pictos";
+  font-size: 24px;
+}
+
+
+// NOTIFICATIONS
+#notification-test {
+  margin: 60px 0;
+}
+
+
+// POPOUTS
+.cell-on-dark {
+  background: #848377;
+}
+
+
+// SCROLL-FOLLOW
+.demo-scroll-follows .info {
+  min-height: 3000px;
+  @include gradient(white, #999);
+  padding: 50px;
+}
+
+// DATEPICKERS
+ul.datepickers {
+  li {
+    margin-bottom: 50px;
+  }
+  label:first-child{
+    display: inline-block;
+    width: 0px;
+  }
+}
+
+// SLIDERS
+.slider {
+    width:300px;
+}
+
+.slider-constraint-label {
+    display: inline-block;
+    padding: 0 5px;
+}
+
+
+// SELECT MENUS
+.demo-select-menus .select-menu{
+    margin: 0 0 50px 50px;
+}
+
+// AUTO RESIZERS
+.demo-autoresizers textarea{
+    height:18px;
+}

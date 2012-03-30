@@ -1,0 +1,19 @@
+// [Chris]: this should faze out...
+@import "functions";
+@import "variables";
+
+.sm-corner-a, .sm-corner-t, .sm-corner-l, .sm-corner-tl {
+  @include border-radius-top-left(5px);
+}
+
+.sm-corner-a, .sm-corner-t, .sm-corner-r, .sm-corner-tr {
+  @include border-radius-top-right(5px);
+}
+
+.sm-corner-a, .sm-corner-b, .sm-corner-l, .sm-corner-bl {
+  @include border-radius-bottom-left(5px);
+}
+
+.sm-corner-a, .sm-corner-b, .sm-corner-r, .sm-corner-br {
+  @include border-radius-bottom-right(5px);
+}
