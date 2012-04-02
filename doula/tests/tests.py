@@ -2,6 +2,8 @@ import json
 import unittest
 
 from pyramid import testing
+from doula.views import register
+from doula.views import sites
 
 class ViewTests(unittest.TestCase):
     def setUp(self):
@@ -11,7 +13,6 @@ class ViewTests(unittest.TestCase):
         testing.tearDown()
 
     def test_register(self):
-        from doula.views import register
         request = testing.DummyRequest()
         
         node = {
@@ -21,9 +22,13 @@ class ViewTests(unittest.TestCase):
         
         request.POST['node'] = json.dumps(node)
         result = register(request)
-        
-        self.assertEqual(result['pass'], 'true')
+        self.assertEqual(result['success'], 'true')
     
+    def test_sites(self):
+        request = testing.DummyRequest()
+        
+        all_sites = sites(request)
+        self.assertTrue(all_sites)
 
 if __name__ == '__main__':
     unittest.main()

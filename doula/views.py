@@ -4,12 +4,14 @@ from pyramid.events import subscriber
 
 from models.sites import register_node
 from models.sites import get_sites
+from models.sites import update_app_info_for_sites
 
 import json
 
 @view_config(route_name='sites', renderer='index.html')
 def sites(request):
     sites = get_sites(request.registry.settings)
+    update_app_info_for_sites(sites)
     
     return {'sites': sites}
 
@@ -28,6 +30,7 @@ def register_node_on_start(event):
     Register this Bambino node with Doula.
     """
     node = {
+        'name': 'Machine Numero Uno',
         'site': 'Monkey Test One',
         'url' : 'http://127.0.0.1:6542'
     }

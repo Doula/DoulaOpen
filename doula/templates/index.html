@@ -9,15 +9,13 @@
 <body>
 
   <header>
-
     <h1>
       Doula
     </h1>
-    
   </header>
 
   <nav>
-    <a href="index.html">Home</a>
+    <a href="/sites">Home</a>
   </nav>
 
   <div class="page-wrap">
@@ -26,13 +24,21 @@
       <h2>Sites</h2>
       
       <ul>
-        <li><a href="monkey-test-uno.html"><span class="status-A"></span> <strong>Monkey Test Uno</strong></a></li>
-        <li><a href="#"><span class="status-B"></span> <strong>Monkey Test Dos</strong></a></li>
-        <li><a href="#"><span class="status-C"></span> <strong>Monkey Test Tres</strong></a></li>
-        
-        {% for user in users %}
-          <li><a href="{{ user.url }}">{{ user.username }}</a></li>
-        {% endfor %}
+      {% for site in sites %}
+        {% if site.get_status() == 'unchanged' %}
+            {% set status_class = 'status-unchanged' %}
+        {% elif site.get_status() == 'uncommitted_changes' %}
+            {% set status_class = 'status-error' %}
+        {% else %}
+            {% set status_class = 'status-changed' %}
+        {% endif %}
+        <li>
+            <a href="/sites/{{ site.name }}/">
+            <span class="{{ status_class }}"></span>
+            <strong>{{ site.name }}</strong>
+            </a>
+        </li>
+      {% endfor %}
       </ul>
     </div>
 

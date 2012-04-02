@@ -1242,17 +1242,17 @@ h1, h2, h3, h4, h5, h6 {
   font: 0/0 a; }
 
 /* line 99, ../sass/style.sass */
-.status-A {
+.status-unchanged {
   background: #d8eb00;
   box-shadow: inset 0 5px 5px #adf000, 0 0 20px 2px #adf000, 0 0 2px 1px black; }
 
 /* line 102, ../sass/style.sass */
-.status-B {
+.status-changed {
   background: #ff6000;
   box-shadow: inset 0 5px 5px #ffb85b, 0 0 20px 2px #ffb85b, 0 0 2px 1px black; }
 
 /* line 105, ../sass/style.sass */
-.status-C {
+.status-error {
   background: red;
   box-shadow: inset 0 5px 5px #ff7878, 0 0 20px 2px #ff7878, 0 0 2px 1px black;
   -webkit-animation: pulse 0.7s infinite alternate;
