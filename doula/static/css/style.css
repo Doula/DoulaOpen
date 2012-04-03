@@ -1713,3 +1713,7 @@ table.center-cells td, table.center-cells th {
 /* line 218, ../sass/style.sass */
 table {
   color: black; }
+
+/* line 221, ../sass/style.sass */
+.hide {
+  display: none !important; }

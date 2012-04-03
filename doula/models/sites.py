@@ -1,5 +1,6 @@
 # Handles node registration
 import json
+import re
 import requests
 
 def register_node(node, settings):
@@ -54,11 +55,29 @@ def get_updated_sites(settings):
     return sites
 
 
-# Models for Doula
+def find_site_by_name_url(sites, name_url):
+    for s in sites:
+        if s.name_url == name_url:
+            return s
+    
+    return False
+
+
+def dirify(url):
+    url = url.lower()
+    url = url.replace('<', '')
+    url = url.replace('>', '')
+    url = url.replace('&', '')
+    url = url.replace('"', '')
+    url = re.sub(r'\s+', '_', url)
+    url = re.sub(r'[^\d\w\s]!', '', url)
+    
+    return url
 
 class Site(object):
     def __init__(self, name):
         self.name = name
+        self.name_url = dirify(name)
         self.status = 'unknown'
         self.nodes = [ ]
         self.applications = [ ]
@@ -114,10 +133,16 @@ class Site(object):
                 if not self.has_application(app.name):
                     self.applications.append(app)
     
+    def find_app_by_name_url(self, name_url):
+        for app in self.applications:
+            if app.name_url == name_url:
+                return app
+        return False
 
 class Node:
     def __init__(self, name, url):
         self.name = name
+        self.name_url = dirify(name)
         self.url = url
         self.applications = [ ]
     
@@ -158,6 +183,7 @@ class Application:
     def __init__(self, name, node_name, url):
         self.name = name
         self.node_name = node_name
+        self.name_url = dirify(name)
         self.url = url
         
         self.current_branch_app = ''

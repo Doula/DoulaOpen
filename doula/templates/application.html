@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Doula Web</title>
+  <title>Doula</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
@@ -17,33 +17,28 @@
   </header>
 
   <nav>
-    <a href="index.html">Home</a>
-    <a href="index.html">Sites</a>
-    <a href="monkey-test-uno.html">Monkey Test Uno</a>
-    <a href="monkey-test-uno.html">Anonweb</a>
-    
     <a href="/">Home</a>
     <a href="/sites">Sites</a>
-    <a href="/sites/{{ site.name }}">{{ site.name }}</a>
-    <a href="/sites/{{ site.name }}/{{ app.name }}">Anonweb</a>
+    <a href="/sites/{{ site.name_url }}">{{ site.name }}</a>
+    <a href="/sites/{{ site.name_url }}/{{ app.name_url }}">{{ app.name }}</a>
   </nav>
 
   <div class="page-wrap">
 
-    <h2>Details for <span>Anonweb</span></h2>
+    <h2>Details for <span>{{ app.name }}</span></h2>
 
     <table class="zebra">
         <tr>
             <td><strong>Name</strong></td>
-            <td>Anonweb</td>
+            <td>{{ app.name }}</td>
         </tr>
         <tr>
             <td><strong>Status</strong></td>
-            <td>change_to_app_env</td>
+            <td>{{ app.get_pretty_status() }}</td>
         </tr>
         <tr>
             <td><strong>Last Tag</strong></td>
-            <td>2.0.1rc</td>
+            <td>{{ app.last_tag_app }}</td>
         </tr>
         <tr>
             <th>

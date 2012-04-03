@@ -4,9 +4,9 @@ from pyramid.events import subscriber
 
 from models.sites import register_node
 from models.sites import get_sites
+from models.sites import find_site_by_name_url
 from models.sites import get_updated_sites
-
-import json
+from view_helpers import encode
 
 @view_config(route_name='home', renderer='index.html')
 def show_home(request):
@@ -21,22 +21,19 @@ def show_sites(request):
 @view_config(route_name='site', renderer="site.html")
 def show_site(request):
     sites = get_updated_sites(request.registry.settings)
-    site = ''
-    
-    for s in sites:
-        if s.name == request.matchdict['site']:
-            site = s
-            break
+    site = find_site_by_name_url(sites, request.matchdict['site'])
     
     # alextodo, need to throw 404 execpetion if not found
-    return { 'site': site }
+    return { 'site': site, 'site_json': encode(site) }
 
 
 @view_config(route_name='application', renderer="application.html")
 def show_application(request):
     sites = get_updated_sites(request.registry.settings)
+    site = find_site_by_name_url(sites, request.matchdict['site'])
+    app = site.find_app_by_name_url(request.matchdict['application'])
     
-    return {  }
+    return { 'site': site, 'app': app }
         
 @view_config(route_name='register', renderer='json')
 def register(request):

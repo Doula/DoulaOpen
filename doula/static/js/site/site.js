@@ -4,47 +4,28 @@ var Site = (function() {
     var Site = {
        
        init: function() {
-           //SiteData.init();
+           SiteData.init();
+           UI.init();
            
-           var test = $("#accordion").accordion();
-
-           console.log(test);
-           // UI.init();
-           // this.bindEvents();
-       }
+           this.bindEvents();
+       },
        
-       // bindEvents: function() {
-       //     // UI only events events
-       //     
-       //     // Data events
-       //     $('button[value="revert"]').on('click', this.revertApplication);
-       //     $('form').on('submit', this.tagApplication);
-       // },
-       // 
-       // revertApplication: function(event) {
-       //         event.stopPropagation();
-       // 
-       //     var appID = this.id.replace('revert_', '');
-       //     // alextodo, need to revert on backend
-       //     var app = SiteData.revertApp(appID);
-       //     
-       //     UI.revertApp(app);
-       // 
-       //     return false;
-       // },
-       // 
-       // tagApplication: function() {
-       //     event.stopPropagation();
-       //     
-       //      var app = SiteData.findAppByID(this.id.replace('tag_form_', ''));
-       //     var tag = $('#' + this.id + ' input')[0].value;
-       //     var msg = $('#' + this.id + ' textarea')[0].value;
-       // 
-       //     SiteData.tagApp(app, tag, msg);
-       //      UI.tagApp(app);
-       //     
-       //     return false;
-       // }
+       bindEvents: function() {
+           $('form').on('submit', this.tagApplication);
+       },
+       
+       tagApplication: function(event) {
+           var app = SiteData.findAppByID(this.id.replace('form_', ''));
+           
+           var tag = $('#tag_' + app.name_url)[0].value;
+           var msg = $('#msg_' + app.name_url)[0].value;
+           
+           SiteData.tagApp(app, tag, msg);
+           UI.tagApp(app);
+           UI.updateDeploySiteBtn(SiteData.isReadyForDeploy());
+           
+           return false;
+       }
     };
     // This ends the main Site module
     

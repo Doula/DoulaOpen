@@ -11,22 +11,15 @@ var SiteData = {
         }
     },
     
-    revertApp: function(appID) {
-        var app = this.findAppByID(appID);
-        app.status = "unchanged";
-        
-        return app;
-    },
-    
     tagApp: function(app, tag, msg) {
         app.tag = tag;
         app.msg = msg;
         app.status = 'tagged';
     },
     
-    findAppByID: function(appID) {
+    findAppByID: function(name_url) {
         for (var i=0; i < this.applications.length; i++) {
-            if(this.applications[i].id == appID) {
+            if(this.applications[i].name_url == name_url) {
                 return this.applications[i];
             }
         }
