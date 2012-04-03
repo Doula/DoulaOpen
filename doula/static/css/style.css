@@ -1582,7 +1582,7 @@ table.center-cells td, table.center-cells th {
 .accordion {
   margin: 0 0 25px 0; }
   /* line 134, ../sass/style.sass */
-  .accordion > div, .accordion > div:first-child, .accordion > div:last-child, .accordion div.open {
+  .accordion > div.key, .accordion > div.key:first-child, .accordion > div.key:last-child, .accordion div.key.open {
     background: rgba(0, 0, 0, 0.4);
     border: 0;
     margin: 0 0 10px 0;
@@ -1596,32 +1596,67 @@ table.center-cells td, table.center-cells th {
     -moz-transition-duration: 0.2s;
     -ms-transition-duration: 0.2s;
     -o-transition-duration: 0.2s;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
     background-clip: padding-box; }
-    /* line 141, ../sass/style.sass */
-    .accordion > div:not(.open):hover, .accordion > div:first-child:not(.open):hover, .accordion > div:last-child:not(.open):hover, .accordion div.open:not(.open):hover {
+    /* line 142, ../sass/style.sass */
+    .accordion > div.key:not(.open):hover, .accordion > div.key:first-child:not(.open):hover, .accordion > div.key:last-child:not(.open):hover, .accordion div.key.open:not(.open):hover {
       background: rgba(0, 0, 0, 0.8); }
-    /* line 144, ../sass/style.sass */
-    .accordion > div > header h3 strong, .accordion > div:first-child > header h3 strong, .accordion > div:last-child > header h3 strong, .accordion div.open > header h3 strong {
+    /* line 145, ../sass/style.sass */
+    .accordion > div.key > header > a, .accordion > div.key:first-child > header > a, .accordion > div.key:last-child > header > a, .accordion div.key.open > header > a {
       position: absolute;
-      top: 10px;
-      right: 10px; }
-    /* line 148, ../sass/style.sass */
-    .accordion > div > header h3 a, .accordion > div:first-child > header h3 a, .accordion > div:last-child > header h3 a, .accordion div.open > header h3 a {
+      right: 10px;
+      top: 7px; }
+      /* line 149, ../sass/style.sass */
+      .accordion > div.key > header > a:hover, .accordion > div.key:first-child > header > a:hover, .accordion > div.key:last-child > header > a:hover, .accordion div.key.open > header > a:hover {
+        color: white; }
+    /* line 151, ../sass/style.sass */
+    .accordion > div.key > header h3 strong, .accordion > div.key:first-child > header h3 strong, .accordion > div.key:last-child > header h3 strong, .accordion div.key.open > header h3 strong {
+      text-transform: none;
+      font-weight: 400;
+      font-size: 12px;
+      margin-left: 10px; }
+    /* line 156, ../sass/style.sass */
+    .accordion > div.key > header h3 a, .accordion > div.key:first-child > header h3 a, .accordion > div.key:last-child > header h3 a, .accordion div.key.open > header h3 a {
       padding-left: 40px; }
-    /* line 150, ../sass/style.sass */
-    .accordion > div > header > span, .accordion > div:first-child > header > span, .accordion > div:last-child > header > span, .accordion div.open > header > span {
+    /* line 158, ../sass/style.sass */
+    .accordion > div.key > header h3 em, .accordion > div.key:first-child > header h3 em, .accordion > div.key:last-child > header h3 em, .accordion div.key.open > header h3 em {
+      position: absolute;
+      top: 12px;
+      right: 80px; }
+    /* line 162, ../sass/style.sass */
+    .accordion > div.key > header:hover h3 em, .accordion > div.key:first-child > header:hover h3 em, .accordion > div.key:last-child > header:hover h3 em, .accordion div.key.open > header:hover h3 em {
+      color: white; }
+    /* line 164, ../sass/style.sass */
+    .accordion > div.key > header > a, .accordion > div.key > header h3 em, .accordion > div.key:first-child > header > a, .accordion > div.key:first-child > header h3 em, .accordion > div.key:last-child > header > a, .accordion > div.key:last-child > header h3 em, .accordion div.key.open > header > a, .accordion div.key.open > header h3 em {
+      font-weight: 400;
+      font-size: 12px;
+      text-transform: none;
+      font-style: normal;
+      color: #999999; }
+    /* line 170, ../sass/style.sass */
+    .accordion > div.key > header > span, .accordion > div.key:first-child > header > span, .accordion > div.key:last-child > header > span, .accordion div.key.open > header > span {
       width: 20px;
       height: 20px;
       top: 9px;
       left: 9px; }
-  /* line 155, ../sass/style.sass */
+  /* line 175, ../sass/style.sass */
   .accordion > div > section > form {
-    background: rgba(0, 0, 0, 0.1);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.3)));
+    background: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+    background: -moz-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+    background: -o-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+    background: -ms-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
     -webkit-border-radius: 7px;
     -moz-border-radius: 7px;
     border-radius: 7px;
@@ -1630,29 +1665,51 @@ table.center-cells td, table.center-cells th {
     background-clip: padding-box;
     padding: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-    /* line 160, ../sass/style.sass */
+    /* line 180, ../sass/style.sass */
     .accordion > div > section > form > div {
       margin: 0 0 10px 0;
       clear: both; }
-      /* line 163, ../sass/style.sass */
+      /* line 183, ../sass/style.sass */
       .accordion > div > section > form > div:last-child {
         margin-bottom: 0; }
-    /* line 165, ../sass/style.sass */
+    /* line 185, ../sass/style.sass */
     .accordion > div > section > form label {
       float: left;
       width: 17%; }
-    /* line 168, ../sass/style.sass */
-    .accordion > div > section > form input[type=text], .accordion > div > section > form textarea {
+    /* line 188, ../sass/style.sass */
+    .accordion > div > section > form input[type=text] {
+      width: 240px; }
+    /* line 190, ../sass/style.sass */
+    .accordion > div > section > form textarea {
       width: 60%; }
 
-/* line 172, ../sass/style.sass */
-.stat-A.open {
-  background: rgba(255, 0, 0, 0.3) !important; }
+/* line 194, ../sass/style.sass */
+.deployment input {
+  margin: 0 0 5px 0; }
+/* line 196, ../sass/style.sass */
+.deployment input:disabled {
+  opacity: 0.3; }
 
-/* line 176, ../sass/style.sass */
-.stat-B.open {
-  background: rgba(232, 97, 0, 0.3) !important; }
+/* line 199, ../sass/style.sass */
+.icon {
+  font-size: 21px;
+  vertical-align: middle;
+  color: white;
+  top: -2px;
+  position: relative;
+  margin-right: 2px; }
+  /* line 206, ../sass/style.sass */
+  .icon.icon-warning {
+    color: yellow; }
 
-/* line 180, ../sass/style.sass */
-.stat-C.open {
-  background: rgba(255, 0, 0, 0.3) !important; }
+/* line 211, ../sass/style.sass */
+.stat-changed > header h3 strong {
+  color: #ffa21c; }
+
+/* line 215, ../sass/style.sass */
+.stat-error > header h3 strong {
+  color: #ff4646; }
+
+/* line 218, ../sass/style.sass */
+table {
+  color: black; }

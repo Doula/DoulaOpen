@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Doula Web</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+  <header>
+
+    <h1>
+      Doula
+    </h1>
+    
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="index.html">Sites</a>
+    <a href="monkey-test-uno.html">Monkey Test Uno</a>
+    <a href="monkey-test-uno.html">Anonweb</a>
+    
+    <a href="/">Home</a>
+    <a href="/sites">Sites</a>
+    <a href="/sites/{{ site.name }}">{{ site.name }}</a>
+    <a href="/sites/{{ site.name }}/{{ app.name }}">Anonweb</a>
+  </nav>
+
+  <div class="page-wrap">
+
+    <h2>Details for <span>Anonweb</span></h2>
+
+    <table class="zebra">
+        <tr>
+            <td><strong>Name</strong></td>
+            <td>Anonweb</td>
+        </tr>
+        <tr>
+            <td><strong>Status</strong></td>
+            <td>change_to_app_env</td>
+        </tr>
+        <tr>
+            <td><strong>Last Tag</strong></td>
+            <td>2.0.1rc</td>
+        </tr>
+        <tr>
+            <th>
+                Packages
+            </th>
+            <td>
+                libxml-1.0.1
+                <br>
+                pyramid-1.3.5
+            </td>
+        </tr>
+    </table>
+   
+</body>
+
+</html>

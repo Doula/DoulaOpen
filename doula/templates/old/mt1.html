@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Doula Web</title>
+
+  <!-- styles -->
+  <link href="./css/bootstrap.css" type="text/css" rel="stylesheet">
+  
+  <link href="./css/base.css" type="text/css" rel="stylesheet">
+  <link href="./css/doula.css" type="text/css" rel="stylesheet">
+</head>
+
+  <body>
+    <div id="container">
+        <div id="header">
+    <div class="navbar">
+    <div class="navbar-inner">
+        <div class="container" style="width: auto;">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a> 
+            <a class="brand" href="home.html">Doula</a>
+        </div><!-- /container -->
+    </div><!-- /navbar-inner -->
+    
+    <ul class="breadcrumb">
+        <li>
+            <a href="home.html">All Sites</a> 
+        </li>
+        <li>
+            <span class="divider">&gt;</span>
+            <a href="mt1.html">Monkey Test Uno</a>
+        </li>
+        
+    </ul>
+    
+    </div>
+</div>
+        
+        <div id="content">
+        
+<div class="row">
+  <div class="span12">
+    <h2>Monkey Test Uno</h2>
+  </div>
+</div>
+
+<div id="applications">
+
+    <div id="application_Anonweb" class="row application">
+    
+          
+    
+    
+    <div class="row details">
+        <div id="app_status_Anonweb" class="change_to_app_env">
+            <h3>
+              <a data-toggle="collapse" data-target="#application_details_Anonweb" 
+              class="app-title-link" href="#">
+              Anonweb
+              </a>
+            </h3>
+            <p>
+            Status: 
+            <strong id="app_status_text_Anonweb">Changes to Application Environment</strong>
+            </p>
+        </div>
+        <div id="application_details_Anonweb" class="collapse details-div">
+            <div class="details-data">
+            <p>
+            View <a href="details.html">application details</a>
+            </p>
+
+            <div class="actions app-actions">
+            
+            </div>
+
+            
+            <div class="row details">
+            <form id="tag_form_Anonweb" method="post" action="#">
+    <label>Tag for <strong>Anonweb</strong>:</label>
+    <!-- what format should the git tab be? it would be nice to validate it, using the python
+    version validation.
+    
+    will this app need documentation on how to use it? should we be creating it?
+    -->
+    <input type="text" class="span3" required="required" pattern="\d+\.\d+\.\d+(a|b|c|rc)?" title="Enter a valid git tag. Format 0.1.1(a|b|c|rc)" placeholder="Enter tag…">
+    <span class="instruct">Last tag: <strong>0.2.0a1</strong></span>
+    
+    <label>Commit Message:</label>
+    <textarea class="commit" id="textarea" cols="40" rows="10" required="required" title="You'll have to enter a valid commit message to tag this application."></textarea>
+    
+    <button value="submit" type="submit" class="btn btn-large btn-primary">Submit</button>
+</form>
+            </div>
+            
+           </div>
+      </div>
+      <!-- /row details -->
+    </div>
+    <!-- /row -->
+  </div>
+<!-- alextodo remove this, it sucks -->
+
+    <div id="application_create_web" class="row application">
+    
+          
+    
+    
+    <div class="row details">
+        <div id="app_status_create_web" class="change_to_config">
+            <h3>
+              <a data-toggle="collapse" data-target="#application_details_create_web" 
+              class="app-title-link" href="#">
+              Create Web
+              </a>
+            </h3>
+            <p>
+            Status: 
+            <strong id="app_status_text_create_web">Changes to Configuration</strong>
+            </p>
+        </div>
+        <div id="application_details_create_web" class="collapse details-div">
+            <div class="details-data">
+            <p>
+            View <a href="details.html">application details</a>
+            </p>
+
+            <div class="actions app-actions">
+            
+            </div>
+
+            
+            <div class="row details">
+            <form id="tag_form_create_web" method="post" action="#">
+    <label>Tag for <strong>Create Web</strong>:</label>
+    <!-- what format should the git tab be? it would be nice to validate it, using the python
+    version validation.
+    
+    will this app need documentation on how to use it? should we be creating it?
+    -->
+    <input type="text" class="span3" required="required" pattern="\d+\.\d+\.\d+(a|b|c|rc)?" title="Enter a valid git tag. Format 0.1.1(a|b|c|rc)" placeholder="Enter tag…">
+    <span class="instruct">Last tag: <strong>0.8.0a</strong></span>
+    
+    <label>Commit Message:</label>
+    <textarea class="commit" id="textarea" cols="40" rows="10" required="required" title="You'll have to enter a valid commit message to tag this application."></textarea>
+    
+    <button value="submit" type="submit" class="btn btn-large btn-primary">Submit</button>
+</form>
+            </div>
+            
+           </div>
+      </div>
+      <!-- /row details -->
+    </div>
+    <!-- /row -->
+  </div>
+<!-- alextodo remove this, it sucks -->
+
+    <div id="application_analyze" class="row application">
+    
+          
+    
+    
+    <div class="row details">
+        <div id="app_status_analyze" class="uncommitted_changes">
+            <h3>
+              <a data-toggle="collapse" data-target="#application_details_analyze" 
+              class="app-title-link" href="#">
+              Analyze
+              </a>
+            </h3>
+            <p>
+            Status: 
+            <strong id="app_status_text_analyze">Uncommitted Changes</strong>
+            </p>
+        </div>
+        <div id="application_details_analyze" class="collapse details-div">
+            <div class="details-data">
+            <p>
+            View <a href="details.html">application details</a>
+            </p>
+
+            <div class="actions app-actions">
+            
+            <button id="revert_analyze" value="revert" 
+            class="btn btn-large btn-danger" value="Revert">Revert</button>
+            
+            </div>
+
+            
+           </div>
+      </div>
+      <!-- /row details -->
+    </div>
+    <!-- /row -->
+  </div>
+<!-- alextodo remove this, it sucks -->
+
+    <div id="application_bambino" class="row application">
+    
+          
+    
+    
+    <div class="row details">
+        <div id="app_status_bambino" class="unchanged">
+            <h3>
+              <a data-toggle="collapse" data-target="#application_details_bambino" 
+              class="app-title-link" href="#">
+              Bambino
+              </a>
+            </h3>
+            <p>
+            Status: 
+            <strong id="app_status_text_bambino">Unchanged</strong>
+            </p>
+        </div>
+        <div id="application_details_bambino" class="collapse details-div">
+            <div class="details-data">
+            <p>
+            View <a href="details.html">application details</a>
+            </p>
+
+            <div class="actions app-actions">
+            
+            </div>
+
+            
+           </div>
+      </div>
+      <!-- /row details -->
+    </div>
+    <!-- /row -->
+  </div>
+<!-- alextodo remove this, it sucks -->
+
+</div>
+
+
+<br />
+<div class="row">
+  <div class="span12">
+      <div class="actions">
+        <button id="tag_deployment" value=""
+            class="btn btn-large btn-primary disabled">
+        Deploy Site
+        </button>
+        <p class="instruct"><small>You'll have to tag each application before you can deploy this site.</small></p>
+      </div>
+  </div>
+</div>
+
+        </div>
+        
+        <footer>
+    <div id="progress">
+    </div>
+    <div class="header">
+        <h6>Doula, it's like a bagel without the hole.</h6>
+    </div>
+</footer>
+    </div>
+    <!-- /container -->
+    
+    <!-- scripts -->
+    
+    <script>
+        var __site = {"applications": [{"status": "change_to_app_env", "last_tag": "0.2.0a1", "current_branch": "master", "name": "Anonweb", "git_repo_url": "http://github.com/surveymonkey/HomePage", "diff_link": "https://github.com/surveymonkey/HomePage/compare/2.0.1rc...master", "id": "Anonweb"}, {"status": "change_to_config", "last_tag": "0.8.0a", "current_branch": "master", "name": "Create Web", "git_repo_url": "http://github.com/surveymonkey/createweb", "diff_link": "https://github.com/surveymonkey/createweb/compare/0.8.0a...master", "id": "create_web"}, {"status": "uncommitted_changes", "last_tag": "2.0.1b", "current_branch": "master", "name": "Analyze", "git_repo_url": "http://github.com/surveymonkey/analyze", "diff_link": "https://github.com/surveymonkey/analyze/compare/2.0.1rc...master", "id": "analyze"}, {"status": "unchanged", "last_tag": "0.1.2", "current_branch": "master", "name": "Bambino", "git_repo_url": "http://github.com/surveymonkey/bambino", "diff_link": "https://github.com/surveymonkey/bambino/compare/0.1.2...master", "id": "bambino"}], "id": "mt1", "name": "Monkey Test Uno"};
+    </script>
+    
+<script type="text/javascript" src="./js/lib/jquery.js"></script>
+<script type="text/javascript" src="./js/lib/bootstrap-collapse.js"></script>
+<script type="text/javascript" src="./js/lib/underscore.js"></script>
+<script type="text/javascript" src="./js/lib/backbone.js"></script>
+<script type="text/javascript" src="./js/site/ui.js"></script>
+<script type="text/javascript" src="./js/site/site_data.js"></script>
+<script type="text/javascript" src="./js/site/site.js"></script>
+
+
+  </body>
+</html>

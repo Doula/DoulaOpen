@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Doula Web | Site | Monkey Test Uno</title>
+
+  <!-- styles -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+  <header>
+
+    <h1>
+      Doula
+    </h1>
+    
+  </header>
+
+  <nav>
+    <a href="/">Home</a>
+    <a href="/sites">Sites</a>
+    <a href="/sites/{{ site.name }}">{{ site.name }}</a>
+  </nav>
+
+  <div class="page-wrap">
+
+    <h1>{{ site.name }}</h1>
+
+     <div id="accordion" class="accordion">
+        {% for app in site.applications %}
+        <div class="key {{ app.stat|get_stat_class }}">
+
+          <header>
+             <span class="{{ app.status|get_status_class }}">&#x25BA;</span>
+             <a href="/sites/{{ site.name }}/{{ app.name }}"><span class="icon">⚙</span> Details</a>
+             <h3>
+               <a href="#panel{{ loop.index }}" class="keyOpener">
+                 {{ app.name }}
+                 <strong>{{ app.get_pretty_status() }}</strong>
+                 <em><span class="icon">✍</span> Tag Changes</em>
+               </a>
+             </h3>
+          </header>
+
+          <section id="panel{{ loop.index }}">
+
+             <form method="post" action="#">
+
+               <div>
+                 <label>Tag:</label>
+
+                 <input type="text" class="span3" required="required" pattern="\d+\.\d+\.\d+(a|b|c|rc)?" placeholder="Valid tag format 0.1.1(a|b|c|rc)">
+                 <span class="instruct">Last tag: <strong>{{ app.last_tag_app }}</strong></span>
+               </div>
+
+               <div>
+                 <label>Commit Message:</label>
+                 <textarea class="commit" id="textarea" cols="40" rows="10" required placeholder="Don’t make something unless it is both necessary and useful; but if it is both necessary and useful, don’t hesitate to make it beautiful."></textarea>
+               </div>
+
+               <div>
+                 <label>&nbsp;</label>
+                 <input class="btn" type="submit" value="Commit">
+               </div>
+
+           </form>
+
+          </section>
+
+        </div><!-- End First Key -->
+        {% endfor %}
+    </div> <!-- div#accordion -->
+
+    <div class="deployment">
+      <input type="submit" value="Deploy Site" class="btn btn-large disabled" disabled>
+      <p><small><span class="icon icon-warning">⚠</span> You'll have to tag each application before you can deploy this site.</small></p>
+    </div>
+
+  </div>
+
+  <script src="/js/libs/global-min.js"></script>
+  <script src="/js/libs/global-pro-min.js"></script>
+  <script src="/js/libs/accordions.js"></script>
+  <script src="/js/site/site.js"></script>
+
+</body>
+
+</html>

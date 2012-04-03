@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Doula Web</title>
+  <title>Doula</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
@@ -25,16 +25,9 @@
       
       <ul>
       {% for site in sites %}
-        {% if site.get_status() == 'unchanged' %}
-            {% set status_class = 'status-unchanged' %}
-        {% elif site.get_status() == 'uncommitted_changes' %}
-            {% set status_class = 'status-error' %}
-        {% else %}
-            {% set status_class = 'status-changed' %}
-        {% endif %}
         <li>
-            <a href="/sites/{{ site.name }}/">
-            <span class="{{ status_class }}"></span>
+            <a href="/sites/{{ site.name }}">
+            <span class="{{ site.get_status()|get_status_class }}"></span>
             <strong>{{ site.name }}</strong>
             </a>
         </li>

@@ -20,10 +20,10 @@ def main(global_config, **settings):
     config.add_static_view(name='images', path='static/images')
     
     # routes for application
+    config.add_route('home', '/')
     config.add_route('sites', '/sites')
     config.add_route('site', '/sites/{site}')
-    config.add_route('applications', '/sites/{site}/{application}/')
+    config.add_route('application', '/sites/{site}/{application}')
     config.add_route('register', '/register')
-    config.add_route('me', '/i/am/a/pretty/princess')
     
     return config.make_wsgi_app()

@@ -42,14 +42,18 @@ def add_node_to_site(node, sites):
     return site
 
 
-def update_app_info_for_sites(sites):
+def get_updated_sites(settings):
     """
-    Roll through the sites and update their statuses
+    Get the sites array. Roll through the sites and update their statuses
     """
-    for site in sites:
-        site.update_app_info()
-
+    sites = get_sites(settings)
     
+    for site in sites:
+        site.update_applications()
+        
+    return sites
+
+
 # Models for Doula
 
 class Site(object):
@@ -87,21 +91,29 @@ class Site(object):
         return self.status
     
     def has_node(self, node_name):
-        for node in nodes:
+        for node in self.nodes:
             if node.name == node_name:
                 return True
         return False
     
-    def update_app_info(self):
+    def has_application(self, app_name):
+        for app in self.applications:
+            if app.name == app_name:
+                return True
+        return False
+    
+    def update_applications(self):
         """
         Runs through the nodes and has each one return details
         about it's applications.
         """
         for node in self.nodes:
             applications = node.get_applications()
-            self.applications.extend(applications)
+            
+            for app in applications:
+                if not self.has_application(app.name):
+                    self.applications.append(app)
     
-
 
 class Node:
     def __init__(self, name, url):
@@ -157,3 +169,20 @@ class Application:
         self.status = ''
         self.last_tag_app = ''
         self.current_branch_config = ''
+    def get_pretty_status(self):
+        """
+        Return a print friendly status
+        """
+        if self.status == 'unchanged':
+            return 'Unchanged'
+        elif self.status == 'change_to_config':
+            return 'Changes to Configuration'
+        elif self.status == 'change_to_app':
+            return 'Changes to Application Environment'
+        elif self.status == 'change_to_app_and_config':
+            return 'Changes to Configuration and Application Environment'
+        elif self.status == 'uncommitted_changes':
+            return 'Uncommitted Changes'
+        else:
+            return 'Unknown'
+    
