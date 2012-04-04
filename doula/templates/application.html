@@ -41,13 +41,17 @@
             <td>{{ app.last_tag_app }}</td>
         </tr>
         <tr>
+            <td><strong>Compare View</strong></td>
+            <td><a href="{{ app.get_compare_url() }}" target="_blank">{{ app.get_compare_url() }}</a></td>
+        </tr>
+        <tr>
             <th>
                 Packages
             </th>
             <td>
-                libxml-1.0.1
-                <br>
-                pyramid-1.3.5
+                {% for pack in app.packages %}
+                <strong>{{ pack.name }}</strong> {{ pack.version }}
+                {% end %}
             </td>
         </tr>
     </table>

@@ -195,6 +195,8 @@ class Application:
         self.status = ''
         self.last_tag_app = ''
         self.current_branch_config = ''
+        # hard coded for testing
+        self.origin = 'git@code.corp.surveymonkey.com:DevOps/WebApp1.git'
     def get_pretty_status(self):
         """
         Return a print friendly status
@@ -211,4 +213,22 @@ class Application:
             return 'Uncommitted Changes'
         else:
             return 'Unknown'
-    
+    def get_compare_url(self):
+        """
+        Use the origin to return a URL with the format
+        http://<GITHUB_URL>/<USER>/<REPO>/compare/<START>...<END>
+        For us this means
+        http://code.corp.surveymonkey.com/DevOps/[name]/compare/[last_tag_app]...[current_branch_app]
+        """
+        m = re.search(r'@([\w\.]+):([\w\d]+)\/([\w\d]+)', self.origin)
+        compare_url = 'http://' + m.group(1) + '/' + m.group(2) + '/' + self.name
+        compare_url+= '/compare/' + self.last_tag_app + '...' + self.current_branch_app 
+        
+        return compare_url
+
+
+
+
+
+
+
