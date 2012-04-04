@@ -39,11 +39,11 @@
                <a id="panel_{{ app.name_url }}" href="#panel{{ loop.index }}" class="keyOpener">
                  {{ app.name }}
                  <strong>{{ app.get_pretty_status() }}</strong>
-                 <em><span class="icon">✍</span> Tag Changes</em>
+                 {% if app.status != 'unchanged' %}<em><span class="icon">✍</span> Tag Changes</em>{% endif %}
                </a>
              </h3>
           </header>
-
+          {% if app.status != 'unchanged' %}
           <section id="panel{{ loop.index }}">
 
              <form id="form_{{ app.name_url }}" method="post" action="#">
@@ -68,7 +68,7 @@
            </form>
 
           </section>
-
+          {% endif %}
         </div><!-- End First Key -->
         {% endfor %}
     </div> <!-- div#accordion -->

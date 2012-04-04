@@ -8,6 +8,8 @@ from models.sites import find_site_by_name_url
 from models.sites import get_updated_sites
 from view_helpers import encode
 
+from pyramid.httpexceptions import HTTPNotFound
+
 import json
 
 @view_config(route_name='home', renderer='index.html')
@@ -25,7 +27,9 @@ def show_site(request):
     sites = get_updated_sites(request.registry.settings)
     site = find_site_by_name_url(sites, request.matchdict['site'])
     
-    # alextodo, need to throw 404 execpetion if not found
+    if not site:
+        raise HTTPNotFound('Unable to find site "' + request.matchdict['site'] + '"')
+        
     return { 'site': site, 'site_json': encode(site) }
 
 
@@ -44,6 +48,12 @@ def register(request):
     register_node(node, request.registry.settings)
     
     return {'success': 'true'}
+
+@view_config(context=HTTPNotFound, renderer='404.html')
+def not_found(self, request):
+    request.response.status = 404
+    
+    return { 'msg': request.exception.message }
 
 # Used only for testing during development
 @subscriber(ApplicationCreated)

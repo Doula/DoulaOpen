@@ -173,6 +173,10 @@ class Node:
                 a.last_tag_app = app['last_tag_app']
                 a.current_branch_config = app['current_branch_config']
                 
+                if 'packages' in app:
+                    for pckg in app['packages']:
+                        a.append(Package(pckg['name'], pckg['version']))
+                
                 self.applications.append(a)
         except requests.exceptions.ConnectionError as e:
             print 'Unable to load applications: ', e.message
@@ -197,6 +201,7 @@ class Application:
         self.current_branch_config = ''
         # hard coded for testing
         self.origin = 'git@code.corp.surveymonkey.com:DevOps/WebApp1.git'
+        self.packages = [ ]
     def get_pretty_status(self):
         """
         Return a print friendly status
@@ -226,9 +231,11 @@ class Application:
         
         return compare_url
 
-
-
-
-
-
-
+class Package:
+  """
+  Represents a python package
+  """
+  def __init__(self, name, version):
+      self.name = name
+      self.version = version
+  

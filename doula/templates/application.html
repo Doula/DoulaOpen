@@ -27,8 +27,8 @@
 
     <h2>Details for <span>{{ app.name }}</span></h2>
 
-    <table class="zebra">
-        <tr>
+    <table>
+        <tr class="odd">
             <td><strong>Name</strong></td>
             <td>{{ app.name }}</td>
         </tr>
@@ -36,7 +36,7 @@
             <td><strong>Status</strong></td>
             <td>{{ app.get_pretty_status() }}</td>
         </tr>
-        <tr>
+        <tr class="odd">
             <td><strong>Last Tag</strong></td>
             <td>{{ app.last_tag_app }}</td>
         </tr>
@@ -44,14 +44,14 @@
             <td><strong>Compare View</strong></td>
             <td><a href="{{ app.get_compare_url() }}" target="_blank">{{ app.get_compare_url() }}</a></td>
         </tr>
-        <tr>
+        <tr class="odd">
             <th>
                 Packages
             </th>
             <td>
                 {% for pack in app.packages %}
                 <strong>{{ pack.name }}</strong> {{ pack.version }}
-                {% end %}
+                {% endfor %}
             </td>
         </tr>
     </table>
