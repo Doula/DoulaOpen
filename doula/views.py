@@ -8,6 +8,8 @@ from models.sites import find_site_by_name_url
 from models.sites import get_updated_sites
 from view_helpers import encode
 
+import json
+
 @view_config(route_name='home', renderer='index.html')
 def show_home(request):
     return show_sites(request)

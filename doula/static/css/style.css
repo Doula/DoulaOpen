@@ -1242,16 +1242,21 @@ h1, h2, h3, h4, h5, h6 {
   font: 0/0 a; }
 
 /* line 99, ../sass/style.sass */
+.status-tagged {
+  background: #00a5eb;
+  box-shadow: inset 0 5px 5px #00d0eb, 0 0 20px 2px #00d0eb, 0 0 2px 1px black; }
+
+/* line 102, ../sass/style.sass */
 .status-unchanged {
   background: #d8eb00;
   box-shadow: inset 0 5px 5px #adf000, 0 0 20px 2px #adf000, 0 0 2px 1px black; }
 
-/* line 102, ../sass/style.sass */
+/* line 105, ../sass/style.sass */
 .status-changed {
   background: #ff6000;
   box-shadow: inset 0 5px 5px #ffb85b, 0 0 20px 2px #ffb85b, 0 0 2px 1px black; }
 
-/* line 105, ../sass/style.sass */
+/* line 108, ../sass/style.sass */
 .status-error {
   background: red;
   box-shadow: inset 0 5px 5px #ff7878, 0 0 20px 2px #ff7878, 0 0 2px 1px black;
@@ -1259,23 +1264,23 @@ h1, h2, h3, h4, h5, h6 {
   -moz-animation: pulse 0.7s infinite alternate; }
 
 @-webkit-keyframes pulse {
-  /* line 112, ../sass/style.sass */
+  /* line 115, ../sass/style.sass */
   0% {
     background: #ff3232;
     box-shadow: inset 0 5px 5px #ff7878, 0 0 20px 2px #ff7878, 0 0 2px 1px black; }
 
-  /* line 115, ../sass/style.sass */
+  /* line 118, ../sass/style.sass */
   100% {
     background: #ba0000;
     box-shadow: inset 0 10px 10px #ff7878, 0 0 30px 5px #ff7878, 0 0 2px 1px black; } }
 
 @-moz-keyframes pulse {
-  /* line 120, ../sass/style.sass */
+  /* line 123, ../sass/style.sass */
   0% {
     background: #ff3232;
     box-shadow: inset 0 5px 5px #ff7878, 0 0 20px 2px #ff7878, 0 0 2px 1px black; }
 
-  /* line 123, ../sass/style.sass */
+  /* line 126, ../sass/style.sass */
   100% {
     background: #ba0000;
     box-shadow: inset 0 10px 10px #ff7878, 0 0 30px 5px #ff7878, 0 0 2px 1px black; } }
@@ -1578,10 +1583,10 @@ table.center-cells td, table.center-cells th {
   .accordion.light > div.key > section {
     color: #333; }
 
-/* line 132, ../sass/style.sass */
+/* line 135, ../sass/style.sass */
 .accordion {
   margin: 0 0 25px 0; }
-  /* line 134, ../sass/style.sass */
+  /* line 137, ../sass/style.sass */
   .accordion > div.key, .accordion > div.key:first-child, .accordion > div.key:last-child, .accordion div.key.open {
     background: rgba(0, 0, 0, 0.4);
     border: 0;
@@ -1608,48 +1613,48 @@ table.center-cells td, table.center-cells th {
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
     background-clip: padding-box; }
-    /* line 142, ../sass/style.sass */
+    /* line 145, ../sass/style.sass */
     .accordion > div.key:not(.open):hover, .accordion > div.key:first-child:not(.open):hover, .accordion > div.key:last-child:not(.open):hover, .accordion div.key.open:not(.open):hover {
       background: rgba(0, 0, 0, 0.8); }
-    /* line 145, ../sass/style.sass */
+    /* line 148, ../sass/style.sass */
     .accordion > div.key > header > a, .accordion > div.key:first-child > header > a, .accordion > div.key:last-child > header > a, .accordion div.key.open > header > a {
       position: absolute;
       right: 10px;
       top: 7px; }
-      /* line 149, ../sass/style.sass */
+      /* line 152, ../sass/style.sass */
       .accordion > div.key > header > a:hover, .accordion > div.key:first-child > header > a:hover, .accordion > div.key:last-child > header > a:hover, .accordion div.key.open > header > a:hover {
         color: white; }
-    /* line 151, ../sass/style.sass */
+    /* line 154, ../sass/style.sass */
     .accordion > div.key > header h3 strong, .accordion > div.key:first-child > header h3 strong, .accordion > div.key:last-child > header h3 strong, .accordion div.key.open > header h3 strong {
       text-transform: none;
       font-weight: 400;
       font-size: 12px;
       margin-left: 10px; }
-    /* line 156, ../sass/style.sass */
+    /* line 159, ../sass/style.sass */
     .accordion > div.key > header h3 a, .accordion > div.key:first-child > header h3 a, .accordion > div.key:last-child > header h3 a, .accordion div.key.open > header h3 a {
       padding-left: 40px; }
-    /* line 158, ../sass/style.sass */
+    /* line 161, ../sass/style.sass */
     .accordion > div.key > header h3 em, .accordion > div.key:first-child > header h3 em, .accordion > div.key:last-child > header h3 em, .accordion div.key.open > header h3 em {
       position: absolute;
       top: 12px;
       right: 80px; }
-    /* line 162, ../sass/style.sass */
+    /* line 165, ../sass/style.sass */
     .accordion > div.key > header:hover h3 em, .accordion > div.key:first-child > header:hover h3 em, .accordion > div.key:last-child > header:hover h3 em, .accordion div.key.open > header:hover h3 em {
       color: white; }
-    /* line 164, ../sass/style.sass */
+    /* line 167, ../sass/style.sass */
     .accordion > div.key > header > a, .accordion > div.key > header h3 em, .accordion > div.key:first-child > header > a, .accordion > div.key:first-child > header h3 em, .accordion > div.key:last-child > header > a, .accordion > div.key:last-child > header h3 em, .accordion div.key.open > header > a, .accordion div.key.open > header h3 em {
       font-weight: 400;
       font-size: 12px;
       text-transform: none;
       font-style: normal;
       color: #999999; }
-    /* line 170, ../sass/style.sass */
+    /* line 173, ../sass/style.sass */
     .accordion > div.key > header > span, .accordion > div.key:first-child > header > span, .accordion > div.key:last-child > header > span, .accordion div.key.open > header > span {
       width: 20px;
       height: 20px;
       top: 9px;
       left: 9px; }
-  /* line 175, ../sass/style.sass */
+  /* line 178, ../sass/style.sass */
   .accordion > div > section > form {
     background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.3)));
     background: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
@@ -1665,32 +1670,32 @@ table.center-cells td, table.center-cells th {
     background-clip: padding-box;
     padding: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-    /* line 180, ../sass/style.sass */
+    /* line 183, ../sass/style.sass */
     .accordion > div > section > form > div {
       margin: 0 0 10px 0;
       clear: both; }
-      /* line 183, ../sass/style.sass */
+      /* line 186, ../sass/style.sass */
       .accordion > div > section > form > div:last-child {
         margin-bottom: 0; }
-    /* line 185, ../sass/style.sass */
+    /* line 188, ../sass/style.sass */
     .accordion > div > section > form label {
       float: left;
       width: 17%; }
-    /* line 188, ../sass/style.sass */
+    /* line 191, ../sass/style.sass */
     .accordion > div > section > form input[type=text] {
       width: 240px; }
-    /* line 190, ../sass/style.sass */
+    /* line 193, ../sass/style.sass */
     .accordion > div > section > form textarea {
       width: 60%; }
 
-/* line 194, ../sass/style.sass */
+/* line 197, ../sass/style.sass */
 .deployment input {
   margin: 0 0 5px 0; }
-/* line 196, ../sass/style.sass */
+/* line 199, ../sass/style.sass */
 .deployment input:disabled {
   opacity: 0.3; }
 
-/* line 199, ../sass/style.sass */
+/* line 202, ../sass/style.sass */
 .icon {
   font-size: 21px;
   vertical-align: middle;
@@ -1698,22 +1703,26 @@ table.center-cells td, table.center-cells th {
   top: -2px;
   position: relative;
   margin-right: 2px; }
-  /* line 206, ../sass/style.sass */
+  /* line 209, ../sass/style.sass */
   .icon.icon-warning {
     color: yellow; }
 
-/* line 211, ../sass/style.sass */
+/* line 213, ../sass/style.sass */
+.stat-tagged > header h3 strong {
+  color: #c0e9fa; }
+
+/* line 217, ../sass/style.sass */
 .stat-changed > header h3 strong {
   color: #ffa21c; }
 
-/* line 215, ../sass/style.sass */
+/* line 221, ../sass/style.sass */
 .stat-error > header h3 strong {
   color: #ff4646; }
 
-/* line 218, ../sass/style.sass */
+/* line 224, ../sass/style.sass */
 table {
   color: black; }
 
-/* line 221, ../sass/style.sass */
+/* line 227, ../sass/style.sass */
 .hide {
   display: none !important; }

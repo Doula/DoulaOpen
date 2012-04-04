@@ -14,7 +14,14 @@ var SiteData = {
     tagApp: function(app, tag, msg) {
         app.tag = tag;
         app.msg = msg;
+        app.originalStatus = app.status;
         app.status = 'tagged';
+    },
+    
+    revertAppTag: function(app, tag, msg) {
+      app.tag = tag;
+      app.msg = msg;
+      app.status = app.originalStatus;
     },
     
     findAppByID: function(name_url) {

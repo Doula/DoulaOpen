@@ -1,11 +1,12 @@
 var UI = {
           
-    statusTextHash: {
-        'unchanged'           : 'Unchanged',
-        'uncommitted_changes' : 'Uncommitted Changes',
-        'change_to_config'    : 'Changes to Configuration',
-        'change_to_app_env'   : 'Change to Application Environment',
-        'tagged'              : 'Tagged'
+    statusClassHash: {
+        'unchanged'                : 'unchanged',
+        'uncommitted_changes'      : 'error',
+        'change_to_config'         : 'changed',
+        'change_to_app_env'        : 'changed',
+        'change_to_app_and_config' : 'changed',
+        'tagged'                   : 'tagged'
     },
 
     init: function() {
@@ -19,8 +20,21 @@ var UI = {
     },
     
     updateStatus: function(app) {
-        $('#stat_' + app.name_url).removeClass('stat-changed stat-error').addClass('stat-unchanged');
-        $('#status_' + app.name_url).removeClass('status-changed status-error').addClass('status-unchanged');
+        $('#stat_' + app.name_url).
+          removeClass('stat-changed stat-error stat-tagged').
+          addClass(this.getStatClass(app));
+        
+        $('#status_' + app.name_url).
+          removeClass('status-changed status-error status-tagged').
+          addClass(this.getStatusClass(app));
+    },
+    
+    getStatusClass: function(app) {
+      return 'status-' + this.statusClassHash[app.status];
+    },
+    
+    getStatClass: function(app) {
+      return 'stat-' + this.statusClassHash[app.status];
     },
     
     updateDeploySiteBtn: function(isReadyForDeploy) {

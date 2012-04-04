@@ -51,7 +51,7 @@
                <div>
                  <label>Tag:</label>
 
-                 <input id="tag_{{ app.name_url }}" type="text" class="span3" required="required" pattern="\d+\.\d+\.\d+(a|b|c|rc)?" placeholder="Valid tag format 0.1.1(a|b|c|rc)">
+                 <input id="tag_{{ app.name_url }}" type="text" class="tag span3" required="required" pattern="\d+\.\d+\.\d+(a|b|c|rc)?" placeholder="Valid tag format 0.1.1(a|b|c|rc)">
                  <span class="instruct">Last tag: <strong>{{ app.last_tag_app }}</strong></span>
                </div>
 
@@ -73,7 +73,7 @@
         {% endfor %}
     </div> <!-- div#accordion -->
 
-    <div class="deployment">
+    <div class="deployment hide">
       <input id="deploy_site_btn" type="submit" value="Deploy Site" class="btn btn-large disabled" disabled>
       <p><small><span class="icon icon-warning">⚠</span> You'll have to tag each application before you can deploy this site.</small></p>
     </div>
