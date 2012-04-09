@@ -12,11 +12,11 @@ from pyramid.httpexceptions import HTTPNotFound
 
 import json
 
-@view_config(route_name='home', renderer='index.html')
+@view_config(route_name='home', renderer='home.html')
 def show_home(request):
     return show_sites(request)
 
-@view_config(route_name='sites', renderer='index.html')
+@view_config(route_name='sites', renderer='home.html')
 def show_sites(request):
     sites = get_updated_sites(request.registry.settings)
     

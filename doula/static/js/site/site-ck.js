@@ -1,1 +1,0 @@
-var Site=function(){var a={init:function(){var a=$("#accordion").accordion();console.log(a)}};return a}();$(document).ready(function(){Site.init()});

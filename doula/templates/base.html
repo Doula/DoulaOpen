@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Doula Web</title>
+
+  <!-- styles -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>
+      Doula
+    </h1>
+  </header>
+  
+  {% block nav %}
+  {% endblock %}
+
+  {% include 'feedback_tab.html' %}
+  {% block content %}
+  {% endblock %}
+</body>
+
+</html>

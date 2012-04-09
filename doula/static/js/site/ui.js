@@ -11,6 +11,7 @@ var UI = {
 
     init: function() {
         $("#accordion").accordion();
+        $('.sm-side-tab').sideTab();
     },
     
     tagApp: function(app) {

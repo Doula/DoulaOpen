@@ -174,8 +174,8 @@ class Node:
                 a.current_branch_config = app['current_branch_config']
                 
                 if 'packages' in app:
-                    for pckg in app['packages']:
-                        a.append(Package(pckg['name'], pckg['version']))
+                    for name, version in app['packages'].iteritems():
+                        a.packages.append(Package(name, version))
                 
                 self.applications.append(a)
         except requests.exceptions.ConnectionError as e:
@@ -200,7 +200,7 @@ class Application:
         self.last_tag_app = ''
         self.current_branch_config = ''
         # hard coded for testing
-        self.origin = 'git@code.corp.surveymonkey.com:DevOps/WebApp1.git'
+        self.origin = 'git@code.corp.surveymonkey.com:AppEnv/WebApp1.git'
         self.packages = [ ]
     def get_pretty_status(self):
         """
