@@ -1,11 +1,14 @@
 import json
 import re
 import requests
+import logging
 
 from dolib.sites.site import Site
 from dolib.sites.site import Node
 from dolib.sites.site import Application
 from dolib.sites.site import Package
+
+log = logging.getLogger('doula')
 
 class DoulaSite(Site):
     def __init__(self, name, status='unknown', nodes=[], applications=[]):
@@ -29,9 +32,7 @@ class DoulaSite(Site):
         about it's applications.
         """
         for node in self.nodes:
-            applications = node.get_applications()
-            
-            for app in applications:
+            for app in node.get_applications():
                 if not self.has_application(app.name):
                     self.applications.append(app)
     
@@ -74,9 +75,9 @@ class DoulaNode(Node):
                         a.packages.append(Package(name, version))
                 
                 self.applications.append(a)
-            
-            return self.applications
         except requests.exceptions.ConnectionError as e:
-            print 'Unable to load applications: ', e.message
+            log.error('Unable to contact node "' + self.name + '" at URL ' + self.url)
+        
+        return self.applications
     
 

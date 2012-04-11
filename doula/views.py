@@ -6,7 +6,7 @@ from models.sites_dal import register_node
 from models.sites_dal import get_sites
 from models.sites_dal import find_site_by_name_url
 from models.sites_dal import get_updated_sites
-from view_helpers import encode
+from dolib.sites.util import encode
 
 from pyramid.httpexceptions import HTTPNotFound
 
