@@ -7,9 +7,15 @@ README = open(os.path.join(here, 'README.txt')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = [
+    'APScheduler',
+    'Jinja2',
+    'path.py',
     'pyramid',
     'pyramid_debugtoolbar',
+    'pyramid-jinja2',
     'waitress',
+    'requests',
+    'simplejson',
     ]
 
 setup(name='Doula',
