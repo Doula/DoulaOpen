@@ -10,6 +10,7 @@
   <h2>Sites</h2>
   
   <ul>
+  {% if sites|length > 0 %}
   {% for site in sites %}
     <li>
         <a href="/sites/{{ site.name_url }}">
@@ -18,6 +19,11 @@
         </a>
     </li>
   {% endfor %}
+  {% else %}
+    <li>
+      <h3>No sites registered</h3>
+    </li>
+  {% endif %}
   </ul>
 </div>
 
