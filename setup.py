@@ -10,6 +10,7 @@ requires = [
     'pyramid',
     'pyramid_debugtoolbar',
     'waitress',
+    'pyramid_jinja2',
     ]
 
 setup(name='Doula',
