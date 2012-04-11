@@ -1,0 +1,12 @@
+@import "functions";
+@import "variables";
+
+.sm-progress {
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.sm-progress-medium-grey{
+  background-image: url(../assets/spinner_gray_66.gif);
+}

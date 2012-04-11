@@ -1,0 +1,46 @@
+@import "functions";
+
+// COLORS
+
+$altdark: #de7e35;  
+$altmed: #fadd92;   
+$altlight: #FCF2C7; 
+$grydrk: #706f65;   
+$grymeddrk: #94938c;
+$grymed: #cccccc;   
+$grymdlt: #dadad8;  
+$grylt: #eaeae8;                     
+$ctadark: #86a33b;  
+$ctalight: #a7c23d; 
+$links: #00858b;
+$hoverbg: #e5f4f3;  
+$warning: #FF0000;
+$brdwarn: #CC6666;
+$bgwarn: #FFCCCC; 
+$ondark: white;
+
+// GRADIENTS
+
+@mixin grad-dark {
+  @include gradient(#5e5e4e, #323227);
+}
+@mixin grad-brand {
+  @include gradient(#9cb221, #789628);
+}
+@mixin grad-teal-dark {
+  @include gradient(#3b9a97, #2c4f5d);
+}
+@mixin grad-teal {
+  @include gradient(#3b9a98, #15767b);
+}
+@mixin grad-orange-dark {
+  @include gradient(#ec6d12, #b71e20);
+}
+@mixin grad-orange {
+  @include gradient(#eca211, #d26923);
+}
+@mixin grad-yellow {
+  @include gradient(#f1ee6a, #e4ca32);
+}
+
+// PIXEL VALUES?

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block nav %}
+<nav>
+<a href="/">Home</a>
+<a href="/sites">Sites</a>
+<a href="/sites/{{ site.name_url }}">{{ site.name }}</a>
+<a href="/sites/{{ site.name_url }}/{{ app.name_url }}">{{ app.name }}</a>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="page-wrap">
+    <h2>Details for <span>{{ app.name }}</span></h2>
+    <table>
+        <tr class="odd">
+            <td><strong>Name</strong></td>
+            <td>{{ app.name }}</td>
+        </tr>
+        <tr>
+            <td><strong>Status</strong></td>
+            <td>{{ app.get_pretty_status() }}</td>
+        </tr>
+        <tr class="odd">
+            <td><strong>Last Tag</strong></td>
+            <td>{{ app.last_tag_app }}</td>
+        </tr>
+        <tr>
+            <td><strong>Compare View</strong></td>
+            <td><a href="{{ app.get_compare_url() }}" target="_blank">{{ app.get_compare_url() }}</a></td>
+        </tr>
+        <tr class="odd">
+            <th>
+                Packages
+            </th>
+            <td>
+                {% for pack in app.packages %}
+                <strong>{{ pack.name }}</strong> {{ pack.version }}
+                <br />
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+</div>
+{{ [
+'/js/libs/global-min.js', 
+'/js/libs/global-pro-min.js', 
+'/js/libs/site-tabs.js',
+'/js/application/application.js'
+]|js_script|safe }}
+{% endblock %}

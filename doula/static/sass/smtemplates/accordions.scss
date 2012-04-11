@@ -1,0 +1,137 @@
+@import "functions";
+
+.accordion > div.key {
+    background: #8A867A;
+    border-bottom: 1px solid #C2C1BB;
+    &:first-child {
+        @include border-radiuses(5px, 0, 0, 5px);
+    }
+    &:last-child {
+        @include border-radiuses(0, 5px, 5px, 0);
+        border-bottom: 0;
+    }
+    &:hover {
+        background: #9D9B8F;
+    }
+}
+
+.accordion > div.key > header {
+    position: relative;
+    h3 {
+        font-size: 14px;
+        line-height: 16px;
+        margin: 0;
+        a {
+            display: block;
+            padding: 11px 11px 11px 28px;
+            color: #fff;
+            text-transform: uppercase;
+            outline: 0;
+            &:hover{
+              text-decoration: none;
+            }
+        }
+        .ie7 & a{
+          position:relative;
+        }
+    }
+    & > span{
+        width: 14px;
+        height: 14px;
+        line-height:14px;
+        position: absolute;
+        display:block;
+        top: 13px;
+        left: 9px;
+        color:#fff;
+    }
+    .ie7 & > span {
+        top: 12px;
+    }
+    // Help Popouts (requires help-popouts.css)
+    .q {
+        position: absolute;
+        display: block;
+        right: 1em;
+        top: 1em;
+    }
+}
+
+.accordion > div.key > section {
+    color: white;
+    overflow-y:auto;
+    padding: 0 10px;
+    height:0;
+    // Scrollbar
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    // Track
+    &::-webkit-scrollbar-track {
+      // Not using mixins because only works in browsers that support it this way.
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+    }
+    // Handle
+    &::-webkit-scrollbar-thumb {
+      // Not using mixins because only works in browsers that support it this way.
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+      background: #333;
+    }
+    .ie7 & {
+        position:relative;
+        overflow-x: hidden;
+    }
+}
+
+.accordion > div.open {
+    background: #9D9B8F;
+    padding-bottom: 10px;
+    & > header > span{
+      @include rotate(90);
+    }
+    .ie7 & > header > span {
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+    }
+    .ie8 & > header > span {
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+    }
+}
+
+.accordion span.accordion-arrow.open{
+    @include rotate(90);
+
+    .ie7 &{
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+    }
+
+    .ie8 & {
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+    }
+}
+
+
+.accordion > div.open > section{
+    height:auto;
+}
+
+// Light Version
+.accordion.light > div.key {
+  background: #EAEAE8;
+  &:hover{
+      background: #F2F2F0;
+  }
+  &.open{
+      background: #F2F2F0;
+  }
+  & > header > span {
+      color: #a4a4a4;
+  }
+  & > header > h3 a {
+      color: #333;
+  }
+  & > section {
+      color: #333;
+  }
+}

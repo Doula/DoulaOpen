@@ -1,0 +1,89 @@
+@import "functions";
+@import "variables";
+
+.bg-altdark    { background-color: $altdark;   }  
+.brd-altdark   { border-color:     $altdark;   }
+.txt-altdark   { color:            $altdark;   }
+
+.bg-altmed     { background-color: $altmed;    }
+.brd-altmed    { border-color:     $altmed;    }
+.txt-altmed    { color:            $altmed;    }
+
+.bg-altlight   { background-color: $altlight;  }
+.brd-altlight  { border-color:     $altlight;  }
+.txt-altlight  { color:            $altlight;  }
+
+.bg-grydrk     { background-color: $grydrk;    }
+.brd-grydrk    { border-color:     $grydrk;    }
+.txt-grydrk    { color:            $grydrk;    }
+
+.bg-grymeddrk  { background-color: $grymeddrk; }
+.brd-grymeddrk { border-color:     $grymeddrk; }
+.txt-grymeddrk { color:            $grymeddrk; }
+
+.bg-grymed     { background-color: $grymed;    }
+.brd-grymed    { border-color:     $grymed;    }
+.txt-grymed    { color:            $grymed;    }
+
+.bg-grymdlt    { background-color: $grymdlt;   }
+.brd-grymdlt   { border-color:     $grymdlt;   }
+.txt-grymdlt   { color:            $grymdlt;   }
+
+.bg-grylt      { background-color: $grylt;     }
+.brd-grylt     { border-color:     $grylt;     }
+.txt-grylt     { color:            $grylt;     }
+
+.bg-ctadark    { background-color: $ctadark;   }
+.brd-ctadark   { border-color:     $ctadark;   }
+.txt-ctadark   { color:            $ctadark;   }
+
+.bg-ctalight   { background-color: $ctalight;  }
+.brd-ctalight  { border-color:     $ctalight;  }
+.txt-ctalight  { color:            $ctalight;  }
+
+.bg-links      { background-color: $links;     }
+.brd-links     { border-color:     $links;     }
+.txt-links     { color:            $links;     }
+
+.bg-hoverbg    { background-color: $hoverbg;   }
+.brd-hoverbg   { border-color:     $hoverbg;   }
+.txt-hoverbg   { color:            $hoverbg;   }
+
+.bg-warning    { background-color: $warning;   }
+.brd-warning   { border-color:     $warning;   }
+.txt-warning   { color:            $warning;   }
+
+.bg-bgwarn    { background-color:  $bgwarn;	   }
+.brd-bgwarn   { border-color:      $bgwarn;    }
+.txt-bgwarn   { color:             $bgwarn;    }
+
+.bg-brdwarn    { background-color:  $brdwarn;  }
+.brd-brdwarn   { border-color:      $brdwarn;  }
+.txt-brdwarn   { color:             $brdwarn;  }
+
+.txt-ondark    { color:            $ondark;    }
+
+
+
+// BACKGROUND GRADIENTS (Use @extend) - Remember to also update variables
+.grad-dark {
+  @include gradient(#5e5e4e, #323227);
+}
+.grad-brand {
+  @include gradient(#9cb221, #789628);
+}
+.grad-teal-dark {
+  @include gradient(#3b9a97, #2c4f5d);
+}
+.grad-teal {
+  @include gradient(#3b9a98, #15767b);
+}
+.grad-orange-dark {
+  @include gradient(#ec6d12, #b71e20);
+}
+.grad-orange {
+  @include gradient(#eca211, #d26923);
+}
+.grad-yellow {
+  @include gradient(#f1ee6a, #e4ca32);
+}

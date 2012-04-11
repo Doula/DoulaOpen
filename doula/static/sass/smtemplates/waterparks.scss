@@ -1,0 +1,96 @@
+@import "functions";
+@import "variables";
+
+.waterpark {
+  overflow-x: hidden;
+
+  .mover{
+    @include transition(margin .2s ease-out);
+  }
+
+  .slide {
+    float: left;
+    @include opacity(0);
+    @include transition(opacity .5s ease-out);
+  }
+
+  .current {
+    @include opacity(1);
+  }
+
+  .ie7 &{
+      .slide{
+          display:none;
+      }
+
+      .current{
+          display:block;
+      }
+  }
+
+  .lane{
+    display:none;
+  }
+
+  .open{
+    display:block
+  }
+}
+
+.lanes {
+  @include border-radius(5px);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li {
+    margin: 0 0 1px 0;
+  }
+  a {
+    display: block;
+    background: #EBECE8;  // Use SASS variables
+    color: #5B5A4B;
+    font-weight: bold;
+    padding: 8px 9px;
+    font-size: 12px;
+    position: relative;
+    text-decoration: none;
+    &:hover{
+      background: #E8F4F4;
+      color: #000;
+    }
+    &:after {
+      content: "4";
+      font-family: "Pictos"; // Requires icons.css
+      background:$grymdlt;
+      color: #FFF;
+      padding: 6px 7px 4px 7px;
+      border-radius: 5px;
+      font-size: 12px;
+      position: absolute;
+      top: 4px;
+      right: 5px;
+    }
+    &:hover:after {
+      background: $grydrk;
+    }
+    &:active{
+      background: #CFEAE7;
+    }
+    strong {
+      color: #333;
+    }
+    span {
+      font-weight: normal;
+    }
+  }
+
+  li:first-child a { // May need to get classy here for old IE
+    padding: 9px 9px 8px 9px;
+    @include border-radiuses(5px, 0, 0, 5px);
+  }
+
+  li:last-child a {
+    padding: 8px 9px 9px 9px;
+    @include border-radiuses(0, 5px, 5px, 0);
+  }
+}

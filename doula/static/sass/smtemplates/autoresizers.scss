@@ -1,0 +1,6 @@
+@import "functions";
+@import "variables";
+
+.autoresizer{
+    @include transition(height .2s ease-out);
+}

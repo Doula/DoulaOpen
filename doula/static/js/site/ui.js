@@ -1,49 +1,47 @@
 var UI = {
           
-    statusTextHash: {
-        'unchanged'           : 'Unchanged',
-        'uncommitted_changes' : 'Uncommitted Changes',
-        'change_to_config'    : 'Changes to Configuration',
-        'change_to_app_env'   : 'Change to Application Environment',
-        'tagged'              : 'Tagged'
+    statusClassHash: {
+        'unchanged'                : 'unchanged',
+        'uncommitted_changes'      : 'error',
+        'change_to_config'         : 'changed',
+        'change_to_app_env'        : 'changed',
+        'change_to_app_and_config' : 'changed',
+        'tagged'                   : 'tagged'
     },
 
     init: function() {
-        $(".collapse").collapse({
-            toggle: false,
-        });
-    },
-    
-    revertApp: function(app) {
-        $('#revert_' + app.id).hide();
-        $('#application_details_' + app.id).collapse('hide');
-
-        this.updateStatus(app);
-        this.showFriendlyStatus(app);
-        
-        this.updateDeploySiteBtn();
+        $("#accordion").accordion();
+        $('.sm-side-tab').sideTab();
     },
     
     tagApp: function(app) {
-        $('#application_details_' + app.id).collapse('hide');
-
+        $('#panel_' + app.name_url).click();
+        
         this.updateStatus(app);
-        this.showFriendlyStatus(app);
-    },
-    
-    showFriendlyStatus: function(app) {
-        var friendlyStatus = this.statusTextHash[app.status];
-        $('#app_status_text_' + app.id).html(friendlyStatus);
     },
     
     updateStatus: function(app) {
-        $('#app_status_' + app.id)[0].className = app.status;
+        $('#stat_' + app.name_url).
+          removeClass('stat-changed stat-error stat-tagged').
+          addClass(this.getStatClass(app));
+        
+        $('#status_' + app.name_url).
+          removeClass('status-changed status-error status-tagged').
+          addClass(this.getStatusClass(app));
     },
     
-    updateDeploySiteBtn: function() {
-        if(SiteData.isReadyForDeploy()) {
-            $('#tag_deployment').removeClass('disabled');
-            $('#tag_deployment').next().addClass('hide');
+    getStatusClass: function(app) {
+      return 'status-' + this.statusClassHash[app.status];
+    },
+    
+    getStatClass: function(app) {
+      return 'stat-' + this.statusClassHash[app.status];
+    },
+    
+    updateDeploySiteBtn: function(isReadyForDeploy) {
+        if(isReadyForDeploy) {
+            $('#deploy_site_btn').removeClass('disabled').attr('disabled', '');
+            $('.deployment p').addClass('hide');
         }
     }
     

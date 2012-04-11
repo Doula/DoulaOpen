@@ -1,0 +1,106 @@
+@import "functions";
+@import "variables";
+
+// Note: Some table stuff in Normalize.css
+
+table {
+  width: 100%;
+  margin: 0 0 20px 0;
+  border: 1px solid #DDD;
+  @include border-radius(4px);
+  border-collapse: separate;
+  @include drop-shadow(0, 1px, 2px, 0, 0.1);
+  background: white;
+}
+
+td, th {
+  vertical-align: middle;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  text-align: left;
+}
+tbody tr:last-child > td, tbody tr:last-child > th {
+  border: 0;
+}
+thead th {
+  border-bottom: 1px solid #ddd;
+  vertical-align: bottom;
+}
+caption {
+  text-align: left;
+  padding-left: 10px;
+}
+caption span {
+  display: inline-block;
+  background: #ddd;
+  color: black;
+  padding: 4px 10px 3px;
+  font-size: 12px;
+  font-weight: bold;
+  @include border-radiuses(4px, 0, 0, 4px);
+}
+table.zebra tbody tr:nth-child(odd) {
+  background: #F9F9F9;
+}
+table.row-highlighting tbody tr:hover {
+  background: #eee;
+}
+table.center-cells td, table.center-cells th {
+  text-align: center;
+}
+
+// OPTIONS
+.equal td {
+  width: 9999px;
+}
+.vtop td {
+  vertical-align: top;
+}
+.narrow {
+  width: 1px;
+}
+.small {
+  td, th {
+    font-size: 12px;
+    padding: 6px;
+  }
+}
+.nostyle {
+  border: 0;
+  @include box-shadow(none);
+  td:not(:last-child) {
+    padding-right: 20px;
+  }
+}
+
+// VARIATIONS
+.selling-points-box {
+  width: 424px;
+  margin: 40px 20px 40px 0;
+  float: left;
+  clear: left;
+}
+.selling-point {
+  width: 165px;
+  float: left;
+  padding: 15px 0 5px 45px;
+  background: url(../assets/checkmark-large-green.png) no-repeat 12px 12px;
+}
+.selling-point1, .selling-point2 {
+  border-bottom: dotted #999999 1px;
+}
+.selling-point1, .selling-point3 {
+  border-right: dotted #999999 1px;
+}
+.selling-points-box .number {
+  font-size: 30px;
+  line-height: 22px;
+  font-weight: bold;
+  color: #333;
+}
+.selling-points-box .desc {
+  font-size: 14px;
+  color: #666;
+}

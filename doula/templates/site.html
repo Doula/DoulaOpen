@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block nav %}
+<nav>
+  <a href="/">Home</a>
+  <a href="/sites">Sites</a>
+  <a href="/sites/{{ site.name_url }}">{{ site.name }}</a>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="page-wrap">
+  
+<h1>{{ site.name }}</h1>
+
+ <div id="accordion" class="accordion">
+    {% for app in site.applications %}
+    <div id="stat_{{ app.name_url }}" class="key {{ app.stat|get_stat_class }}">
+
+      <header>
+         <span id="status_{{ app.name_url }}" class="{{ app.status|get_status_class }}">&#x25BA;</span>
+         <a href="/sites/{{ site.name_url }}/{{ app.name_url }}"><span class="icon">⚙</span> Details</a>
+         <h3>
+           <a id="panel_{{ app.name_url }}" href="#panel{{ loop.index }}" class="keyOpener">
+             {{ app.name }}
+             <strong>{{ app.get_pretty_status() }}</strong>
+             {% if app.status != 'unchanged' %}<em><span class="icon">✍</span> Tag Changes</em>{% endif %}
+           </a>
+         </h3>
+      </header>
+      {% if app.status != 'unchanged' %}
+      <section id="panel{{ loop.index }}">
+
+         <form id="form_{{ app.name_url }}" method="post" action="#">
+
+           <div>
+             <label>Tag:</label>
+
+             <input id="tag_{{ app.name_url }}" type="text" class="tag span3" required="required" pattern="\d+\.\d+\.\d+(a|b|c|rc)?" placeholder="Valid tag format 0.1.1(a|b|c|rc)">
+             <span class="instruct">Last tag: <strong>{{ app.last_tag_app }}</strong></span>
+           </div>
+
+           <div>
+             <label>Commit Message:</label>
+             <textarea class="commit" id="msg_{{ app.name_url }}" cols="40" rows="10" required placeholder="Don’t make something unless it is both necessary and useful; but if it is both necessary and useful, don’t hesitate to make it beautiful."></textarea>
+           </div>
+
+           <div>
+             <label>&nbsp;</label>
+             <input class="btn" type="submit" value="Commit">
+           </div>
+
+       </form>
+
+      </section>
+      {% endif %}
+    </div><!-- End First Key -->
+    {% endfor %}
+</div> <!-- div#accordion -->
+
+<div class="deployment hide">
+  <input id="deploy_site_btn" type="submit" value="Deploy Site" class="btn btn-large disabled" disabled>
+  <p><small><span class="icon icon-warning">⚠</span> You'll have to tag each application before you can deploy this site.</small></p>
+</div>
+
+</div>
+<script>
+  var __site = {{ site_json|safe }};
+</script>
+
+{{ [
+'/js/libs/global-min.js', 
+'/js/libs/global-pro-min.js', 
+'/js/libs/accordions.js',
+'/js/libs/site-tabs.js',
+'/js/site/ui.js', 
+'/js/site/site_data.js', 
+'/js/site/site.js'
+]|js_script|safe }}
+{% endblock %}

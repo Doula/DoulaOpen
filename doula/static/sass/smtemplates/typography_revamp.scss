@@ -1,0 +1,125 @@
+@import "functions";
+@import "colorswatches";
+
+body {
+  font-family: Sans-Serif;  // Arial on Windows, Helvetica on Mac
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+// HEADERS
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: bold;
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+h1, .h1 {
+    font-size: 30px;
+}
+h2, .h2 {
+    font-size: 24px;
+}
+h3, .h3 {
+  font-size: 20px;
+}
+h4, .h4 {
+  font-size: 18px;
+  margin: 0 0 10px 0;
+}
+h5, .h5 {
+  font-size: 16px;
+  margin: 0 0 10px 0;
+}
+h6, .h6 {
+  font-size: 14px;
+  margin: 0;
+}
+.bar {
+  background: #EAEADE;
+  padding: 10px;
+}
+
+// PARAGRAPHS
+p {
+  margin: 0 0 20px 0;
+}
+
+// LINKS
+a {
+  color: #00898B;
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+}
+// Addresses outline displayed oddly in Chrome
+a:focus {
+  outline: thin dotted;
+}
+// Improves readability when focused and also mouse hovered in all browsers
+// people.opera.com/patrickl/experiments/keyboard/test
+a:hover, a:active {
+  outline: 0;
+}
+// [CHRIS]: We should define some better default link states here
+
+ul, ol {
+  margin: 0 0 20px 0;
+  padding: 0 0 0 20px;
+}
+ul, ul li {
+  list-style: disc;
+}
+ol, ol li {
+  list-style: decimal;
+}
+li {
+  margin: 0 0 3px 0;
+  padding: 0;
+}
+
+form, fieldset  {
+  margin:0;
+  padding:0;
+}
+
+// Addresses style set to 'bolder' in FF3/4, S4/5, Chrome
+b, strong {
+  font-weight: bold;
+}
+
+blockquote {
+  margin: 1em 40px;
+}
+
+// Addresses styling not present in IE7/8/9, S5, Chrome
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+.sm-center-text {
+  text-align: center;
+}
+.sm-note {
+  font-size: 11px;
+}
+
+// Sidebars
+aside {
+  h3 {
+    font-size: 14px;
+  }
+  p, li {
+    font-size: 12px;
+  }
+}
+
+// CODE
+pre {
+  @include grad-dark();
+  @include border-radius(5px);
+  color: white;
+  font: 11px Monaco, MonoSpace;
+  padding: 20px;
+}

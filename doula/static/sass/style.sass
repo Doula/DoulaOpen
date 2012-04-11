@@ -1,8 +1,9 @@
 @import compass/css3
-@import "../../../smtemplates/smtemplates/static/scss/normalize"
-@import "../../../smtemplates/smtemplates/static/scss/typography_revamp"
-@import "../../../smtemplates/smtemplates/static/scss/buttons"
-
+@import "smtemplates/normalize"
+@import "smtemplates/typography_revamp"
+@import "smtemplates/buttons"
+@import "smtemplates/pro_mod"
+@import "smtemplates/side-tabs"
 * 
   +box-sizing
 
@@ -88,6 +89,13 @@ h1, h2, h3, h4, h5, h6
   h2
     color: #BADa55
 
+.odd
+  background: #F2F2F2
+tr:hover
+  background: #eee
+tr.odd:hover
+  background: #ccc
+    
 [class^=status] 
   display: inline-block
   width: 20px
@@ -96,13 +104,19 @@ h1, h2, h3, h4, h5, h6
   border-radius: 50%
   margin: 0 7px 0 0
   font: 0/0 a
-.status-A 
+.status-tagged
+  background: #00A5EB
+  box-shadow: inset 0 5px 5px #00D0EB, 0 0 20px 2px #00D0EB, 0 0 2px 1px black
+.status-unknown
+  background: #B0A5AA
+  box-shadow: inset 0 5px 5px #B0A5AA, 0 0 20px 2px #B0A5AA, 0 0 2px 1px black
+.status-unchanged 
   background: #d8eb00
   box-shadow: inset 0 5px 5px #adf000, 0 0 20px 2px #adf000, 0 0 2px 1px black
-.status-B
+.status-changed
   background: #ff6000
   box-shadow: inset 0 5px 5px #ffb85b, 0 0 20px 2px #ffb85b, 0 0 2px 1px black
-.status-C 
+.status-error 
   background: #ff0000
   box-shadow: inset 0 5px 5px #ff7878, 0 0 20px 2px #ff7878, 0 0 2px 1px black
   -webkit-animation: pulse 0.7s infinite alternate
@@ -126,34 +140,54 @@ h1, h2, h3, h4, h5, h6
 
 
 // Patterns
-@import "../../../smtemplates/smtemplates/static/scss/tables"
-@import "../../../smtemplates/smtemplates/static/scss/accordions"
+@import "smtemplates/tables"
+@import "smtemplates/accordions"
 
 .accordion
   margin: 0 0 25px 0
-  > div, > div:first-child, > div:last-child, div.open
+  > div.key, > div.key:first-child, > div.key:last-child, div.key.open // override selectors
     background: rgba(0,0,0,0.4)
     border: 0
     margin: 0 0 10px 0
     border-bottom: 1px solid rgba(255,255,255,0.2)
     +transition-property(background)
     +transition-duration(0.2s)
+    +border-radius(5px)
     &:not(.open):hover 
       background: rgba(0,0,0,0.8)
     +border-radius(10px)
-    > header h3 strong 
+    > header > a
       position: absolute
-      top: 10px
       right: 10px
+      top: 7px
+      &:hover
+        color: white
+    > header h3 strong 
+      text-transform: none
+      font-weight: 400
+      font-size: 12px
+      margin-left: 10px
     > header h3 a 
       padding-left: 40px
+    > header h3 em 
+      position: absolute
+      top: 12px
+      right: 80px
+    > header:hover h3 em
+      color: white
+    > header > a, > header h3 em
+      font-weight: 400
+      font-size: 12px
+      text-transform: none
+      font-style: normal
+      color: #999
     > header > span
       width: 20px
       height: 20px
       top: 9px
       left: 9px
   > div > section > form
-    background: rgba(0,0,0,0.1)
+    +background(linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)))
     +border-radius(7px)
     padding: 10px
     border-bottom: 1px solid rgba(255,255,255,0.1)
@@ -165,17 +199,43 @@ h1, h2, h3, h4, h5, h6
     label 
       float: left
       width: 17%
-    input[type=text], textarea 
+    input[type=text]
+      width: 240px
+    textarea 
       width: 60%
-    
-.stat-A
-  &.open
-    background: rgba(255,0,0,0.3) !important
 
-.stat-B
-  &.open
-    background: rgba(232,97,0,0.3) !important
+.deployment
+  input
+    margin: 0 0 5px 0
+  input:disabled
+    opacity: 0.3
+ 
+.icon
+  font-size: 21px
+  vertical-align: middle
+  color: white
+  top: -2px
+  position: relative
+  margin-right: 2px
+  &.icon-warning
+    color: yellow
 
-.stat-C
-  &.open
-    background: rgba(255,0,0,0.3) !important
+.stat-tagged
+  > header h3 strong
+    color: #C0E9FA
+.stat-unknown
+  > header h3 strong
+    color: #CCC0C5
+.stat-changed
+  > header h3 strong
+    color: #ffa21c 
+
+.stat-error
+  > header h3 strong
+    color: #ff4646
+
+table
+  color: black
+
+.hide
+  display: none !important

@@ -1,0 +1,59 @@
+@import "functions";
+@import "variables";
+
+// CLEARFIX
+.group:before, .group:after {
+  content: "";
+  display: table;
+}
+.group:after {
+  clear: both;
+}
+
+// OLD CLEARFIX
+// [Chris]: Are both of these being used? Can we remove one?
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+// HIDING & DISABLING
+.hide, .nodisplay, .hidden {
+  display: none;
+}
+.screen-reader-text {
+  @include screen-reader-text;
+}
+.cloak {
+  visibility: hidden;
+}
+.transparent, .disappear {
+    zoom: 1;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.disabled {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  cursor: default !important;
+}
+:disabled {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  cursor: default !important;
+}
+.disabled a {
+  cursor: default !important;
+}
+:disabled a{
+  cursor: default !important;
+}
