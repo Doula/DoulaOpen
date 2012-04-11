@@ -1,6 +1,4 @@
 from pyramid.view import view_config
-from pyramid.events import ApplicationCreated
-from pyramid.events import subscriber
 
 from models.sites_dal import register_node
 from models.sites_dal import get_sites
@@ -67,16 +65,3 @@ def not_found(self, request):
     
     return { 'msg': request.exception.message }
 
-# Used only for testing during development
-@subscriber(ApplicationCreated)
-def register_node_on_start(event):
-    """
-    Register this Bambino node with Doula.
-    """
-    node = {
-        'name': 'Machine Numero Uno',
-        'site': 'Monkey Test One',
-        'url' : 'http://127.0.0.1:6542'
-    }
-    
-    register_node(node, event.app.registry.settings)
