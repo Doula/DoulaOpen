@@ -11,6 +11,9 @@ var UI = {
 
     init: function() {
         $("#accordion").accordion();
+        // If you cannot tag because of uncommitted changes
+        // bind a function that will nullify the link click
+        $('a.keyCloser').on('click', function() { return false; });
         $('.sm-side-tab').sideTab();
     },
     

@@ -107,17 +107,20 @@ SM.Accordion =  {
         panelLen = $panels.length;
 
         for(; i < panelLen; i++){
-
             $panel = $panels.eq(i);
-            id = $panel.children('header').find('a.keyOpener').attr("href").substr(1);
-            $section = $("#" + id);
+            var keyOpenerLinks = $panel.children('header').find('a.keyOpener');
+            
+            if (keyOpenerLinks.length > 0) {
+                id = keyOpenerLinks.attr("href").substr(1);
+                $section = $("#" + id);
 
-            this._panels[id]= {
-                index: i,
-                key:id,
-                $panel:$panel,
-                $section:$section
-            };
+                this._panels[id]= {
+                    index: i,
+                    key:id,
+                    $panel:$panel,
+                    $section:$section
+                };
+            }
 
             if($panel.hasClass("open")){
                 this._openPanels[id] = true;

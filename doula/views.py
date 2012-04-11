@@ -2,10 +2,10 @@ from pyramid.view import view_config
 from pyramid.events import ApplicationCreated
 from pyramid.events import subscriber
 
-from models.sites import register_node
-from models.sites import get_sites
-from models.sites import find_site_by_name_url
-from models.sites import get_updated_sites
+from models.sites_dal import register_node
+from models.sites_dal import get_sites
+from models.sites_dal import find_site_by_name_url
+from models.sites_dal import get_updated_sites
 from view_helpers import encode
 
 from pyramid.httpexceptions import HTTPNotFound
@@ -37,7 +37,19 @@ def show_site(request):
 def show_application(request):
     sites = get_updated_sites(request.registry.settings)
     site = find_site_by_name_url(sites, request.matchdict['site'])
-    app = site.find_app_by_name_url(request.matchdict['application'])
+    app = site.get_app(request.matchdict['application'])
+    
+    return { 'site': site, 'app': app }
+    
+@view_config(route_name='tag', renderer="json")
+def tag_application(request):
+    # alextodo, need to fold these into a single call
+    sites = get_updated_sites(request.registry.settings)
+    site = find_site_by_name_url(sites, request.POST['site'])
+    app = site.get_app(request.POST['name_url'])
+    
+    request.POST['tag']
+    request.POST['msg']
     
     return { 'site': site, 'app': app }
         

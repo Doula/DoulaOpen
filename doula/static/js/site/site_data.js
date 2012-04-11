@@ -16,6 +16,17 @@ var SiteData = {
         app.msg = msg;
         app.originalStatus = app.status;
         app.status = 'tagged';
+        console.log(this);
+        console.log(app);
+        // $.ajax({
+        //       url: '/tag',
+        //       type: 'POST',
+        //       data: 'content',
+        //       success: function(rslt) {
+        //           console.log(rslt);
+        //           // alextodo, need to revert if we fail
+        //       }
+        // });
     },
     
     revertAppTag: function(app, tag, msg) {
