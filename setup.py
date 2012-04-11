@@ -15,6 +15,7 @@ requires = [
     'pyramid-jinja2',
     'waitress',
     'requests',
+    'simplejson',
     ]
 
 setup(name='Doula',
