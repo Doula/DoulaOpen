@@ -16,15 +16,17 @@ var Site = (function() {
     
     tagApplication: function(event) {
       var app = SiteData.findAppByID(this.id.replace('form_', ''));
-      
       var tag = $('#tag_' + app.name_url)[0].value;
       var msg = $('#msg_' + app.name_url)[0].value;
       
       SiteData.tagApp(app, tag, msg);
-      UI.tagApp(app);
-      UI.updateDeploySiteBtn(SiteData.isReadyForDeploy());
       
       return false;
+    },
+    
+    successfulTagApp: function(app) {
+        UI.tagApp(app);
+        UI.updateDeploySiteBtn(SiteData.isReadyForDeploy());
     },
     
     validateTag: function(event) {

@@ -39,17 +39,15 @@ def show_application(request):
     
     return { 'site': site, 'app': app }
     
-@view_config(route_name='tag', renderer="json")
+@view_config(route_name='tag', renderer="string")
 def tag_application(request):
     # alextodo, need to fold these into a single call
     sites = get_updated_sites(request.registry.settings)
     site = find_site_by_name_url(sites, request.POST['site'])
     app = site.get_app(request.POST['name_url'])
+    app.tag(request.POST['tag'], request.POST['msg'])
     
-    request.POST['tag']
-    request.POST['msg']
-    
-    return { 'site': site, 'app': app }
+    return encode({ 'success': True, 'app': app })
         
 @view_config(route_name='register', renderer='json')
 def register(request):

@@ -59,7 +59,7 @@ class DoulaNode(Node):
             rslt = json.loads(r.text)
             
             for app in rslt['applications']:
-                a = Application(app['name'], self.name, self.url)
+                a = DoulaApplication(app['name'], self.name, self.url)
                 a.current_branch_app = app['current_branch_app']
                 a.change_count_app = app['change_count_app']
                 a.change_count_config = app['change_count_config']
@@ -80,4 +80,32 @@ class DoulaNode(Node):
         
         return self.applications
     
+
+class DoulaApplication(Application):
+    def __init__(self, name, node_name, url, 
+        current_branch_app='', current_branch_config='', 
+        change_count_app='', change_count_config='',
+        is_dirty_app=False, is_dirty_config=False, 
+        last_tag_app='', last_tag_config='', 
+        status='', remote='', repo='', packages=[]):
+        Application.__init__(self, name, node_name, url, 
+            current_branch_app, current_branch_config, 
+            change_count_app, change_count_config,
+            is_dirty_app, is_dirty_config, 
+            last_tag_app, last_tag_config, 
+            status, remote, repo, packages)
+    def tag(self, tag, msg):
+        """
+        Tag the current application
+        """
+        payload = {'tag': tag, 'description': msg, 'apps': self.name}
+        r = requests.post(self.url + '/tag', data=payload)
+        
+        self.tag = tag
+        self.msg = msg
+        # figure out how we will update doula
+        # we should get the app details back from bambino
+        # save that to in memory storage
+        self.status = 'tagged'
+        
 

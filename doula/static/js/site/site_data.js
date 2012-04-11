@@ -12,21 +12,45 @@ var SiteData = {
     },
     
     tagApp: function(app, tag, msg) {
-        app.tag = tag;
-        app.msg = msg;
-        app.originalStatus = app.status;
-        app.status = 'tagged';
-        console.log(this);
-        console.log(app);
-        // $.ajax({
-        //       url: '/tag',
-        //       type: 'POST',
-        //       data: 'content',
-        //       success: function(rslt) {
-        //           console.log(rslt);
-        //           // alextodo, need to revert if we fail
-        //       }
-        // });
+        params = {
+            'site'     : SiteData.name_url,
+            'name_url' : app.name_url,
+            'tag'      : tag,
+            'msg'      : msg
+        }
+        
+        $.ajax({
+              url: '/tag',
+              type: 'POST',
+              data: this.getDataValues(params),
+              success: function(rslt) {
+                  var obj = $.parseJSON(rslt);
+                  
+                  if(obj.success) {
+                      app = SiteData.findAppByID(obj.app.name_url);
+                      app.tag = obj.app.last_tag_app;
+                      app.msg = obj.app.msg;
+                      app.status = obj.app.status;
+                      
+                      Site.successfulTagApp(app);
+                  }
+                  else {
+                      alert(obj.msg);
+                  }
+              }
+        });
+    },
+    
+    getDataValues: function(params) {
+        var dataValues = '';
+        var count = 0;
+        
+        for(var key in params) {
+            if(dataValues != '') dataValues += '&';
+            dataValues += key + '=' + encodeURIComponent(params[key]);
+        }
+        
+        return dataValues;
     },
     
     revertAppTag: function(app, tag, msg) {
