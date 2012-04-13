@@ -28,21 +28,36 @@
             <td><a href="{{ app.get_compare_url() }}" target="_blank">{{ app.get_compare_url() }}</a></td>
         </tr>
         <tr class="odd">
-            <th>
+            <th style="vertical-align: top;">
                 Packages
             </th>
-            <td>
-                {% for pack in app.packages %}
-                <strong>{{ pack.name }}</strong> {{ pack.version }}
-                <br />
+            <!-- create four columns per row -->
+            <td valign="top" align="left">
+              <table>
+                {% set count = 1 %}
+                
+                {% for pack in app.packages|sort(attribute='name') %}
+                {% if count == 1 %}
+                <tr>
+                {% endif %}
+
+                  <td><strong>{{ pack.name }}</strong> {{ pack.version }}</td>
+
+                {% if count == 3 %}
+                </tr>
+                {% endif %}
+
+                {% if count == 3 %}{% set count = 1 %}{% else %}{% set count = count + 1 %}{% endif %}
+
                 {% endfor %}
+              </table>
             </td>
         </tr>
     </table>
 </div>
 {{ [
-'/js/libs/global-min.js', 
-'/js/libs/global-pro-min.js', 
+'/js/libs/global-min.js',
+'/js/libs/global-pro-min.js',
 '/js/libs/site-tabs.js',
 '/js/application/application.js'
 ]|js_script|safe }}

@@ -1,1 +1,0 @@
--e git+git@code.corp.surveymonkey.com:DevOps/dolib.sites.git#egg=dolib_sites

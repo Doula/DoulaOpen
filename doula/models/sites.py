@@ -3,17 +3,57 @@ import re
 import requests
 import logging
 
-from dolib.sites.site import Site
-from dolib.sites.site import Node
-from dolib.sites.site import Application
-from dolib.sites.site import Package
-
 log = logging.getLogger('doula')
 
-class DoulaSite(Site):
+# Defines the Data Models four Doula and Bambino.
+#
+# sites
+#   Site
+#     nodes
+#       applications
+#         Application
+#           packages
+#             Package
+#     applications
+#       Application
+#         packages
+#           Package
+import re
+from util import dirify
+from util import encode
+
+class Site(object):
     def __init__(self, name, status='unknown', nodes=[], applications=[]):
-        Site.__init__(self, name, status, nodes, applications)
-    
+        self.name = name
+        self.name_url = dirify(name)
+        self.status = status
+        self.nodes = nodes
+        self.applications = applications
+    def get_status(self):
+        """
+        The status of the site is the most serious status of all it's applications.
+        Status from least serious to most are:
+            unchanged (1), change_to_config (2), change_to_app (3),
+            change_to_app_and_config (4), uncommitted_changes (5)
+        """
+        status_value = 0
+        status_values = {
+            'unknown'                 : 0,
+            'unchanged'               : 1,
+            'change_to_config'        : 2,
+            'change_to_app'           : 3,
+            'change_to_app_and_config': 4,
+            'uncommitted_changes'     : 5
+        }
+        
+        for app in self.applications:
+            app_status_value = status_values[app.status]
+            
+            if app_status_value > status_value:
+                status_value = app_status_value
+                self.status = app.status
+        
+        return self.status
     def has_node(self, node_name):
         for node in self.nodes:
             if node.name == node_name:
@@ -41,12 +81,15 @@ class DoulaSite(Site):
             if app.name_url == name_url:
                 return app
         return False
-    
+    def to_json(self):
+        return encode(self)
 
-
-class DoulaNode(Node):
+class Node(object):
     def __init__(self, name, url, applications=[]):
-        Node.__init__(self, name, url, applications)
+        self.name = name
+        self.name_url = dirify(name)
+        self.url = url
+        self.applications = applications
     
     def get_applications(self):
         """
@@ -59,7 +102,7 @@ class DoulaNode(Node):
             rslt = json.loads(r.text)
             
             for app in rslt['applications']:
-                a = DoulaApplication(app['name'], self.name, self.url)
+                a = Application(app['name'], self.name, self.url)
                 a.current_branch_app = app['current_branch_app']
                 a.change_count_app = app['change_count_app']
                 a.change_count_config = app['change_count_config']
@@ -79,21 +122,72 @@ class DoulaNode(Node):
             log.error('Unable to contact node "' + self.name + '" at URL ' + self.url)
         
         return self.applications
-    
+    def to_json(self):
+        return encode(self)
 
-class DoulaApplication(Application):
-    def __init__(self, name, node_name, url, 
-        current_branch_app='', current_branch_config='', 
+class Application(object):
+    def __init__(self, name, node_name, url,
+        current_branch_app='', current_branch_config='',
         change_count_app='', change_count_config='',
-        is_dirty_app=False, is_dirty_config=False, 
-        last_tag_app='', last_tag_config='', 
+        is_dirty_app=False, is_dirty_config=False,
+        last_tag_app='', last_tag_config='',
         status='', remote='', repo='', packages=[]):
-        Application.__init__(self, name, node_name, url, 
-            current_branch_app, current_branch_config, 
-            change_count_app, change_count_config,
-            is_dirty_app, is_dirty_config, 
-            last_tag_app, last_tag_config, 
-            status, remote, repo, packages)
+        self.name = name
+        self.node_name = node_name
+        self.name_url = dirify(name)
+        self.url = url
+        
+        self.current_branch_app = current_branch_app
+        self.current_branch_config = current_branch_config
+        
+        self.change_count_app = change_count_app
+        self.change_count_config = change_count_config
+        
+        self.is_dirty_app = is_dirty_app
+        self.is_dirty_config = is_dirty_config
+        
+        self.last_tag_app = last_tag_app
+        self.last_tag_config = last_tag_config
+        
+        self.status = status
+        self.remote = remote
+        self.packages = packages
+    def get_pretty_status(self):
+        # alextodo, add tagged as a status
+        """
+        Return a print friendly status
+        """
+        if self.status == 'unchanged':
+            return 'Unchanged'
+        elif self.status == 'change_to_config':
+            return 'Changes to Configuration'
+        elif self.status == 'change_to_app':
+            return 'Changes to Application Environment'
+        elif self.status == 'change_to_app_and_config':
+            return 'Changes to Configuration and Application Environment'
+        elif self.status == 'uncommitted_changes':
+            return 'Uncommitted Changes'
+        else:
+            return 'Unknown'
+    def get_compare_url(self):
+        """
+        Use the remote url to return the Github Comapre view URL.
+        The Github Compare URL has the format:
+        http://<GITHUB_URL>/<USER>/<REPO>/compare/<START>...<END>
+        For us this means
+        http://code.corp.surveymonkey.com/DevOps/[name]/compare/[last_tag_app]...[current_branch_app]
+        """
+        if self.remote.startswith('http'):
+            # parses http://code.corp.surveymonkey.com/tbone/anweb.git type remote
+            m = re.search(r'http:\/\/([\w\.]+)\/([\w\d]+)\/([\w\d]+)', self.remote)
+        else:
+            # parses git@code.corp.surveymonkey.com:tbone/anweb-1.git type remote
+            m = re.search(r'@([\w\.]+):([\w\d]+)\/([\w\d]+)', self.remote)
+        
+        compare_url = 'http://' + m.group(1) + '/' + m.group(2) + '/' + self.name
+        compare_url+= '/compare/' + self.last_tag_app + '...' + self.current_branch_app
+        
+        return compare_url
     def tag(self, tag, msg):
         """
         Tag the current application
@@ -107,5 +201,17 @@ class DoulaApplication(Application):
         # we should get the app details back from bambino
         # save that to in memory storage
         self.status = 'tagged'
-        
+    def to_json(self):
+        return encode(self)
+    
 
+class Package(object):
+    """
+    Represents a python package
+    """
+    def __init__(self, name, version):
+        self.name = name
+        self.version = version
+    
+    def to_json(self):
+        return encode(self)
