@@ -28,7 +28,7 @@ def show_site(request):
     if not site:
         raise HTTPNotFound('Unable to find site "' + request.matchdict['site'] + '"')
 
-    return { 'site': site, 'site_json': encode(site) }
+    return { 'site': site, 'site_json': dumps(site) }
 
 
 @view_config(route_name='application', renderer="application.html")
@@ -47,7 +47,7 @@ def tag_application(request):
     app = site.get_app(request.POST['name_url'])
     app.tag(request.POST['tag'], request.POST['msg'])
 
-    return encode({ 'success': True, 'app': app })
+    return dumps({ 'success': True, 'app': app })
 
 @view_config(route_name='register', renderer='json')
 def register(request):

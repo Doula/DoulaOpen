@@ -19,8 +19,8 @@ log = logging.getLogger('doula')
 #         packages
 #           Package
 import re
-from util import dirify
-from util import encode
+from doula.util import dirify
+from doula.util import dumps
 
 class Site(object):
     def __init__(self, name, status='unknown', nodes=[], applications=[]):
@@ -82,7 +82,7 @@ class Site(object):
                 return app
         return False
     def to_json(self):
-        return encode(self)
+        return dumps(self)
 
 class Node(object):
     def __init__(self, name, url, applications=[]):
@@ -123,7 +123,7 @@ class Node(object):
         
         return self.applications
     def to_json(self):
-        return encode(self)
+        return dumps(self)
 
 class Application(object):
     def __init__(self, name, node_name, url,
@@ -202,7 +202,7 @@ class Application(object):
         # save that to in memory storage
         self.status = 'tagged'
     def to_json(self):
-        return encode(self)
+        return dumps(self)
     
 
 class Package(object):
@@ -214,4 +214,4 @@ class Package(object):
         self.version = version
     
     def to_json(self):
-        return encode(self)
+        return dumps(self)
