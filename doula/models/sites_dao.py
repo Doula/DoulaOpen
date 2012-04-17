@@ -1,5 +1,7 @@
 import json
 from doula.util import pprint
+from doula.util import dirify
+
 from doula.cache import Cache
 from doula.models.sites import Site
 from doula.models.sites import Node
@@ -19,7 +21,7 @@ class SiteDAO(object):
         self.cache.set(key, json.dumps(site))
     
     def _get_site_cache_key(self, name):
-        return self.site_prefix + name
+        return self.site_prefix + dirify(name)
     
     def _get_site(self, name):
         """

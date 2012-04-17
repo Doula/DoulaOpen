@@ -46,7 +46,7 @@ class Site(object):
             'uncommitted_changes'     : 5
         }
         
-        for app in self.applications:
+        for app_name, app in self.applications.iteritems():
             app_status_value = status_values[app.status]
             
             if app_status_value > status_value:
@@ -102,6 +102,8 @@ class Node(object):
             self.applications = { }
             
             # alextodo, how can i mock this out?
+            # alextodo, need to figure out how to test this properly
+            # may need to simply move it out to the factory, sounds good
             r = requests.get(self.url + '/applications')
             rslt = json.loads(r.text)
             
@@ -121,7 +123,7 @@ class Node(object):
                     for name, version in app['packages'].iteritems():
                         a.packages.append(Package(name, version))
                 
-                self.applications[a.name] = a
+                self.applications[a.name_url] = a
         except requests.exceptions.ConnectionError as e:
             self.errors.append('Unable to contact node "' + self.name + '" at URL ' + self.url)
             log.error('Unable to contact node "' + self.name + '" at URL ' + self.url)

@@ -13,10 +13,10 @@ var SiteData = {
     
     tagApp: function(app, tag, msg) {
         params = {
-            'site'     : SiteData.name_url,
-            'name_url' : app.name_url,
-            'tag'      : tag,
-            'msg'      : msg
+            'site'        : SiteData.name_url,
+            'application' : app.name_url,
+            'tag'         : tag,
+            'msg'         : msg
         }
         
         $.ajax({

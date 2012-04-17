@@ -12,7 +12,7 @@
 <h1>{{ site.name }}</h1>
 
  <div id="accordion" class="accordion">
-    {% for app in site.applications %}
+    {% for name_url, app in site.applications.iteritems() %}
     <div id="stat_{{ app.name_url }}" class="key {{ app.status|get_stat_class }}">
 
       <header>

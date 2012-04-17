@@ -11,7 +11,7 @@
   
   <ul>
   {% if sites|length > 0 %}
-  {% for site in sites %}
+  {% for name, site in sites.iteritems() %}
     <li>
         <a href="/sites/{{ site.name_url }}">
         <span class="{{ site.get_status()|get_status_class }}"></span>

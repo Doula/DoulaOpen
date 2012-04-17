@@ -1,5 +1,7 @@
 import json
 
+from doula.util import pprint
+from doula.util import dumps
 from doula.models.sites_dao import SiteDAO
 from doula.models.util import encode
 from pyramid.view import view_config
@@ -12,14 +14,14 @@ def show_home(request):
 
 @view_config(route_name='sites', renderer='home.html')
 def show_sites(request):
-    dao = SiteDAO
+    dao = SiteDAO()
     
     return { 'sites': dao.get_sites() }
 
 @view_config(route_name='site', renderer="site.html")
 def show_site(request):
-    sites = get_updated_sites(request.registry.settings)
-    site = find_site_by_name_url(sites, request.matchdict['site'])
+    dao = SiteDAO()
+    site = dao.get_site(request.matchdict['site'])
 
     if not site:
         raise HTTPNotFound('Unable to find site "' + request.matchdict['site'] + '"')
@@ -29,18 +31,17 @@ def show_site(request):
 
 @view_config(route_name='application', renderer="application.html")
 def show_application(request):
-    sites = get_updated_sites(request.registry.settings)
-    site = find_site_by_name_url(sites, request.matchdict['site'])
-    app = site.get_app(request.matchdict['application'])
+    dao = SiteDAO()
+    site = dao.get_site(request.matchdict['site'])
+    app = site.applications[request.matchdict['application']]
 
     return { 'site': site, 'app': app }
 
 @view_config(route_name='tag', renderer="string")
 def tag_application(request):
-    # alextodo, need to fold these into a single call
-    sites = get_updated_sites(request.registry.settings)
-    site = find_site_by_name_url(sites, request.POST['site'])
-    app = site.get_app(request.POST['name_url'])
+    dao = SiteDAO()
+    site = dao.get_site(request.matchdict['site'])
+    app = site.applications[request.matchdict['application']]
     app.tag(request.POST['tag'], request.POST['msg'])
 
     return dumps({ 'success': True, 'app': app })
@@ -58,8 +59,8 @@ def register(request):
     Register a Bambino node with Doula.
     """
     node = json.loads(request.POST['node'])
-    
-    dao = SiteDAO
+    pprint(node)
+    dao = SiteDAO()
     dao.register_node(node)
     
     return {'success': 'true'}
