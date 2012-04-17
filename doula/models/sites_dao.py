@@ -1,7 +1,6 @@
 import json
 from doula.util import pprint
 from doula.util import dirify
-
 from doula.cache import Cache
 from doula.models.sites import Site
 from doula.models.sites import Node

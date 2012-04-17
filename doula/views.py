@@ -1,5 +1,4 @@
 import json
-
 from doula.util import pprint
 from doula.util import dumps
 from doula.models.sites_dao import SiteDAO

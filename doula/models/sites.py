@@ -54,36 +54,7 @@ class Site(object):
                 self.status = app.status
         
         return self.status
-    def has_node(self, node_name):
-        for node in self.nodes:
-            if node.name == node_name:
-                return True
-        return False
     
-    def has_application(self, app_name):
-        for app in self.applications:
-            if app.name == app_name:
-                return True
-        return False
-    
-    # alextodo, this logic should be moved to the factory, no?
-    def update_applications(self):
-        """
-        Runs through the nodes and has each one return details
-        about it's applications.
-        """
-        for node in self.nodes:
-            for app in node.get_applications():
-                if not self.has_application(app.name):
-                    self.applications.append(app)
-    
-    def get_app(self, name_url):
-        for app in self.applications:
-            if app.name_url == name_url:
-                return app
-        return False
-    def to_json(self):
-        return dumps(self)
 
 class Node(object):
     def __init__(self, name, url, applications={}):
@@ -101,10 +72,9 @@ class Node(object):
             self.errors = [ ]
             self.applications = { }
             
-            # alextodo, how can i mock this out?
-            # alextodo, need to figure out how to test this properly
-            # may need to simply move it out to the factory, sounds good
             r = requests.get(self.url + '/applications')
+            # If the response is non 200, we raise an error
+            r.raise_for_status()
             rslt = json.loads(r.text)
             
             for app in rslt['applications']:
@@ -125,12 +95,16 @@ class Node(object):
                 
                 self.applications[a.name_url] = a
         except requests.exceptions.ConnectionError as e:
-            self.errors.append('Unable to contact node "' + self.name + '" at URL ' + self.url)
-            log.error('Unable to contact node "' + self.name + '" at URL ' + self.url)
+            msg = 'Unable to contact node {0} at URL {1}'.format(self.name, self.url)
+            log.error(msg)
+            self.errors.append(msg)
+        except Exception as e:
+            msg = 'Unable to load applications. Error: {0}'.format(e)
+            log.error(msg)
+            self.error.append(msg)
         
         return self.applications
-    def to_json(self):
-        return dumps(self)
+    
 
 class Application(object):
     def __init__(self, name, node_name, url,
@@ -160,22 +134,23 @@ class Application(object):
         self.remote = remote
         self.packages = packages
     def get_pretty_status(self):
-        # alextodo, add tagged as a status
         """
         Return a print friendly status
         """
-        if self.status == 'unchanged':
-            return 'Unchanged'
-        elif self.status == 'change_to_config':
-            return 'Changes to Configuration'
-        elif self.status == 'change_to_app':
-            return 'Changes to Application Environment'
-        elif self.status == 'change_to_app_and_config':
-            return 'Changes to Configuration and Application Environment'
-        elif self.status == 'uncommitted_changes':
-            return 'Uncommitted Changes'
+        statuses = {
+            'tagged': 'Tagged',
+            'unchanged': 'Unchanged',
+            'change_to_config': 'Changes to Configuration',
+            'change_to_app': 'Changes to Application Environment',
+            'change_to_app_and_config': 'Changes to Configuration and Application Environment',
+            'uncommitted_changes': 'Uncommitted Changes'
+        }
+        
+        if self.status in statuses:
+            return statuses[self.status]
         else:
             return 'Unknown'
+    
     def get_compare_url(self):
         """
         Use the remote url to return the Github Comapre view URL.
@@ -204,12 +179,11 @@ class Application(object):
         
         self.tag = tag
         self.msg = msg
+        # ALEXTODO, need to go through this logic and make sure it works
         # figure out how we will update doula
         # we should get the app details back from bambino
         # save that to in memory storage
         self.status = 'tagged'
-    def to_json(self):
-        return dumps(self)
     
 
 class Package(object):
@@ -220,5 +194,3 @@ class Package(object):
         self.name = name
         self.version = version
     
-    def to_json(self):
-        return dumps(self)
