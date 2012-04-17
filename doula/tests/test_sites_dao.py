@@ -1,4 +1,5 @@
 import unittest
+from doula.util import pprint
 from doula.cache import Cache
 from doula.models.sites_dao import SiteDAO
 
@@ -49,7 +50,39 @@ class TestSitesDAO(unittest.TestCase):
         dao = SiteDAO()
         nodes = dao.nodes('unknown site')
         self.assertEqual(len(nodes), 0)
-
+    
+    def test_all_site_keys(self):
+        dao = SiteDAO()
+        
+        node = {
+            'name': 'node1',
+            'site': 'site1',
+            'url' : 'http://node1'
+        }
+        
+        dao.register_node(node)
+        keys = dao._all_site_keys()
+        
+        self.assertEqual(keys[0], 'site:site1')
+    
+    def test_get_sites(self):
+        # Get Site objects array, [Site, Site, Site...]
+        dao = SiteDAO()
+        self._register_node(dao)
+        
+        sites = dao.get_sites()
+        self.assertEqual(len(sites), 1)
+        self.assertEqual(len(sites['site1'].nodes.keys()), 1)
+        pprint(sites)
+    
+    def _register_node(self, dao):
+        node = {
+            'name': 'node1',
+            'site': 'site1',
+            'url' : 'http://node1'
+        }
+        
+        dao.register_node(node)
 
 if __name__ == '__main__':
     unittest.main()

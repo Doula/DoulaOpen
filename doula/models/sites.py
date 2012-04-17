@@ -23,7 +23,7 @@ from doula.util import dirify
 from doula.util import dumps
 
 class Site(object):
-    def __init__(self, name, status='unknown', nodes=[], applications=[]):
+    def __init__(self, name, status='unknown', nodes={}, applications={}):
         self.name = name
         self.name_url = dirify(name)
         self.status = status
@@ -66,6 +66,7 @@ class Site(object):
                 return True
         return False
     
+    # alextodo, this logic should be moved to the factory, no?
     def update_applications(self):
         """
         Runs through the nodes and has each one return details
@@ -85,19 +86,22 @@ class Site(object):
         return dumps(self)
 
 class Node(object):
-    def __init__(self, name, url, applications=[]):
+    def __init__(self, name, url, applications={}):
         self.name = name
         self.name_url = dirify(name)
         self.url = url
         self.applications = applications
+        self.errors = [ ]
     
-    def get_applications(self):
+    def load_applications(self):
         """
         Update the applications
         """
         try:
-            self.applications = [ ]
+            self.errors = [ ]
+            self.applications = { }
             
+            # alextodo, how can i mock this out?
             r = requests.get(self.url + '/applications')
             rslt = json.loads(r.text)
             
@@ -117,8 +121,9 @@ class Node(object):
                     for name, version in app['packages'].iteritems():
                         a.packages.append(Package(name, version))
                 
-                self.applications.append(a)
+                self.applications[a.name] = a
         except requests.exceptions.ConnectionError as e:
+            self.errors.append('Unable to contact node "' + self.name + '" at URL ' + self.url)
             log.error('Unable to contact node "' + self.name + '" at URL ' + self.url)
         
         return self.applications

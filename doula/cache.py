@@ -27,8 +27,19 @@ class MockRedis(object):
     def __init__(self):
         self.cache = { }
     
-    def keys(self):
-        return self.cache.keys()
+    def keys(self, pattern=''):
+        if pattern:
+            pattern = pattern.replace('*', '')
+            
+            keys = [ ]
+            
+            for k in self.cache.keys():
+                if k.startswith(pattern):
+                    keys.append(k)
+            
+            return keys
+        else:
+            return self.cache.keys()
     
     def delete(self, keys):
         # This should take a single value or a list
@@ -37,6 +48,9 @@ class MockRedis(object):
             del self.cache[keys]
         else:
             self.cache.clear()
+    
+    def flushdb(self):
+        self.cache.clear()
     
     def get(self, key):
         return self.cache.get(key, '')
@@ -54,7 +68,6 @@ class Cache(object):
         r = Cache.cache()
         r.flushdb()
     
-    
     @staticmethod
     def cache():
         try:
@@ -68,5 +81,6 @@ class Cache(object):
             if Cache.env == 'prod':
                 raise
             else:
-                return MockRedis()
+                Cache.redis = MockRedis()
+                return Cache.redis
     

@@ -1,4 +1,5 @@
 import json
+from pprint import pprint as pretty_print
 import re
 
 def dirify(url):
@@ -23,3 +24,6 @@ class ObjectEncoder(json.JSONEncoder):
 
 def dumps(obj):
     return ObjectEncoder().encode(obj)
+
+def pprint(obj):
+    pretty_print(dumps(obj))
