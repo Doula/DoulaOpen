@@ -89,6 +89,7 @@ class Node(object):
                 a.last_tag_app = app['last_tag_app']
                 a.current_branch_config = app['current_branch_config']
                 a.changed_files = app['changed_files']
+                a.packages = [ ]
                 
                 for name, version in app['packages'].iteritems():
                     a.packages.append(Package(name, version))
@@ -179,7 +180,7 @@ class Application(object):
         r = requests.post(self.url + '/tag', data=payload)
         # If the response is non 200, we raise an error
         r.raise_for_status()
-        
+
         self.tag = tag
         self.msg = msg
         self.status = 'tagged'

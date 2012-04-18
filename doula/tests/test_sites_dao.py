@@ -47,10 +47,28 @@ class TestSitesDAO(unittest.TestCase):
         self.assertEqual(len(dao.nodes(site).keys()), 3)
     
     def test_register_node_two(self):
+        # Make sure we don't return an unknown site
         dao = SiteDAO()
         nodes = dao.nodes('unknown site')
         self.assertEqual(len(nodes), 0)
     
+    def test_unregister_node(self):
+        node1 = {
+            'name': 'node1',
+            'site': 'site1',
+            'url' : 'http://node1'
+        }
+
+        dao = SiteDAO()
+        dao.register_node(node1)
+
+        self.assertEqual(len(dao.nodes('site1').keys()), 1)
+
+        dao.unregister_node(node1)
+        self.assertEqual(len(dao.nodes('site1').keys()), 0)
+
+        sites = dao.get_sites()
+        self.assertEqual(len(sites.keys()), 0)
     def test_all_site_keys(self):
         dao = SiteDAO()
         
@@ -73,7 +91,6 @@ class TestSitesDAO(unittest.TestCase):
         sites = dao.get_sites()
         self.assertEqual(len(sites), 1)
         self.assertEqual(len(sites['site1'].nodes.keys()), 1)
-        pprint(sites)
     
     def _register_node(self, dao):
         node = {

@@ -74,8 +74,11 @@ def register(request):
     """
     node = json.loads(request.POST['node'])
     pprint(node)
-    dao = SiteDAO()
-    dao.register_node(node)
+
+    if(request.POST['action'] == 'register'):
+        SiteDAO().register_node(node)
+    else:
+        SiteDAO().unregister_node(node)
     
     return {'success': 'true'}
 

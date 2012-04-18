@@ -1,4 +1,6 @@
 import json
+import logging
+
 from doula.util import pprint
 from doula.util import dirify
 from doula.cache import Cache
@@ -6,8 +8,6 @@ from doula.models.sites import Site
 from doula.models.sites import Node
 from doula.models.sites import Application
 from doula.models.sites import Package
-
-import logging
 
 log = logging.getLogger('doula')
 
@@ -23,6 +23,17 @@ class SiteDAO(object):
         key = self._get_site_cache_key(node['site'])
         self.cache.set(key, json.dumps(site))
     
+    def unregister_node(self, node):
+        site = self._get_site(node['site'])
+        del site['nodes'][node['name']]
+
+        key = self._get_site_cache_key(node['site'])
+        self.cache.set(key, json.dumps(site))
+
+        # If the site has no nodes left remove from cache
+        if len(site['nodes']) == 0:
+            self.cache.delete(key)
+
     def _get_site_cache_key(self, name):
         return self.site_prefix + dirify(name)
     
