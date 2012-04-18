@@ -1,6 +1,13 @@
 // The SiteData Module
 var SiteData = {
     
+    name: '',
+    name_url: '',
+    nodes: { },
+    applications: { },
+    status: '',
+    
+    
     init: function() {
         this.mixin();
     },
@@ -60,11 +67,7 @@ var SiteData = {
     },
     
     findAppByID: function(name_url) {
-        for (var i=0; i < this.applications.length; i++) {
-            if(this.applications[i].name_url == name_url) {
-                return this.applications[i];
-            }
-        }
+        return this.applications[name_url];
     },
     
     isReadyForDeploy: function() {

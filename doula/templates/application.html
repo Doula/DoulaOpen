@@ -27,6 +27,22 @@
             <td><strong>Compare View</strong></td>
             <td><a href="{{ app.get_compare_url() }}" target="_blank">{{ app.get_compare_url() }}</a></td>
         </tr>
+        {% if app.changed_files|length > 0 %}
+        <tr>
+            <th style="vertical-align: top;">
+                Changed Files
+            </th>
+            <td>
+                <table>
+                {% for changed_file in app.changed_files|sort %}
+                <tr>
+                  <td>{{ changed_file }}</td>
+                </tr>
+                {% endfor %}
+              </table>
+            </td>
+        </tr>
+        {% endif %}
         <tr class="odd">
             <th style="vertical-align: top;">
                 Packages

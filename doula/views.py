@@ -21,29 +21,44 @@ def show_sites(request):
 def show_site(request):
     dao = SiteDAO()
     site = dao.get_site(request.matchdict['site'])
-
+    
     if not site:
-        raise HTTPNotFound('Unable to find site "' + request.matchdict['site'] + '"')
+        msg = 'Unable to find site "{0}"'.format(request.matchdict['site'])
+        raise HTTPNotFound(msg)
 
     return { 'site': site, 'site_json': dumps(site) }
 
 
 @view_config(route_name='application', renderer="application.html")
 def show_application(request):
-    dao = SiteDAO()
-    site = dao.get_site(request.matchdict['site'])
-    app = site.applications[request.matchdict['application']]
+    try:
+        dao = SiteDAO()
+        site = dao.get_site(request.matchdict['site'])
+        app = site.applications[request.matchdict['application']]
+    except KeyError as e:
+        msg = 'Unable to find site and application under "{0}" and "{1}"'
+        msg = msg.format(request.matchdict['site'], request.matchdict['application'])
+        raise HTTPNotFound(msg)
+    
 
     return { 'site': site, 'app': app }
 
 @view_config(route_name='tag', renderer="string")
 def tag_application(request):
-    dao = SiteDAO()
-    site = dao.get_site(request.matchdict['site'])
-    app = site.applications[request.matchdict['application']]
-    app.tag(request.POST['tag'], request.POST['msg'])
+    try:
+        dao = SiteDAO()
+        site = dao.get_site(request.POST['site'])
+        app = site.applications[request.POST['application']]
+        app.tag(request.POST['tag'], request.POST['msg'])
+        
+        return dumps({ 'success': True, 'app': app })
+    except KeyError as e:
+        msg = 'Unable to tag site and application under "{0}" and "{1}"'
+        msg = msg.format(request.POST['site'], request.POST['application'])
+        
+        return dumps({ 'success': False, 'msg': msg })
 
-    return dumps({ 'success': True, 'app': app })
+    
 
 @view_config(context=HTTPNotFound, renderer='404.html')
 def not_found(self, request):

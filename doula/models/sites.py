@@ -88,10 +88,10 @@ class Node(object):
                 a.remote = app['remote']
                 a.last_tag_app = app['last_tag_app']
                 a.current_branch_config = app['current_branch_config']
+                a.changed_files = app['changed_files']
                 
-                if 'packages' in app:
-                    for name, version in app['packages'].iteritems():
-                        a.packages.append(Package(name, version))
+                for name, version in app['packages'].iteritems():
+                    a.packages.append(Package(name, version))
                 
                 self.applications[a.name_url] = a
         except requests.exceptions.ConnectionError as e:
@@ -112,7 +112,7 @@ class Application(object):
         change_count_app='', change_count_config='',
         is_dirty_app=False, is_dirty_config=False,
         last_tag_app='', last_tag_config='',
-        status='', remote='', repo='', packages=[]):
+        status='', remote='', repo='', packages=[], changed_files=[]):
         self.name = name
         self.node_name = node_name
         self.name_url = dirify(name)
@@ -133,6 +133,7 @@ class Application(object):
         self.status = status
         self.remote = remote
         self.packages = packages
+        self.changed_files = changed_files
     def get_pretty_status(self):
         """
         Return a print friendly status

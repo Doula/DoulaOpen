@@ -7,6 +7,10 @@ from doula.models.sites import Node
 from doula.models.sites import Application
 from doula.models.sites import Package
 
+import logging
+
+log = logging.getLogger('doula')
+
 class SiteDAO(object):
     def __init__(self):
         self.cache = Cache.cache()
@@ -35,6 +39,7 @@ class SiteDAO(object):
         if site:
             return json.loads(site)
         else:
+            log.info('Unable to find site by name "{0}"'.format(name))
             return { 'name' : name, 'nodes' : { } }
     
     def nodes(self, name):
