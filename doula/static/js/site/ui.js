@@ -17,10 +17,22 @@ var UI = {
         $('.sm-side-tab').sideTab();
     },
     
+    // Execute before the ajax call to server
+    onTagApp: function(app) {
+        $('#form_' + app.name_url + ' input.btn').attr('disabled', 'disabled');
+    },
+
     tagApp: function(app) {
         $('#panel_' + app.name_url).click();
-        
+        // You can longer tag an app after it's been tagged
+        $('#panel_' + app.name_url).on('click', function() { return false; });
+        $('#panel_' + app.name_url + ' em').hide();
+
         this.updateStatus(app);
+    },
+
+    failedTag: function(app) {
+        $('#form_' + app.name_url + ' input.btn').attr('disabled', '');
     },
     
     updateStatus: function(app) {

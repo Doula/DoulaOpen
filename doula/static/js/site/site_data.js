@@ -42,6 +42,7 @@ var SiteData = {
                       Site.successfulTagApp(app);
                   }
                   else {
+                      // alextodo, need to make call to UI.failed whatever
                       alert(obj.msg);
                   }
               }

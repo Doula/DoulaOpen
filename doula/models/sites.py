@@ -177,13 +177,11 @@ class Application(object):
         """
         payload = {'tag': tag, 'description': msg, 'apps': self.name}
         r = requests.post(self.url + '/tag', data=payload)
+        # If the response is non 200, we raise an error
+        r.raise_for_status()
         
         self.tag = tag
         self.msg = msg
-        # ALEXTODO, need to go through this logic and make sure it works
-        # figure out how we will update doula
-        # we should get the app details back from bambino
-        # save that to in memory storage
         self.status = 'tagged'
     
 

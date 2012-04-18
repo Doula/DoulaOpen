@@ -27,7 +27,7 @@
             <td><strong>Compare View</strong></td>
             <td><a href="{{ app.get_compare_url() }}" target="_blank">{{ app.get_compare_url() }}</a></td>
         </tr>
-        {% if app.changed_files|length > 0 %}
+        {% if app.changed_files|length > 0 and app.status == 'uncommitted_changes' %}
         <tr>
             <th style="vertical-align: top;">
                 Changed Files

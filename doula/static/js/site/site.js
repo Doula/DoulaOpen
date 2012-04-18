@@ -19,6 +19,7 @@ var Site = (function() {
       var tag = $('#tag_' + app.name_url)[0].value;
       var msg = $('#msg_' + app.name_url)[0].value;
       
+      UI.onTagApp(app);
       SiteData.tagApp(app, tag, msg);
       
       return false;
