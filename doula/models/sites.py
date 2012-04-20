@@ -87,6 +87,7 @@ class Node(object):
                 a.status = app['status']
                 a.remote = app['remote']
                 a.last_tag_app = app['last_tag_app']
+                a.last_tag_message = app['last_tag_message']
                 a.current_branch_config = app['current_branch_config']
                 a.changed_files = app['changed_files']
                 a.packages = [ ]
@@ -112,7 +113,7 @@ class Application(object):
         current_branch_app='', current_branch_config='',
         change_count_app='', change_count_config='',
         is_dirty_app=False, is_dirty_config=False,
-        last_tag_app='', last_tag_config='',
+        last_tag_app='', last_tag_config='', last_tag_message='',
         status='', remote='', repo='', packages=[], changed_files=[]):
         self.name = name
         self.node_name = node_name
@@ -130,6 +131,7 @@ class Application(object):
         
         self.last_tag_app = last_tag_app
         self.last_tag_config = last_tag_config
+        self.last_tag_message = last_tag_message
         
         self.status = status
         self.remote = remote

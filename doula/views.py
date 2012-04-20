@@ -1,4 +1,6 @@
 import json
+import time
+
 from doula.util import pprint
 from doula.util import dumps
 from doula.models.sites_dao import SiteDAO
@@ -73,6 +75,7 @@ def register(request):
     Register a Bambino node with Doula.
     """
     node = json.loads(request.POST['node'])
+    node['time'] = time.strftime("%m/%d/%Y %H:%M:%S", time.gmtime())
     pprint(node)
 
     if(request.POST['action'] == 'register'):

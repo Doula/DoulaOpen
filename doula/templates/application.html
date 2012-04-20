@@ -23,16 +23,20 @@
             <td><strong>Notes</strong></td>
             <td>Add a Note</td>
         </tr>
-        <tr class="odd">
+        <tr>
             <td><strong>Last Tag</strong></td>
             <td>{{ app.last_tag_app }}</td>
+        </tr>
+        <tr class="odd">
+            <td><strong>Last Tag Message</strong></td>
+            <td>{{ app.last_tag_message }}</td>
         </tr>
         <tr>
             <td><strong>Compare View</strong></td>
             <td><a href="{{ app.get_compare_url() }}" target="_blank">{{ app.get_compare_url() }}</a></td>
         </tr>
         {% if app.changed_files|length > 0 and app.status == 'uncommitted_changes' %}
-        <tr>
+        <tr class="odd">
             <th style="vertical-align: top;">
                 Changed Files
             </th>
@@ -47,7 +51,7 @@
             </td>
         </tr>
         {% endif %}
-        <tr class="odd">
+        <tr>
             <th style="vertical-align: top;">
                 Packages
             </th>
