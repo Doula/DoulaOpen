@@ -1,7 +1,7 @@
 var UI = {
           
     statusClassHash: {
-        'unchanged'                : 'unchanged',
+        'deployed'                : 'deployed',
         'uncommitted_changes'      : 'error',
         'change_to_config'         : 'changed',
         'change_to_app_env'        : 'changed',

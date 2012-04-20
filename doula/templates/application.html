@@ -17,7 +17,7 @@
         </tr>
         <tr>
             <td><strong>Status</strong></td>
-            <td>{{ app.get_pretty_status() }}</td>
+            <td>{{ app.status|get_pretty_status }}</td>
         </tr>
         <tr class="odd">
             <td style="vertical-align: top;"><strong>Notes</strong></td>
@@ -25,7 +25,8 @@
                 <a id="add-note-link" href="#">Add a Note</a>
                 <div id="add-note-div" class="hide">
                 <form action="/sites/{{ site.name_url }}/{{ app.name_url }}" enctype="multipart/form-data" method="post">
-                <textarea name="note" class="commit" style="width: 100%" cols="20" rows="5">Add a note to {{ app.name }}'s repository.</textarea>
+                <textarea name="note" class="commit" style="width: 100%" 
+                cols="20" rows="5" placeholder="He listens well who takes notes."></textarea>
                 <br /><br />
                 <input class="btn" type="submit" value="Add Note" />
                 </form>
@@ -45,7 +46,7 @@
                     {% endfor %}
                   </table>
                   {% else %}
-                  <strong>No existing notes</strong>
+                  <strong>No notes exist for {{ app.name }}</strong>
                   {% endif %}
                 </div>
             </td>

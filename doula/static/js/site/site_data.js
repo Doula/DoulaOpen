@@ -75,7 +75,7 @@ var SiteData = {
         var isReadyForDeploy = true;
         
         for (var i=0; i < this.applications.length; i++) {
-            if( this.applications[i].status != 'unchanged' &&
+            if( this.applications[i].status != 'deployed' &&
                 this.applications[i].status != 'tagged' ) {
                 isReadyForDeploy = false;
                 break;

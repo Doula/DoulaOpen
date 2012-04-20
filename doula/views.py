@@ -27,7 +27,7 @@ def show_site(request):
     if not site:
         msg = 'Unable to find site "{0}"'.format(request.matchdict['site'])
         raise HTTPNotFound(msg)
-    
+
     return { 'site': site, 'site_json': dumps(site) }
 
 
@@ -38,7 +38,7 @@ def show_application(request):
         site = dao.get_site(request.matchdict['site'])
         app = site.applications[request.matchdict['application']]
 
-        if 'note' in request.POST:
+        if take_note(request, app):
             app.add_note(request.POST['note'])
 
     except:
@@ -53,6 +53,23 @@ def show_application(request):
     
 
     return { 'site': site, 'app': app }
+
+def take_note(request, app):
+    if 'note' in request.POST:
+        # ensure the user isn't reposting same last comment by accident
+        keys = sorted(app.notes.keys())
+        
+        if len(keys) > 0:
+            last_note = app.notes[keys.pop()]
+            
+            if request.POST['note'] == last_note:
+                # Stop users from resubmitting the last note twice
+                return False
+        
+        return True
+    else:
+        return False
+
 
 @view_config(route_name='tag', renderer="string")
 def tag_application(request):

@@ -5,7 +5,7 @@ import logging
 
 log = logging.getLogger('doula')
 
-# Defines the Data Models four Doula and Bambino.
+# Defines the Data Models for Doula and Bambino.
 #
 # sites
 #   Site
@@ -32,18 +32,17 @@ class Site(object):
     def get_status(self):
         """
         The status of the site is the most serious status of all it's applications.
-        Status from least serious to most are:
-            unchanged (1), change_to_config (2), change_to_app (3),
-            change_to_app_and_config (4), uncommitted_changes (5)
+        The more serious the status, the higher the status value number.
         """
         status_value = 0
         status_values = {
             'unknown'                 : 0,
-            'unchanged'               : 1,
-            'change_to_config'        : 2,
+            'deployed'                : 1,
+            'tagged'                  : 2,
+            'change_to_config'        : 3,
             'change_to_app'           : 3,
-            'change_to_app_and_config': 4,
-            'uncommitted_changes'     : 5
+            'change_to_app_and_config': 3,
+            'uncommitted_changes'     : 4
         }
         
         for app_name, app in self.applications.iteritems():
@@ -139,23 +138,6 @@ class Application(object):
         self.packages = packages
         self.changed_files = changed_files
         self.notes = notes
-    def get_pretty_status(self):
-        """
-        Return a print friendly status
-        """
-        statuses = {
-            'tagged': 'Tagged',
-            'unchanged': 'Unchanged',
-            'change_to_config': 'Changes to Configuration',
-            'change_to_app': 'Changes to Application Environment',
-            'change_to_app_and_config': 'Changes to Configuration and Application Environment',
-            'uncommitted_changes': 'Uncommitted Changes'
-        }
-        
-        if self.status in statuses:
-            return statuses[self.status]
-        else:
-            return 'Unknown'
     
     def get_compare_url(self):
         """
@@ -197,6 +179,9 @@ class Application(object):
         r = requests.post(self.url + '/note', data=payload)
         # If the response is non 200, we raise an error
         r.raise_for_status()
+
+        rslt = json.loads(r.text)
+        self.notes = rslt['notes']
 
 class Package(object):
     """

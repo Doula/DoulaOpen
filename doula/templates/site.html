@@ -22,12 +22,12 @@
            <a id="panel_{{ app.name_url }}" href="#panel{{ loop.index }}" 
            class="{% if app.status != 'uncommitted_changes' %}keyOpener{% else %}keyCloser{% endif %}">
              {{ app.name }}
-             <strong>{{ app.get_pretty_status() }}</strong>
-             {% if app.status != 'unchanged' and app.status != 'uncommitted_changes' %}<em><span class="icon">✍</span> Tag Changes</em>{% endif %}
+             <strong>{{ app.status|get_pretty_status }}</strong>
+             {% if app.status != 'deployed' and app.status != 'tagged' and app.status != 'uncommitted_changes' %}<em><span class="icon">✍</span> Tag Changes</em>{% endif %}
            </a>
          </h3>
       </header>
-      {% if app.status != 'unchanged' %}
+      {% if app.status != 'deployed' and app.status != 'tagged' %}
       <section id="panel{{ loop.index }}">
 
          <form id="form_{{ app.name_url }}" method="post" action="#">
