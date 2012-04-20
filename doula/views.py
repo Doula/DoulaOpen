@@ -85,7 +85,23 @@ def tag_application(request):
         msg = msg.format(request.POST['site'], request.POST['application'])
         
         return dumps({ 'success': False, 'msg': msg })
+    
 
+@view_config(route_name='deploy', renderer="string")
+def deploy_application(request):
+    try:
+        dao = SiteDAO()
+        site = dao.get_site(request.POST['site'])
+        app = site.applications[request.POST['application']]
+        app.deploy_application(site)
+
+        return dumps({ 'success': True, 'app': app })
+    except KeyError as e:
+        msg = 'Unable to deploy application under "{0}"'
+        msg = msg.format(request.POST['site'], request.POST['application'])
+        
+        return dumps({ 'success': False, 'msg': msg })
+    
 @view_config(context=HTTPNotFound, renderer='404.html')
 def not_found(self, request):
     request.response.status = 404

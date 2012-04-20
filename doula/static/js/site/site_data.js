@@ -26,6 +26,7 @@ var SiteData = {
             'msg'         : msg
         }
         
+        // alextodo, use a personal version of ajax
         $.ajax({
               url: '/tag',
               type: 'POST',
@@ -43,6 +44,33 @@ var SiteData = {
                   }
                   else {
                       // alextodo, need to make call to UI.failed whatever
+                      alert(obj.msg);
+                  }
+              }
+        });
+    },
+
+    deployApplication: function(app) {
+        params = {
+            'site'        : SiteData.name_url,
+            'application' : app.name_url
+        }
+        
+        $.ajax({
+              url: '/deploy.json',
+              type: 'POST',
+              data: this.getDataValues(params),
+              success: function(rslt) {
+                  var obj = $.parseJSON(rslt);
+                  
+                  // should be implemented on index page
+                  if(obj.success) {
+                      app = SiteData.findAppByID(obj.app.name_url);
+                      app.status = obj.app.status;
+                      UI.deployApp(app);
+                  }
+                  else {
+                      // alextodo, need to make call to UI. failed whatever
                       alert(obj.msg);
                   }
               }

@@ -106,7 +106,7 @@ class SiteFactory(object):
         nodes = { }
         
         for name,n in simple_nodes.iteritems():
-            node = Node(name, n['url'])
+            node = Node(name, n['site'], n['url'])
             node.load_applications()
             nodes[name] = node
         

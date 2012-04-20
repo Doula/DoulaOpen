@@ -21,6 +21,11 @@ var UI = {
     onTagApp: function(app) {
         $('#form_' + app.name_url + ' input.btn').attr('disabled', 'disabled');
     },
+    
+    deployApp: function(app) {
+        $('#deploy_' + app.name_url).hide();
+        this.updateStatus(app);
+    },
 
     tagApp: function(app) {
         $('#panel_' + app.name_url).click();

@@ -3197,36 +3197,44 @@ table.center-cells td, table.center-cells th {
       .accordion > div.key > header > a:hover, .accordion > div.key:first-child > header > a:hover, .accordion > div.key:last-child > header > a:hover, .accordion div.key.open > header > a:hover {
         color: white; }
     /* line 165, ../sass/style.sass */
+    .accordion > div.key > header > a.deploy, .accordion > div.key:first-child > header > a.deploy, .accordion > div.key:last-child > header > a.deploy, .accordion div.key.open > header > a.deploy {
+      position: absolute;
+      right: 80px;
+      top: 7px; }
+      /* line 169, ../sass/style.sass */
+      .accordion > div.key > header > a.deploy:hover, .accordion > div.key:first-child > header > a.deploy:hover, .accordion > div.key:last-child > header > a.deploy:hover, .accordion div.key.open > header > a.deploy:hover {
+        color: white; }
+    /* line 171, ../sass/style.sass */
     .accordion > div.key > header h3 strong, .accordion > div.key:first-child > header h3 strong, .accordion > div.key:last-child > header h3 strong, .accordion div.key.open > header h3 strong {
       text-transform: none;
       font-weight: 400;
       font-size: 12px;
       margin-left: 10px; }
-    /* line 170, ../sass/style.sass */
+    /* line 176, ../sass/style.sass */
     .accordion > div.key > header h3 a, .accordion > div.key:first-child > header h3 a, .accordion > div.key:last-child > header h3 a, .accordion div.key.open > header h3 a {
       padding-left: 40px; }
-    /* line 172, ../sass/style.sass */
+    /* line 178, ../sass/style.sass */
     .accordion > div.key > header h3 em, .accordion > div.key:first-child > header h3 em, .accordion > div.key:last-child > header h3 em, .accordion div.key.open > header h3 em {
       position: absolute;
       top: 12px;
       right: 80px; }
-    /* line 176, ../sass/style.sass */
+    /* line 182, ../sass/style.sass */
     .accordion > div.key > header:hover h3 em, .accordion > div.key:first-child > header:hover h3 em, .accordion > div.key:last-child > header:hover h3 em, .accordion div.key.open > header:hover h3 em {
       color: white; }
-    /* line 178, ../sass/style.sass */
+    /* line 184, ../sass/style.sass */
     .accordion > div.key > header > a, .accordion > div.key > header h3 em, .accordion > div.key:first-child > header > a, .accordion > div.key:first-child > header h3 em, .accordion > div.key:last-child > header > a, .accordion > div.key:last-child > header h3 em, .accordion div.key.open > header > a, .accordion div.key.open > header h3 em {
       font-weight: 400;
       font-size: 12px;
       text-transform: none;
       font-style: normal;
       color: #999999; }
-    /* line 184, ../sass/style.sass */
+    /* line 190, ../sass/style.sass */
     .accordion > div.key > header > span, .accordion > div.key:first-child > header > span, .accordion > div.key:last-child > header > span, .accordion div.key.open > header > span {
       width: 20px;
       height: 20px;
       top: 9px;
       left: 9px; }
-  /* line 189, ../sass/style.sass */
+  /* line 195, ../sass/style.sass */
   .accordion > div > section > form {
     background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.3)));
     background: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
@@ -3242,32 +3250,32 @@ table.center-cells td, table.center-cells th {
     background-clip: padding-box;
     padding: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-    /* line 194, ../sass/style.sass */
+    /* line 200, ../sass/style.sass */
     .accordion > div > section > form > div {
       margin: 0 0 10px 0;
       clear: both; }
-      /* line 197, ../sass/style.sass */
+      /* line 203, ../sass/style.sass */
       .accordion > div > section > form > div:last-child {
         margin-bottom: 0; }
-    /* line 199, ../sass/style.sass */
+    /* line 205, ../sass/style.sass */
     .accordion > div > section > form label {
       float: left;
       width: 17%; }
-    /* line 202, ../sass/style.sass */
+    /* line 208, ../sass/style.sass */
     .accordion > div > section > form input[type=text] {
       width: 240px; }
-    /* line 204, ../sass/style.sass */
+    /* line 210, ../sass/style.sass */
     .accordion > div > section > form textarea {
       width: 60%; }
 
-/* line 208, ../sass/style.sass */
+/* line 214, ../sass/style.sass */
 .deployment input {
   margin: 0 0 5px 0; }
-/* line 210, ../sass/style.sass */
+/* line 216, ../sass/style.sass */
 .deployment input:disabled {
   opacity: 0.3; }
 
-/* line 213, ../sass/style.sass */
+/* line 219, ../sass/style.sass */
 .icon {
   font-size: 21px;
   vertical-align: middle;
@@ -3275,30 +3283,30 @@ table.center-cells td, table.center-cells th {
   top: -2px;
   position: relative;
   margin-right: 2px; }
-  /* line 220, ../sass/style.sass */
+  /* line 226, ../sass/style.sass */
   .icon.icon-warning {
     color: yellow; }
 
-/* line 224, ../sass/style.sass */
+/* line 230, ../sass/style.sass */
 .stat-tagged > header h3 strong {
-  color: #c0e9fa; }
+  color: #eef589; }
 
-/* line 227, ../sass/style.sass */
+/* line 233, ../sass/style.sass */
 .stat-unknown > header h3 strong {
   color: #ccc0c5; }
 
-/* line 230, ../sass/style.sass */
+/* line 236, ../sass/style.sass */
 .stat-changed > header h3 strong {
   color: #ffa21c; }
 
-/* line 234, ../sass/style.sass */
+/* line 240, ../sass/style.sass */
 .stat-error > header h3 strong {
   color: #ff4646; }
 
-/* line 237, ../sass/style.sass */
+/* line 243, ../sass/style.sass */
 table {
   color: black; }
 
-/* line 240, ../sass/style.sass */
+/* line 246, ../sass/style.sass */
 .hide {
   display: none !important; }

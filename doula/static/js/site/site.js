@@ -2,27 +2,35 @@ var Site = (function() {
   // The main Site Module
   var Site = {
     init: function() {
-      SiteData.init();
-      UI.init();
-      
-      this.bindEvents();
+        SiteData.init();
+        UI.init();
+        
+        this.bindEvents();
     },
     
     bindEvents: function() {
       $('input.tag').on('change', this.validateTag);
       $('textarea.commit').on('change', this.validateMsg);
       $('form').on('submit', this.tagApplication);
+      $('a.deploy').on('click', this.deployApplication);
+    },
+
+    deployApplication: function() {
+        var app = SiteData.findAppByID($(this).attr('app-id'));
+        SiteData.deployApplication(app);
+        
+        return false;
     },
     
     tagApplication: function(event) {
-      var app = SiteData.findAppByID(this.id.replace('form_', ''));
-      var tag = $('#tag_' + app.name_url)[0].value;
-      var msg = $('#msg_' + app.name_url)[0].value;
-      
-      UI.onTagApp(app);
-      SiteData.tagApp(app, tag, msg);
-      
-      return false;
+        var app = SiteData.findAppByID($(this).attr('app-id'));
+        var tag = $('#tag_' + app.name_url)[0].value;
+        var msg = $('#msg_' + app.name_url)[0].value;
+        
+        UI.onTagApp(app);
+        SiteData.tagApp(app, tag, msg);
+        
+        return false;
     },
     
     successfulTagApp: function(app) {

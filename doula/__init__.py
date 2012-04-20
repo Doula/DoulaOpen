@@ -25,6 +25,7 @@ def main(global_config, **settings):
     config.add_route('site', '/sites/{site}')
     config.add_route('application', '/sites/{site}/{application}')
     config.add_route('register', '/register')
+    config.add_route('deploy', '/deploy.json')
     config.add_route('tag', '/tag')
     
     return config.make_wsgi_app()
