@@ -90,6 +90,7 @@ class Node(object):
                 a.last_tag_message = app['last_tag_message']
                 a.current_branch_config = app['current_branch_config']
                 a.changed_files = app['changed_files']
+                a.notes = app['notes']
                 a.packages = [ ]
                 
                 for name, version in app['packages'].iteritems():
@@ -114,7 +115,7 @@ class Application(object):
         change_count_app='', change_count_config='',
         is_dirty_app=False, is_dirty_config=False,
         last_tag_app='', last_tag_config='', last_tag_message='',
-        status='', remote='', repo='', packages=[], changed_files=[]):
+        status='', remote='', repo='', packages=[], changed_files=[], notes={}):
         self.name = name
         self.node_name = node_name
         self.name_url = dirify(name)
@@ -137,6 +138,7 @@ class Application(object):
         self.remote = remote
         self.packages = packages
         self.changed_files = changed_files
+        self.notes = notes
     def get_pretty_status(self):
         """
         Return a print friendly status
@@ -187,6 +189,14 @@ class Application(object):
         self.msg = msg
         self.status = 'tagged'
     
+    def add_note(self, note):
+        """
+        Add a note to the Bambino
+        """
+        payload = { 'note': note, 'app': self.name }
+        r = requests.post(self.url + '/note', data=payload)
+        # If the response is non 200, we raise an error
+        r.raise_for_status()
 
 class Package(object):
     """

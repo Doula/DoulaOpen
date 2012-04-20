@@ -27,7 +27,7 @@ def show_site(request):
     if not site:
         msg = 'Unable to find site "{0}"'.format(request.matchdict['site'])
         raise HTTPNotFound(msg)
-
+    
     return { 'site': site, 'site_json': dumps(site) }
 
 
@@ -37,9 +37,18 @@ def show_application(request):
         dao = SiteDAO()
         site = dao.get_site(request.matchdict['site'])
         app = site.applications[request.matchdict['application']]
-    except KeyError as e:
-        msg = 'Unable to find site and application under "{0}" and "{1}"'
-        msg = msg.format(request.matchdict['site'], request.matchdict['application'])
+
+        if 'note' in request.POST:
+            app.add_note(request.POST['note'])
+
+    except:
+        if 'note' in request.POST:
+            msg = 'Unable to add note to "{0}"'
+            msg = msg.format(request.matchdict['application'])
+        else:
+            msg = 'Unable to find site and application under "{0}" and "{1}"'
+            msg = msg.format(request.matchdict['site'], request.matchdict['application'])
+
         raise HTTPNotFound(msg)
     
 
@@ -59,8 +68,6 @@ def tag_application(request):
         msg = msg.format(request.POST['site'], request.POST['application'])
         
         return dumps({ 'success': False, 'msg': msg })
-
-    
 
 @view_config(context=HTTPNotFound, renderer='404.html')
 def not_found(self, request):

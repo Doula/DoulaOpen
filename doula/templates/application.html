@@ -20,8 +20,35 @@
             <td>{{ app.get_pretty_status() }}</td>
         </tr>
         <tr class="odd">
-            <td><strong>Notes</strong></td>
-            <td>Add a Note</td>
+            <td style="vertical-align: top;"><strong>Notes</strong></td>
+            <td>
+                <a id="add-note-link" href="#">Add a Note</a>
+                <div id="add-note-div" class="hide">
+                <form action="/sites/{{ site.name_url }}/{{ app.name_url }}" enctype="multipart/form-data" method="post">
+                <textarea name="note" class="commit" style="width: 100%" cols="20" rows="5">Add a note to {{ app.name }}'s repository.</textarea>
+                <br /><br />
+                <input class="btn" type="submit" value="Add Note" />
+                </form>
+                </div>
+                <!-- alextodo style and get rid of <br/> -->
+                <br /><br />
+                <div>
+                    {% if app.notes|length > 0 %}
+                    <strong>Existing notes</strong>
+
+                    <table>
+                    {% for date, text in app.notes.iteritems()|sort(reverse=True) %}
+                    <tr>
+                      <td>{{ date|datetime }}</td>
+                      <td>{{ text }}</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+                  {% else %}
+                  <strong>No existing notes</strong>
+                  {% endif %}
+                </div>
+            </td>
         </tr>
         <tr>
             <td><strong>Last Tag</strong></td>
